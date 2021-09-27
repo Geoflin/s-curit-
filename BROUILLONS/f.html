@@ -1,0 +1,86 @@
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<form method="post" action="index.php">
+
+    <label for="name">Votre nom</label>
+    <input type="text" name="lastname" id="lastname" placeholder="Saisissez votre nom">
+
+    <label for="name">Votre prénom</label>
+    <input type="text" name="firstname" id="firstname" placeholder="Saisissez votre prénom">
+
+    <select>
+            <?php
+            try {
+                $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+                foreach ($pdo->query('SELECT FilmName, SalleName FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
+                    <option id="idseance"> <?php echo $seance['FilmName'].' : '.$seance['SalleName'].'<br>'; ?></option> <?php
+                 }
+            } catch (PDOException $e) {
+                echo 'Impossible de récupérer la liste des jeux';
+            }
+            ?>
+    </select>
+   
+    <label for="tos" class="inline-label">J'accepte les conditions générales d'utilisation</label>
+    <input type="checkbox" name="tos" id="tos">
+
+    <button type="reset">Réinitialiser les valeurs du formulaire</button>
+    <button type="submit">Soumettre le formulaire</button>
+</form>
+</body>
+<style>
+/**
+    Attention, ce CSS est là uniquement pour rendre le formulaire "agréable" à la lecture sans que vous n'ayez
+    à récupérer deux fichiers distincts.
+    Dans un cas d'usage "réel", ces éléments doivent être externalisés
+     */
+    body {
+        font-family: Calibri, serif;
+    }
+
+    form {
+        max-width: 50%;
+    }
+
+    form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    label.inline-label {
+        display: inline-block;
+    }
+
+    fieldset {
+        border: 1px solid lightgray;
+        background-color: rgba(225, 233, 255, 0.25);
+    }
+
+    legend {
+        font-style: italic;
+        font-size: 1.1em;
+        padding: 5px;
+    }
+
+    form input, form select, form textarea {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 80%;
+    }
+
+    form input[type="radio"],
+    form input[type="checkbox"],
+    form input[type="submit"] {
+        width: auto;
+    }
+
+    button[type=submit], button[type=reset] {
+        padding: 10px;
+        margin-top: 15px;
+    }
+</style>
