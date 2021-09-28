@@ -100,6 +100,10 @@ session_destroy();
 
 </fieldset>
 
+<!-- supprimer_seance -->
+
+
+
 <!-- erreur connexion -->
 <?php
 } else {
