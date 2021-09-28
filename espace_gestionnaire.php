@@ -57,26 +57,23 @@ session_destroy();
 
 <!-- ajout_seance -->
 
-</br><button name="ajout_seance" id="openAjoutSeance">Ajouter une séance</button></br>
-</br><button name="ajout_seance" id="closeAjoutSeance" >Fermer le formulaire</button></br>
+</br><button name="ajout_seance" id="openAjoutSeance" class="action_button">Ajouter une séance</button>
+<button name="ajout_seance" id="closeAjoutSeance" class="action_button">Fermer le formulaire</button>
+
+<button name="supprimer_seance" id="openSupprimerSeance" class="action_button">supprimer une séance</button>
+<button name="supprimer_seance" id="closeSupprimerSeance" class="action_button">Fermer le formulaire</button>
 
 <fieldset id="ajoutseance">
 <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
 
-    <label for="FilmName">Nom du film</label>
-    <input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film">
-
-    <label for="DateOfNewSeance">Date séance</label>
-    <input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance">
-
-    <label for="HourBegin">heure de début</label>
-    <input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début">
-
-    <label for="HourEnd">heure de fin</label>
-    <input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin">
-
-    <label for="SalleName">Choisissez votre Salle</label>
-    <select name="SalleName" required="required" id="SalleName">
+<table>
+    <thead>
+    <td><label for="FilmName">Nom du film</label></td><td><label for="DateOfNewSeance">Date séance</label></td><td><label for="HourBegin">heure de début</label></td><td><label for="HourEnd">heure de fin</label></td><td><label for="SalleName">Choisissez votre Salle</label></td><td><label for="Nombre_de_place">nombre de place</label></td>
+</thead>
+    
+    <tr>
+    <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td><td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td><td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td><td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
+    <td><select name="SalleName" required="required" id="SalleName">
     <?php
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
@@ -87,22 +84,16 @@ session_destroy();
                 echo 'Récupération Salle impossible';
             }
             ?>
-    </select>
-
-    <label for="Nombre_de_place">nombre de place</label>
-    <input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place">
-    
-
-    </br><button type="reset">Réinitialiser les valeurs du formulaire</button></br>
-    <button type="submit">Soumettre le formulaire</button></br>
+    </select></td>
+    <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
+    </tr>
+</table>
     
 </form>
 
 </fieldset>
 
 <!--supprimer séance-->
-</br><button name="supprimer_seance" id="openSupprimerSeance">supprimer une séance</button></br>
-</br><button name="supprimer_seance" id="closeSupprimerSeance" >Fermer le formulaire</button></br>
 
 <fieldset id="supprimerseance">
 <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">

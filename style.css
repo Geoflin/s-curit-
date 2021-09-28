@@ -22,3 +22,6 @@ thead td{
 fieldset{
     width: 100%;
 }
+.action_button{
+    display: inline;
+}
