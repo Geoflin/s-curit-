@@ -5,15 +5,18 @@
  </HEAD>
 
 <?php
+
 if ($_POST['username'] == 'john' && $_POST['password'] == 'ripples1947') {
-?>
+
+    ?>
 
      <button name="accueil"><a href="index.php">accueil</a></button>
      <button name="connexion"><a href="connexion_gestionnaire.php">retour connexion</a></button></br>
-
+    
      <?php
     session_start();
 $_SESSION['username'] = $_POST['username'];
+$_SESSION['password']= $_POST['password'];
 if (isset($_SESSION['username'])) 
 {
   echo sprintf("<h3>Vous êtes connecté, bonjour %s <h3/>", $_SESSION['username']) . PHP_EOL;
@@ -59,23 +62,23 @@ session_destroy();
 </br><button name="ajout_seance" id="closeAjoutSeance" >Fermer le formulaire</button></br>
 
 <fieldset id="ajoutseance">
-<form name="ajoutseance" method="post" action="traitement_gestionnaire.php">
-<table>
+<form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
+
     
-    <thead><label for="FilmName">Nom du film</label></thead>
+    <label for="FilmName">Nom du film</label>
     <input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film">
 
-    <thead><label for="DateOfNewSeance">Date séance</label></thead>
+    <label for="DateOfNewSeance">Date séance</label>
     <input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance">
 
-    <thead><label for="HourBegin">heure de début</label></thead>
+    <label for="HourBegin">heure de début</label>
     <input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début">
 
-    <thead><label for="HourEnd">heure de fin</label></thead>
+    <label for="HourEnd">heure de fin</label>
     <input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin">
 
-    <thead><label for="SalleName">Choisissez votre Salle</label></thead>
-    <select name="SalleName" required="required" id="SalleName" multiple>
+    <label for="SalleName">Choisissez votre Salle</label>
+    <select name="SalleName" required="required" id="SalleName">
     <?php
             try {
                 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
@@ -88,10 +91,9 @@ session_destroy();
             ?>
     </select>
 
-    <thead><label for="Nombre_de_place">nombre de place</label></thead>
+    <label for="Nombre_de_place">nombre de place</label>
     <input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place">
     
-    </table>
 
     </br><button type="reset">Réinitialiser les valeurs du formulaire</button></br>
     <button type="submit">Soumettre le formulaire</button></br>
@@ -100,9 +102,40 @@ session_destroy();
 
 </fieldset>
 
-<!-- supprimer_seance -->
+<!--supprimer séance-->
+</br><button name="supprimer_seance" id="openSupprimer_seance">supprimer une séance</button></br>
 
+</br><button name="supprimer_seance" id="closeSupprimer_seance" >Fermer le formulaire</button></br>
 
+<fieldset id="supprimer_seance">
+<form name="supprimer_seance" method="post" action="traitement_supprimer_seance.php" target="_blank">
+
+    <label>Choisissez la ou les séances à supprimer</label>
+    
+    <?php
+            try {
+                $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+                foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
+                 <table>
+                 <tr>
+                 <td> <input type="checkbox" id="Id" name="Id" value=" <?php echo $seance['Id']; ?> "><label for="select_supprimer_seance"><?php echo $seance['Id'] ?></label></td>
+                 <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>
+                 </tr>
+              </table>
+            <?php }
+            } catch (PDOException $e) {
+                echo 'Récupération Salle impossible';
+            }
+            ?>
+    </select>
+    
+
+    </br><button type="reset">Réinitialiser les valeurs du formulaire</button></br>
+    <button type="submit">Soumettre le formulaire</button></br>
+    
+</form>
+
+</fieldset>
 
 <!-- erreur connexion -->
 <?php
