@@ -4,24 +4,6 @@
   <link rel="stylesheet" href="style.css" />
  </HEAD>
 
-<?php
-
-if ($_POST['username'] == 'john' && $_POST['password'] == 'ripples1947') {
-
-    ?>
-
-     <button name="accueil"><a href="index.php">accueil</a></button>
-     <button name="connexion"><a href="connexion_gestionnaire.php">retour connexion</a></button></br>
-    
-     <?php
-    session_start();
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['password']= $_POST['password'];
-if (isset($_SESSION['username'])) 
-{
-  echo sprintf("<h3>Vous êtes connecté, bonjour %s <h3/>", $_SESSION['username']) . PHP_EOL;
-  ?>
-
 <!--Liste des séance-->
 
 <h2>Liste des séance</h2>
@@ -63,13 +45,6 @@ try {
     <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
     </tr>
 </table>
-
-  <?php
-} else {
-  echo "erreur du bonjour" . PHP_EOL;
-}
-session_destroy();
-?>
 
 <!-- ajout_seance -->
 
@@ -138,15 +113,6 @@ session_destroy();
 </form>
 
 </fieldset>
-
-<!-- erreur connexion -->
-<?php
-} else {
-    echo "Connexion refusé, vous n'avez pas les droits";
-    echo '<button name="accueil"><a href="index.php">accueil</a></button>';
-    echo '<button name="connexion"><a href="connexion_gestionnaire.php">connexion</a></button>';
-}
-?>
 
 
 

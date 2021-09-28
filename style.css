@@ -4,7 +4,8 @@ table td /* Toutes les cellules des tableaux... */
     border: 1px solid black; /* auront une bordure de 1px */
     padding: 1rem;
     text-align: center;
-    width: 200px;
+    max-width: 100px;
+    min-width: 100px;
     word-wrap: break-word;
 }
 table{
@@ -14,7 +15,8 @@ table{
 thead td{
     background-color: rgb(192, 189, 189);
     font-weight: bold;
-    width: 200px;
+    max-width: 100px;
+    min-width: 100px;
 }
 #ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance{
     display: none;
