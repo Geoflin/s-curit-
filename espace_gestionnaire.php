@@ -58,13 +58,11 @@ session_destroy();
 <!-- ajout_seance -->
 
 </br><button name="ajout_seance" id="openAjoutSeance">Ajouter une séance</button></br>
-
 </br><button name="ajout_seance" id="closeAjoutSeance" >Fermer le formulaire</button></br>
 
 <fieldset id="ajoutseance">
 <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
 
-    
     <label for="FilmName">Nom du film</label>
     <input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film">
 
@@ -103,14 +101,13 @@ session_destroy();
 </fieldset>
 
 <!--supprimer séance-->
-</br><button name="supprimer_seance" id="openSupprimer_seance">supprimer une séance</button></br>
+</br><button name="supprimer_seance" id="openSupprimerSeance">supprimer une séance</button></br>
+</br><button name="supprimer_seance" id="closeSupprimerSeance" >Fermer le formulaire</button></br>
 
-</br><button name="supprimer_seance" id="closeSupprimer_seance" >Fermer le formulaire</button></br>
+<fieldset id="supprimerseance">
+<form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
 
-<fieldset id="supprimer_seance">
-<form name="supprimer_seance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-
-    <label>Choisissez la ou les séances à supprimer</label>
+    <label for="Id">Choisissez la ou les séances à supprimer</label>
     
     <?php
             try {

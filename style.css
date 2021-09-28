@@ -16,7 +16,7 @@ thead td{
     background-color: rgb(192, 189, 189);
     font-weight: bold;
 }
-#ajoutseance, #closeAjoutSeance{
+#ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance{
     display: none;
 }
 fieldset{
