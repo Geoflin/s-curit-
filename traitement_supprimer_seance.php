@@ -3,8 +3,6 @@
   <TITLE>Kinepolise/reservation/confirmation</TITLE>
  </HEAD>
 <BODY>
-  <button name="accueil"><a href="index.php">retour à l'accueil</a></button>
-  <button name="formulaire_ajoutseance"><a href="connexion_gestionnaire.php">retour espace gestionnaire</a></button>
     </BODY>
 </HTML>
 
@@ -17,6 +15,8 @@ try {
     $statement->bindValue(':Id', $_POST['Id'], PDO::PARAM_INT);
     if ($statement->execute()) {
         echo 'La suppression a bien été effectuée';
+        echo 'Vous pouvez fermer cette page';
+        echo "N'oubliez pas de rafraichir votre espace gestionnaire";
     } else {
         $errorInfo = $statement->errorInfo();
         echo $errorInfo[2];
