@@ -1,3 +1,0 @@
-<tr id="openModifierseance1"><td>
-    
-        <input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button><button name="openModifierseance" id="openModifierseance" class="action_button">modifier la ligne</button></td> <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>

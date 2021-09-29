@@ -58,3 +58,23 @@ const openajoutSeance = () => {
   
     openModifierseance.addEventListener('click', openmodifierseance)
     closeModifierseance.addEventListener('click', closemodifierseance)
+
+    //modifier.seance2//
+    const afficher = document.getElementById('afficher')
+    const fermer = document.getElementById('fermer')
+    const div = document.getElementById('div')
+
+    const Afficher = () => {
+      afficher.style.display= "none"
+      fermer.style.display= "block"
+      div.style.display= "block"
+      }
+    
+      const Fermer = () => {
+        afficher.style.display= "block"
+        fermer.style.display= "none"
+        div.style.display= "block"
+      }
+    
+      afficher.addEventListener('click', Afficher)
+      fermer.addEventListener('click', Fermer)

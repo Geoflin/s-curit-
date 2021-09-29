@@ -18,12 +18,9 @@ thead td{
     max-width: 100px;
     min-width: 100px;
 }
-#ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance, #modifier{
+#ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance{
     display: none;
 }
 fieldset{
     width: 100%;
-}
-.action_button{
-    display: inline;
 }

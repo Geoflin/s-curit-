@@ -1,10 +1,10 @@
 <HTML>
  <HEAD>
-  <TITLE>espace_gestionnaire.php</TITLE>
+  <TITLE>Brouillon5.php</TITLE>
   <link rel="stylesheet" href="style.css" />
  </HEAD>
 
-
+<body>
 <!--Liste des séance-->
 
 <!--Liste des séance-->
@@ -16,7 +16,13 @@ try {
     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
     <table>
     <thead>
-    <td>Sélectionner</td><td>Nom du film</td><td>Jour de séance</td><td>Heure de début</td><td>Heure de fin</td><td>Salle</td><td>Nombre de place</td>
+    <td>Sélectionner</td>
+    <td>Nom du film</td>
+    <td>Jour de séance</td>
+    <td>Heure de début</td>
+    <td>Heure de fin</td>
+    <td>Salle</td>
+    <td>Nombre de place</td>
 </thead>
 <tr>
    <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
@@ -47,13 +53,13 @@ try {
 foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
         ?>
         <form name="modifierseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-       <td><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button></td>
-       <td><?php echo $seance['FilmName'];?></br><input type="text" required="required" name="FilmName" id=""></td>
-       <td><?php echo $seance['DateOfNewSeance'];?><input type="date" required="required" name="DateOfNewSeance" id=""></td>
-       <td><?php echo $seance['HourBegin'];?></br><input type="time" required="required" name="HourBegin" id=""></td>
-       <td><?php echo $seance['HourEnd'];?></br><input type="time" required="required" name="HourEnd" id=""></td>
-       <td><?php echo $seance['SalleName'];?><input type="SalleName" required="required" name="SalleName" id=""></td>
-       <td><?php echo $seance['Nombre_de_place'];?></br><input type="number" required="required" name="Nombre_de_place" id=""></td>
+       <td><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "></td>
+       <td><?php echo $seance['FilmName'];?></br><div id="div"><input type="text" required="required" name="FilmName" classe="modifier"></div></td>
+       <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="date" required="required" name="DateOfNewSeance" classe="modifier"></div></td>
+       <td><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" required="required" name="HourBegin" classe="modifier"></div></td>
+       <td><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time" required="required" name="HourEnd" classe="modifier"></div></td>
+       <td><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName" required="required" name="SalleName" classe="modifier"></div></td>
+       <td><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" required="required" name="Nombre_de_place" classe="modifier"></div></td>
 </tr>
    <?php }
 } catch (PDOException $e) {
@@ -61,10 +67,12 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
 }?>
 <button type="reset">Réinitialiser la séléction</button>
 <button type="submit">Supprimer la séléction</button>
+
 </form>
 
 
-
+<button name="afficher" id="afficher" class="action_button">Modifier les séances</button>
+<button name="fermer" id="fermer" class="action_button">Modifier les séances</button>
 
 
 </body>
@@ -74,18 +82,16 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
     à récupérer deux fichiers distincts.
     Dans un cas d'usage "réel", ces éléments doivent être externalisés
      */
+    #div, #fermer{
+        display:none;
+    }
     body {
         font-family: Calibri, serif;
     }
 
     form label {
-        display: block;
         font-weight: bold;
         margin-bottom: 10px;
-    }
-
-    label.inline-label {
-        display: inline-block;
     }
 
     fieldset {
@@ -100,7 +106,6 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
     }
 
     form input, form select, form textarea {
-        display: inline-block;
         margin-bottom: 10px;
         padding: 10px;
         width: 80%;
@@ -112,9 +117,10 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
         width: auto;
     }
 
-    button[type=submit], button[type=reset] {
+    button[type=submit], button[type=reset], button {
         padding: 10px;
         margin-top: 15px;
     }
 </style>
+
 <script src="script.js"></script>
