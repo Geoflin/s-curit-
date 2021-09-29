@@ -2,6 +2,7 @@
  <HEAD>
   <TITLE>espace_gestionnaire.php</TITLE>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
  </HEAD>
 
 <!--Liste des séance-->
@@ -20,9 +21,13 @@ try {
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {?>
         <table>
    <tr>
-   <td> <input type="checkbox" id="Id" name="Id" value=" <?php echo $seance['Id']; ?> "><label for="select_supprimer_seance"><?php echo $seance['Id'] ?></label></td>
+
+   <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
+        
+   <td> <input type="checkbox" id="Id" name="Id" value=" <?php echo $seance['Id']; ?> "><label for="select_supprimer_seance"><button type="submit">Supprimer la ligne</button></td>
        <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>
    </tr>
+   </form>
    <?php }
 } catch (PDOException $e) {
     echo 'Impossible de récupérer la liste';
@@ -52,11 +57,8 @@ try {
 </table>
 <!-- ajout_seance -->
 
-</br><button name="ajout_seance" id="openAjoutSeance" class="action_button">Ajouter une séance</button>
-<button name="ajout_seance" id="closeAjoutSeance" class="action_button">Fermer le formulaire</button>
 
-<button name="supprimer_seance" id="openSupprimerSeance" class="action_button">supprimer une séance</button>
-<button name="supprimer_seance" id="closeSupprimerSeance" class="action_button">Fermer le formulaire</button>
+
 
 <fieldset id="ajoutseance">
 <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
