@@ -20,7 +20,11 @@ try {
 </thead>
 <tr>
    <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
-   <td><button type="submit">Créer nouvelle séance</button></td><td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td><td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td><td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td><td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
+   <td><button type="submit">Créer nouvelle séance</button></td>
+   <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
+   <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
+   <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
+   <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
     <td><select name="SalleName" required="required" id="SalleName">
     <?php
             try {
@@ -42,8 +46,15 @@ try {
     <?php
 foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
         ?>
-   <tr id="openModifierseance1"><td><form name="modifierseance" method="post" action="traitement_supprimer_seance.php" target="_blank"><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button><button name="openModifierseance" id="openModifierseance" class="action_button">modifier la ligne</button></td> <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>
-   <tr id="closeModifierseance1"><td><form name="modifierseance" method="post" action="traitement_supprimer_seance.php" target="_blank"><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button><button name="closeModifierseance" id="closeModifierseance" class="action_button">modifier la ligne</button></td> <td><input type="text" required="required" name="FilmName" id="" placeholder= <?php echo $seance['FilmName'];?>> </td> <?php echo '<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?></tr>
+        <form name="modifierseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
+       <td><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button></td>
+       <td><?php echo $seance['FilmName'];?></br><input type="text" required="required" name="FilmName" id=""></td>
+       <td><?php echo $seance['DateOfNewSeance'];?><input type="date" required="required" name="DateOfNewSeance" id=""></td>
+       <td><?php echo $seance['HourBegin'];?></br><input type="time" required="required" name="HourBegin" id=""></td>
+       <td><?php echo $seance['HourEnd'];?></br><input type="time" required="required" name="HourEnd" id=""></td>
+       <td><?php echo $seance['SalleName'];?><input type="SalleName" required="required" name="SalleName" id=""></td>
+       <td><?php echo $seance['Nombre_de_place'];?></br><input type="number" required="required" name="Nombre_de_place" id=""></td>
+</tr>
    <?php }
 } catch (PDOException $e) {
     echo 'Impossible de récupérer la liste';
@@ -63,10 +74,6 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
     à récupérer deux fichiers distincts.
     Dans un cas d'usage "réel", ces éléments doivent être externalisés
      */
-
-    #closeModifierseance{
-    display: none;
-}
     body {
         font-family: Calibri, serif;
     }
