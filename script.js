@@ -39,3 +39,22 @@ const openajoutSeance = () => {
   
     openSupprimerSeance.addEventListener('click', opensupprimerSeance)
     closeSupprimerSeance.addEventListener('click', closesupprimerSeance)
+
+      //modifier.seance//
+  const openModifierseance = document.getElementById('openModifierseance')
+  const closeModifierseance = document.getElementById('closeModifierseance')
+  const openModifierseance1 = document.getElementById('openModifierseance')
+  const closeModifierseance1 = document.getElementById('closeModifierseance')
+  
+  const openmodifierseance = () => {
+    openModifierseance1.style.display= "none"
+    closeModifierseance1.style.display= "inline"
+    }
+  
+    const closemodifierseance = () => {
+      openModifierseance1.style.display= "inline"
+      closeModifierseance1.style.display= "none"
+    }
+  
+    openModifierseance.addEventListener('click', openmodifierseance)
+    closeModifierseance.addEventListener('click', closemodifierseance)

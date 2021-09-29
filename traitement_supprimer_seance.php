@@ -5,23 +5,32 @@
 <BODY>
     </BODY>
 </HTML>
-
-<!-- supprimer_seance -->
 <?php
-
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-    $statement = $pdo->prepare('DELETE FROM seance_cinema1 WHERE Id = :Id');
-    $statement->bindValue(':Id', $_POST['Id'], PDO::PARAM_INT);
-    if ($statement->execute()) {
-        echo 'La suppression a bien été effectuée';
-        echo 'Vous pouvez fermer cette page';
-        echo "N'oubliez pas de rafraichir votre espace gestionnaire";
-    } else {
-        $errorInfo = $statement->errorInfo();
-        echo $errorInfo[2];
+    if(isset($_POST['Id']))
+    {
+      // On assigne notre variable $_POST['checkbox_id']
+      $nombre=$_POST['Id'];
+      
+      /* On crée une variable qui comptera le nombre de
+      checkbox choisis grâce à la fonction count() */
+      $total=count($nombre);
+      
+      // On affiche le résultat
+      $s =($total<=1) ? "" : "s"; // astuce pour le singulier ou le pluriel
+      echo "Vous avez sélectionné <strong>".$total."</strong> critère".$s;
+      
+      /* Une petite boucle pour afficher les valeurs qu'on 
+          a sélectionné dans notre formulaire */
+      for( $i=0; $i<$total; $i++ )
+      {
+        $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+        $statement = $pdo->prepare('DELETE FROM seance_cinema1 WHERE Id = :Id');
+        $statement->bindValue(':Id', $nombre[$i], PDO::PARAM_INT);        
+            if ($statement->execute()) {
+                echo "<br />",$i+1,"e choix : ".$nombre[$i];
+                echo 'suppression effectuée';
+            } else {
+                echo "erreur";
+            }
+      }
     }
-} catch (PDOException $e) {
-    echo 'Une erreur s\'est produite lors de la communication avec la base';
-}
-?>

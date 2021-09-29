@@ -58,7 +58,7 @@ try {
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
    <tr>
 
-   <form name="supprimerseance" method="post" action="Brouillon11.php" target="_blank">
+   <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
         
    <td> <input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button></td>
        <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>
