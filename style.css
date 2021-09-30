@@ -10,17 +10,29 @@ table td /* Toutes les cellules des tableaux... */
 }
 table{
     border-collapse: collapse;
-    width: 100%;
+    
 }
 thead td{
     background-color: rgb(192, 189, 189);
     font-weight: bold;
-    max-width: 100px;
-    min-width: 100px;
+
 }
 #ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance{
     display: none;
 }
 fieldset{
     width: 100%;
+}
+body{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 1fr;
+}
+.table1{
+    grid-column: 1/1;
+    grid-row: 1/1;
+}
+.table2{
+    grid-column: 2/2;
+    grid-row: 1/1;
 }

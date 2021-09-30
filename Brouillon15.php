@@ -5,13 +5,13 @@
  </HEAD>
 <body>
 <!--Actualiser la page-->
-<input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
-<h2>Liste des séance</h2>
+<input class="ligne1" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
+<h2 class="ligne1">Liste des séance</h2>
 <!--Tableaux-->
 <!-- Thead-->
   <?php
     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
-    <table>
+    <table class="table1">
     <thead>
     <td>Modifier</td>
     <td>Nom du film</td>
@@ -65,7 +65,7 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
    <?php } ?>
    </table>
     <!-- Table  suprimmerSeance-->
-   <table>
+   <table class="table2">
    <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
     <button type="reset">Réinitialiser la séléction</button>
        <button type="submit">Supprimer la séléction</button>
@@ -87,10 +87,6 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
     à récupérer deux fichiers distincts.
     Dans un cas d'usage "réel", ces éléments doivent être externalisés
      */
-    body {
-        font-family: Calibri, serif;
-    }
-
     form label {
         font-weight: bold;
         margin-bottom: 10px;
@@ -123,6 +119,48 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
         padding: 10px;
         margin-top: 15px;
     }
+    table td /* Toutes les cellules des tableaux... */
+{
+    border: 1px solid black; /* auront une bordure de 1px */
+    padding: 1rem;
+    text-align: center;
+    max-width: 100px;
+    min-width: 100px;
+    word-wrap: break-word;
+}
+table{
+    border-collapse: collapse;
+    
+}
+thead td{
+    background-color: rgb(192, 189, 189);
+    font-weight: bold;
+
+}
+#ajoutseance, #closeAjoutSeance, #supprimerseance, #closeSupprimerSeance{
+    display: none;
+}
+fieldset{
+    width: 100%;
+}
+body {
+        font-family: Calibri, serif;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 150px 1fr;
+}
+.ligne1{
+    grid-column: 1/3;
+    grid-row: 1/1;
+}
+.table1{
+    grid-column: 2/2;
+    grid-row: 2/2;
+}
+.table2{
+    grid-column: 1/1;
+    grid-row: 2/2;
+}
 </style>
 
 <script src="script.js"></script>
