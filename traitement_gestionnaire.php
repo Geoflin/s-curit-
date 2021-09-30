@@ -13,3 +13,7 @@ $pdo = new PDO('mysql:host=localhost', 'root', '');
             } else {
                 echo 'Une erreur est survenue';
         }
+
+
+
+//$sql = "UPDATE `seance_cinema1` SET `FilmName`= '. $_POST['FilmName'] .', `DateOfNewSeance`='. $_POST['DateOfNewSeance'] .', `HourBegin`='. $_POST['HourBegin'] .', `HourEnd`='. $_POST['HourEnd'] . ', `SalleName`='. $_POST['SalleName'] . ', `Nombre_de_place`='. $_POST['Nombre_de_place'] . ' WHERE `Id`= $_POST['Id'] "; //

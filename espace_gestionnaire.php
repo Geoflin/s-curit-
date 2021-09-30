@@ -53,13 +53,11 @@ try {
     <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
         </form>
     </tr>
-
 <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
    <tr>
 
    <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-        
    <td> <input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "><button type="submit">Supprimer la ligne</button></td>
        <?php echo '<td>'.$seance['FilmName'].'</td>'.'<td>'.$seance['DateOfNewSeance'].'</td>'.'<td>'.$seance['HourBegin'].'</td>'.'<td>'.$seance['HourEnd'].'</td>'.'<td>'.$seance['SalleName'].'</td>'.'<td>'.$seance['Nombre_de_place'].'</td>';?>
    </tr>
@@ -68,7 +66,7 @@ try {
     echo 'Impossible de récupérer la liste';
 }
 ?>
- <button type="reset">Réinitialiser la séléction</button>
+    <button type="reset">Réinitialiser la séléction</button>
  <button type="submit">Supprimer la séléction</button>
    </form>
 
