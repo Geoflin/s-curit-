@@ -17,6 +17,7 @@ try {
     <table>
     <thead>
     <td>Sélectionner</td>
+    <td>Actions</td>
     <td>Nom du film</td>
     <td>Jour de séance</td>
     <td>Heure de début</td>
@@ -26,6 +27,7 @@ try {
 </thead>
 <tr>
    <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
+   <td></td>
    <td><button type="submit">Créer nouvelle séance</button></td>
    <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
    <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
@@ -52,14 +54,18 @@ try {
     <?php
 foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
         ?>
-        <form name="modifierseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-       <td><input type="checkbox" name="Id[]" value=" <?php echo $seance['Id']; ?> "></td>
-       <td><?php echo $seance['FilmName'];?></br><div id="div"><input type="text" required="required" name="FilmName" classe="modifier"></div></td>
-       <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="date" required="required" name="DateOfNewSeance" classe="modifier"></div></td>
-       <td><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" required="required" name="HourBegin" classe="modifier"></div></td>
-       <td><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time" required="required" name="HourEnd" classe="modifier"></div></td>
-       <td><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName" required="required" name="SalleName" classe="modifier"></div></td>
-       <td><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" required="required" name="Nombre_de_place" classe="modifier"></div></td>
+
+        <form name="modifierseance" method="post" action="Brouillon16.php" target="_blank">
+
+       <td><button name="modifier" id="modifier" class="submit">Modifier les séances</button></td>
+       <td><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "></td>
+       <td><?php echo $seance['FilmName'];?></br><div id="div"><input type="text" required="required" name="FilmName" id="FilmName" classe="modifier"></div></td>
+       <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="date" required="required" name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier"></div></td>
+       <td><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" required="required" name="HourBegin" id="HourBegin" classe="modifier"></div></td>
+       <td><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time" required="required" name="HourEnd" id="HourEnd" classe="modifier"></div></td>
+       <td><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName" required="required" name="SalleName" id="SalleName" classe="modifier"></div></td>
+       <td><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" classe="modifier"></div></td>
+       </form>
 </tr>
    <?php }
 } catch (PDOException $e) {
@@ -68,13 +74,6 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
 <button type="reset">Réinitialiser la séléction</button>
 <button type="submit">Supprimer la séléction</button>
 
-</form>
-
-
-<button name="afficher" id="afficher" class="action_button">Modifier les séances</button>
-<button name="fermer" id="fermer" class="action_button">Modifier les séances</button>
-
-
 </body>
 <style>
 /**
@@ -82,9 +81,6 @@ foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seanc
     à récupérer deux fichiers distincts.
     Dans un cas d'usage "réel", ces éléments doivent être externalisés
      */
-    #div, #fermer{
-        display:none;
-    }
     body {
         font-family: Calibri, serif;
     }
