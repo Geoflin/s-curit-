@@ -1,4 +1,4 @@
-    <HTML>
+<HTML>
     <HEAD>
     <TITLE>Brouillon5.php</TITLE>
     </HEAD>
@@ -62,7 +62,22 @@
         </form>
     </tr>
     <?php } ?>
+
+          <!--Gestion affichage-->
+          <tr>
+          <form name="MasquerColonne" method="post" action="">  
+        <td><button value="MasquerColonne1">Masquer colonne</button></td>
+        <td><button value="MasquerColonne2">Masquer colonne</button></td>
+        <td><button value="MasquerColonne3">Masquer colonne</button></td>
+        <td><button value="MasquerColonne4">Masquer colonne</button></td>
+        <td><button value="MasquerColonne5">Masquer colonne</button></td>
+        <td><button value="MasquerColonne6">Masquer colonne</button></td>
+        <td><button value="MasquerColonne7">Masquer colonne</button></td>
+              </form>
+         </tr>
     </table>
+   
+
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">
@@ -79,6 +94,7 @@
             ?>
         <tr><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $seance['Id']; ?> "></td></tr>   
     <?php } ?>
+    <td class="thead">Gestion Affichage</td>
     </form>
     </table>
 
@@ -157,7 +173,7 @@
         word-wrap: break-word;
         height: 100px;
     }
-    thead td{
+    thead td, .thead{
         background-color: rgb(192, 189, 189);
         font-weight: bold;
     }
