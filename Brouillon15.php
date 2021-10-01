@@ -4,10 +4,8 @@
     </HEAD>
     <body>
     <!--Actualiser la page-->
-    <section class="ligne1">
-    <input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
-    <h2 >Liste des séance</h2>
-    </section>
+    <form class="ligne3"><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+    <h2 class="ligne1">Liste des séance</h2>
     <!--Tableaux-->
     <!-- Thead-->
     <?php
@@ -68,8 +66,8 @@
     </table>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
+    <section class="ligne3">
     <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-    <section class="ligne1">
         <button  type="reset">Réinitialiser la séléction</button>
         <button  type="submit">Supprimer la séléction</button>
     </section>
@@ -86,48 +84,38 @@
     </table>
 
 <!--Barre de recherche-->
-<section class="ligne1">
-     <html>
-     <form method="POST" action=""> 
-     Rechercher un mot : <input type="text" name="recherche">
-     <input type="SUBMIT" value="Search!"> 
+     <form class="ligne2" method="POST" action=""> 
+     <div>Rechercher une séance : <input type="text" name="recherche"><input type="SUBMIT" value="Search!"><div> 
      </form>
-     </html>
 
+     <span class="ligne2">
      <?php
-
     $db_server = 'localhost'; // Adresse du serveur MySQL
     $db_name = 'kinepolise';            // Nom de la base de données
     $db_user_login = 'root';  // Nom de l'utilisateur
     $db_user_pass = '';       // Mot de passe de l'utilisateur
-
     // Ouvre une connexion au serveur MySQL
     $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
-
-
      // Récupère la recherche
      $recherche = isset($_POST['recherche']) ? $_POST['recherche'] : '';
-
      // la requete mysql
      $q = $conn->query(
      "SELECT FilmName FROM seance_cinema1
       WHERE FilmName LIKE '%$recherche%'");
-
      // affichage du résultat
      while( $r = mysqli_fetch_array($q)){
-     echo 'Résultat de la recherche: '.$r['FilmName'].'<br/>';
+     echo $r['FilmName'].'<br/>';
      }
-?>
-</section>
+    ?>
+    </span>
+
     </body>
-
-
     <style>
     body {
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows: 150px 1fr;
+        grid-template-rows: 100px 25px 150px 1fr;
     }
     .table1, .table2{
         border-collapse: collapse;
@@ -138,15 +126,28 @@
         grid-column: 1/3;
         grid-row: 1/1;
         display: flex;
+        justify-content: space-around;
+    }
+    .ligne2{
+        grid-column: 1/3;
+        grid-row: 2/2;
+        display: flex;
+        justify-content: center;
+    }
+    .ligne3{
+        grid-row: 3/3;
+        display: flex;
         justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 0px;
     }
     .table1{
         grid-column: 2/2;
-        grid-row: 2/2;
+        grid-row: 4/4;
     }
     .table2{
         grid-column: 1/1;
-        grid-row: 2/2;
+        grid-row: 4/4;
     }
     table td{
         border: 1px solid black;
