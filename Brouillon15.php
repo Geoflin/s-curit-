@@ -69,8 +69,10 @@
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
-        <button type="reset">Réinitialiser la séléction</button>
-        <button type="submit">Supprimer la séléction</button>
+    <section class="ligne1">
+        <button  type="reset">Réinitialiser la séléction</button>
+        <button  type="submit">Supprimer la séléction</button>
+    </section>
     <thead>
     <td>Supprimer</td>
     </thead>
@@ -82,10 +84,45 @@
     <?php } ?>
     </form>
     </table>
+
+<!--Barre de recherche-->
+<section class="ligne1">
+     <html>
+     <form method="POST" action=""> 
+     Rechercher un mot : <input type="text" name="recherche">
+     <input type="SUBMIT" value="Search!"> 
+     </form>
+     </html>
+
+     <?php
+
+    $db_server = 'localhost'; // Adresse du serveur MySQL
+    $db_name = 'kinepolise';            // Nom de la base de données
+    $db_user_login = 'root';  // Nom de l'utilisateur
+    $db_user_pass = '';       // Mot de passe de l'utilisateur
+
+    // Ouvre une connexion au serveur MySQL
+    $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
+
+
+     // Récupère la recherche
+     $recherche = isset($_POST['recherche']) ? $_POST['recherche'] : '';
+
+     // la requete mysql
+     $q = $conn->query(
+     "SELECT FilmName FROM seance_cinema1
+      WHERE FilmName LIKE '%$recherche%'");
+
+     // affichage du résultat
+     while( $r = mysqli_fetch_array($q)){
+     echo 'Résultat de la recherche: '.$r['FilmName'].'<br/>';
+     }
+?>
+</section>
     </body>
 
-    <style>
 
+    <style>
     body {
         font-family: Calibri, serif;
         display: grid;
@@ -100,6 +137,8 @@
     .ligne1{
         grid-column: 1/3;
         grid-row: 1/1;
+        display: flex;
+        justify-content: space-between;
     }
     .table1{
         grid-column: 2/2;
@@ -121,7 +160,6 @@
     thead td{
         background-color: rgb(192, 189, 189);
         font-weight: bold;
-
     }
 
     </style>
