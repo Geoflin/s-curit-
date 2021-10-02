@@ -50,15 +50,16 @@
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
-         <!-- Form modifierseance-->
+        <!-- Form  modifierseance-->
+        
         <form method="post" action="">
-        <td><input required="required" id="modifier" type="checkbox" value=" <?php echo $seance['Id']; ?> "><button class="submit" name="modifierseance">Modifier les séances</button></td>
-        <td><?php if($seance['FilmName'] !==false){ echo $seance['FilmName'];?></br><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];}?>"></div></td> 
-        <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="date"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $seance['DateOfNewSeance'];?>" value="<?php echo $seance['DateOfNewSeance'];?>"></div></td>
-        <td><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $seance['HourBegin'];?>" value="<?php echo $seance['HourBegin'];?>"></div></td>
-        <td><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
-        <td><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
-        <td><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" name="Nombre_de_place" id="Nombre_de_place" classe="modifier" placeholder="<?php echo $seance['Nombre_de_place'];?>" value="<?php echo $seance['Nombre_de_place'];?>"></div></td>
+        <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
+        <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
+        <td id="Colonne3"><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="timestamp"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $seance['DateOfNewSeance'];?>" value="<?php echo $seance['DateOfNewSeance'];?>"></div></td>
+        <td id="Colonne4"><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $seance['HourBegin'];?>" value="<?php echo $seance['HourBegin'];?>"></div></td>
+        <td id="Colonne5"><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
+        <td id="Colonne6"><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
+        <td id="Colonne7"><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" name="Nombre_de_place" id="Nombre_de_place" classe="modifier" placeholder="<?php echo $seance['Nombre_de_place'];?>" value="<?php echo $seance['Nombre_de_place'];?>"></div></td>
         </form>
     </tr>
     <?php } ?>
