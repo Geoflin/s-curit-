@@ -26,7 +26,7 @@
     <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
     <td><button type="submit">Créer nouvelle séance</button></td>
     <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
-    <td><input type="timestamp" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
+    <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
     <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
         <td><select name="SalleName" required="required" id="SalleName">
@@ -43,18 +43,18 @@
         </select></td>
         <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
             </form>
+            
+            
         <!-- Corps du tableau-->
         </tr>
-        <!-- Form  supprimerseance-->
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
-        <!-- Form  modifierseance-->
-        
-        <form name="modifierseance" method="post" action="Brouillon16.php" target="_blank">
-        <td><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifier" id="modifier" class="submit">Modifier les séances</button></td>
+         <!-- Form modifierseance-->
+        <form method="post" action="">
+        <td><input required="required" id="modifier" type="checkbox" value=" <?php echo $seance['Id']; ?> "><button class="submit" name="modifierseance">Modifier les séances</button></td>
         <td><?php if($seance['FilmName'] !==false){ echo $seance['FilmName'];?></br><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];}?>"></div></td> 
-        <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="timestamp"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $seance['DateOfNewSeance'];?>" value="<?php echo $seance['DateOfNewSeance'];?>"></div></td>
+        <td><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="date"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $seance['DateOfNewSeance'];?>" value="<?php echo $seance['DateOfNewSeance'];?>"></div></td>
         <td><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $seance['HourBegin'];?>" value="<?php echo $seance['HourBegin'];?>"></div></td>
         <td><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
         <td><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
@@ -66,9 +66,9 @@
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">
-    <form name="supprimerseance" method="post" action="traitement_supprimer_seance.php" target="_blank">
+    <form method="post">
         <button  type="reset">Réinitialiser la séléction</button>
-        <button  type="submit">Supprimer la séléction</button>
+        <button  type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
     <thead>
     <td>Supprimer</td>
@@ -165,3 +165,11 @@
     </style>
 
     <script src="script.js"></script>
+                              <!-- Traitement modifierseance-->
+                              <?php if (isset($_POST['modifierseance'])){
+                              require_once 'Brouillon16.php';
+                              }?>
+                              <!-- Traitement supprimerSeance-->
+                              <?php if (isset($_POST['supprimerseance'])){
+                              require_once 'traitement_supprimer_seance.php';
+                            }?>
