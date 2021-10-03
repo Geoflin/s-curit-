@@ -23,8 +23,8 @@
         </thead>
     <tr>
         <!-- Form  ajoutseance-->
-    <form name="ajoutseance" method="post" action="traitement_gestionnaire.php" target="_blank">
-    <td><button type="submit">Créer nouvelle séance</button></td>
+    <form method="post" action="">
+    <td><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
     <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
     <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
@@ -166,6 +166,9 @@
     </style>
 
     <script src="script.js"></script>
+    <?php if (isset($_POST['ajoutseance'])){
+                              require_once 'traitement_gestionnaire.php';
+                              }?>
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
                               require_once 'Brouillon16.php';
