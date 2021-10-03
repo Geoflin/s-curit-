@@ -172,7 +172,7 @@
 
     <script src="script.js"></script>
     <?php if (isset($_POST['ajoutseance'])){
-                              require_once 'traitement_gestionnaire.php';
+                              require_once 'traitement_gestionnaire2.php';
                               }?>
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
