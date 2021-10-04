@@ -59,19 +59,23 @@
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
         <!-- Form  modifierseance-->
-        
         <form method="post" action="">
         <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
-        <td id="Colonne3"><?php echo $variable;?><div id="div"><input type="timestamp"  name="DateSeanceBegin"  id="DateSeanceBegin" classe="modifier" placeholder="<?php echo $variable;?>" value="<?php echo $variable;?>"></div></td>
-        <td id="Colonne4"><?php echo $HourBegin;?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $HourBegin;?>" value="<?php echo $HourBegin;?>"></div></td>
-        <td id="Colonne5"><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
+        <td id="Colonne3"><?php echo $format_date_Ajouter_Seance;?><div id="div"><input type="date"  name="DateSeanceBegin"  id="DateSeanceBegin" classe="modifier" placeholder="<?php echo $format_date_Ajouter_Seance;?>" value=""></div></td>
+        <td id="Colonne4"><?php echo $format_HourBegin_Ajouter_Seance;?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $format_HourBegin_Ajouter_Seance;?>" value="<?php echo $HourBegin;?>"></div></td>
+        <td id="Colonne5"><?php echo $fusionDateEnd_AjouterSeance;?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $fusionDateEnd_AjouterSeance;?>" value="<?php echo $fusionDateEnd_AjouterSeance;?>"></div></td>
         <td id="Colonne6"><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
         <td id="Colonne7"><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" name="Nombre_de_place" id="Nombre_de_place" classe="modifier" placeholder="<?php echo $seance['Nombre_de_place'];?>" value="<?php echo $seance['Nombre_de_place'];?>"></div></td>
         </form>
-    </tr>
-    <?php } ?>
+        </tr>
+        
     </table>
+    <?php if (isset($_POST['modifierseance'])){
+                              require_once 'Modifier_fusion_dateTime.php';
+                              require_once 'Modifier_conversion_dateTime_&&_Unix2.php';
+         } ?>
+         <?php } ?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">

@@ -1,5 +1,5 @@
         <!--submit_datetime_to_timestampUnix-->
-        <?php
+        <?php if (isset($_POST['ajoutseance'])){
 function unix_timestamp($datetime)
 {
 	$datetime = str_replace(array(' ', ':'), '-', $datetime);
@@ -17,4 +17,5 @@ function unix_timestamp($datetime)
          $date->setTimestamp($UnixDateOfNewSeance); 
          $variable = $date->format('Y-m-d'); 
          echo "The datetime is $variable."; 
+        }
          ?> 

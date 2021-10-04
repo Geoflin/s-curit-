@@ -9,12 +9,12 @@ function unix_timestamp($datetime)
  
 	return mktime($c[3], $c[4], $c[5], $c[1], $c[2], $c[0]);
 } 
- $UnixDateSeanceBegin_Ajouter_Seance = unix_timestamp($fusionDateBegin_AjouterSeance);
+ $UnixDateSeanceBegin_Modifier_Seance = unix_timestamp($seance['DateSeanceBegin']);
    
    //submit_timestampUnix_to_datetime
    //Ajouter_Seance
-         $date_Ajouter_Seance = new DateTime(); 
-         $date_Ajouter_Seance->setTimestamp($UnixDateSeanceBegin_Ajouter_Seance); 
-         $format_date_Ajouter_Seance = $date_Ajouter_Seance->format('Y-m-d');
-         $format_HourBegin_Ajouter_Seance = $date_Ajouter_Seance->format('H:i:s');
+         $date_Modifier_Seance = new DateTime(); 
+         $date_Modifier_Seance->setTimestamp($UnixDateSeanceBegin_Modifier_Seance); 
+         $format_date_Ajouter_Seance = $date_Modifier_Seance->format('Y-m-d');
+         $format_HourBegin_Ajouter_Seance = $date_Modifier_Seance->format('H:i:s');
          ?> 

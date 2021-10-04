@@ -1,4 +1,5 @@
 <?php
-$fusionDateBeginAjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
-$fusionDateEndAjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourEnd'];
+//Post
+$fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
+$fusionDateEnd_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourEnd'];
 ?>
