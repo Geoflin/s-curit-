@@ -31,7 +31,7 @@
     <form method="post" action="">
     <td><input type="checkbox" name="NoRepeat" id="NoRepeat" required="required" value="NoRepeat"><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
     <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
-    <td><input type="datetime" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
+    <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
     <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
         <td><select name="SalleName" required="required" id="SalleName">
@@ -48,13 +48,13 @@
         </select></td>
         <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
             </form>
-        
-            <?php if (isset($_POST['ajoutseance'])){
-                              require_once 'conversion_dateTime_&&_Unix.php';
-                              }?>
-            
+
         <!-- Corps du tableau-->
         </tr>
+        <?php if (isset($_POST['ajoutseance'])){
+                              require_once 'fusion_dateTime.php';
+                              require_once 'conversion_dateTime_&&_Unix2.php';
+                              }?>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
@@ -173,7 +173,8 @@
     </style>
 
     <script src="script.js"></script>
-    <?php if (isset($_POST['ajoutseance'])){
+
+                              <?php if (isset($_POST['ajoutseance'])){
                               require_once 'traitement_gestionnaire4.php';
                               }?>
                               <!-- Traitement modifierseance-->
