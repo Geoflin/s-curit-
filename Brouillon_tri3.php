@@ -31,7 +31,7 @@
     <form method="post" action="">
     <td><input type="checkbox" name="NoRepeat" id="NoRepeat" required="required" value="NoRepeat"><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
     <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
-    <td><input type="date" required="required" name="DateOfNewSeance" id="DateOfNewSeance" placeholder="Saisissez Date de séance"></td>
+    <td><input type="date" required="required" name="DateSeanceBegin" id="DateSeanceBegin" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
     <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
         <td><select name="SalleName" required="required" id="SalleName">
@@ -63,7 +63,7 @@
         <form method="post" action="">
         <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
-        <td id="Colonne3"><?php echo $variable;?><div id="div"><input type="timestamp"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $variable;?>" value="<?php echo $variable;?>"></div></td>
+        <td id="Colonne3"><?php echo $variable;?><div id="div"><input type="timestamp"  name="DateSeanceBegin"  id="DateSeanceBegin" classe="modifier" placeholder="<?php echo $variable;?>" value="<?php echo $variable;?>"></div></td>
         <td id="Colonne4"><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $seance['HourBegin'];?>" value="<?php echo $seance['HourBegin'];?>"></div></td>
         <td id="Colonne5"><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
         <td id="Colonne6"><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>

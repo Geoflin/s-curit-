@@ -1,3 +1,4 @@
-<?php $fusionDateTime= $_POST['DateOfNewSeance'].' '.$_POST['HourBegin'];
-echo $fusionDateTime;
+<?php
+$fusionDateBegin= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
+$fusionDateEnd= $_POST['DateSeanceBegin'].' '.$_POST['HourEnd'];
 ?>
