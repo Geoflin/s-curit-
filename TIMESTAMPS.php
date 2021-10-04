@@ -6,6 +6,7 @@
           <input type="submit" value="Convertir en timestamp" name="submit_date_to_timestamp"/>
         </form>
 
+        <!--submit_datetime_to_timestampUnix-->
         <?php if (isset($_POST['submit_date_to_timestamp'])){
 function unix_timestamp($datetime)
 {
@@ -15,13 +16,12 @@ function unix_timestamp($datetime)
 	array_walk($c, 'intval');
  
 	return mktime($c[3], $c[4], $c[5], $c[1], $c[2], $c[0]);
-} ?>
-Timestamp UNIX : <?php echo unix_timestamp($_POST['date_to_timestamp']) ?> 
-<?php } ?>
-  
+} 
+ echo 'Timestamp UNIX :'.unix_timestamp($_POST['date_to_timestamp']);
+   } ?>
 
+        <!--submit_timestampUnix_to_datetime-->
         <h2>Timestamp vers date</h2>
-
         <form method="POST" action="">
           <label for="submit_timestamp_to_date">Timestamp :</label>
           <input type="text" required="required" id="timestamp_to_date" name="timestamp_to_date" placeholder="1633425582" />
@@ -31,7 +31,7 @@ Timestamp UNIX : <?php echo unix_timestamp($_POST['date_to_timestamp']) ?>
 <?php if (isset($_POST['submit_timestamp_to_date'])){
          $date = new DateTime(); 
          $date->setTimestamp($_POST['timestamp_to_date']); 
-         $variable = $date->format('Y-m-d H:i:s'); 
+         $variable = $date->format('Y-m-d'); 
          echo "The datetime is $variable."; 
         }
          ?> 

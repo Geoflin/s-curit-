@@ -81,7 +81,7 @@ function unix_timestamp($datetime)
         <form method="post" action="">
         <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
-        <td id="Colonne3"><?php echo $seance['DateOfNewSeance'];?><div id="div"><input type="timestamp"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $seance['DateOfNewSeance'];?>" value="<?php echo $seance['DateOfNewSeance'];?>"></div></td>
+        <td id="Colonne3"><?php echo $variable;?><div id="div"><input type="timestamp"  name="DateOfNewSeance"  id="DateOfNewSeance" classe="modifier" placeholder="<?php echo $variable;?>" value="<?php echo $variable;?>"></div></td>
         <td id="Colonne4"><?php echo $seance['HourBegin'];?></br><div id="div"><input type="time" name="HourBegin" id="HourBegin" classe="modifier" placeholder="<?php echo $seance['HourBegin'];?>" value="<?php echo $seance['HourBegin'];?>"></div></td>
         <td id="Colonne5"><?php echo $seance['HourEnd'];?></br><div id="div"><input type="time"  name="HourEnd" id="HourEnd" classe="modifier" placeholder="<?php echo $seance['HourEnd'];?>" value="<?php echo $seance['HourEnd'];?>"></div></td>
         <td id="Colonne6"><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
@@ -192,7 +192,7 @@ function unix_timestamp($datetime)
 
     <script src="script.js"></script>
     <?php if (isset($_POST['ajoutseance'])){
-                              require_once 'traitement_gestionnaire2.php';
+                              require_once 'traitement_gestionnaire4.php';
                               }?>
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
