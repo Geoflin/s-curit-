@@ -3,6 +3,7 @@ if (isset($_POST['pseudo']) && isset($_POST['message']) && trim($_POST['pseudo']
 mysql_connect("localhost", "nom", "pass"); // Connexion à MySQL
 mysql_select_db("bdd"); // Sélection de la base
 
+
         $lastmsg = mysql_result(mysql_query('SELECT message FROM minichat WHERE ID=(SELECT max(ID) FROM minichat);'), 0, 0);
         if($lastmsg != htmlspecialchars($_POST['message'])) {
                 $message = mysql_real_escape_string(htmlspecialchars($_POST['message'])); // eviter le html !
