@@ -1,14 +1,5 @@
         <!--submit_datetime_to_timestampUnix-->
-        <?php
-function unix_timestamp($datetime)
-{
-	$datetime = str_replace(array(' ', ':'), '-', $datetime);
-	$c    = explode('-', $datetime);
-	$c    = array_pad($c, 6, 0);
-	array_walk($c, 'intval');
- 
-	return mktime($c[3], $c[4], $c[5], $c[1], $c[2], $c[0]);
-} 
+<?php require_once 'function_dateTime.php';
  $UnixDateSeanceBegin_Ajouter_Seance = unix_timestamp($fusionDateBegin_AjouterSeance);
    
    //submit_timestampUnix_to_datetime

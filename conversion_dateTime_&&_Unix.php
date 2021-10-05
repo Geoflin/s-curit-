@@ -9,8 +9,8 @@ function unix_timestamp($datetime)
  
 	return mktime($c[3], $c[4], $c[5], $c[1], $c[2], $c[0]);
 } 
- echo 'Timestamp UNIX :'.unix_timestamp($_POST['DateOfNewSeance']);
- $UnixDateOfNewSeance = unix_timestamp($_POST['DateOfNewSeance']);
+ echo 'Timestamp UNIX :'.unix_timestamp($_POST['DateSeanceBegin']);
+ $UnixDateOfNewSeance = unix_timestamp($_POST['DateSeanceBegin']);
    
    //submit_timestampUnix_to_datetime
          $date = new DateTime(); 
