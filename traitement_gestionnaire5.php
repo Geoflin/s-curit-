@@ -21,13 +21,13 @@
             echo $_POST['FilmName'];
             $FilmName= $maxid['FilmName'];
             $DateSeanceBegin= $maxid['DateSeanceBegin'];
-            $DateSeanceEnd= $maxid['DateSeanceEnd'];
+            $SalleName= $maxid['SalleName'];
             
             $Unix_DateSeanceBegin = unix_timestamp($maxid['DateSeanceBegin']);
             $Unix_fusionDateBegin = unix_timestamp($fusionDateBegin_AjouterSeance);
         };
         if (isset($Unix_DateSeanceBegin)) {
-          if (($FilmName == $_POST['FilmName'] && $Unix_DateSeanceBegin != $Unix_fusionDateBegin) || ($FilmName != $_POST['FilmName'] && $Unix_DateSeanceBegin != $Unix_fusionDateBegin)) {
+          if (($Unix_DateSeanceBegin != $Unix_fusionDateBegin && $SalleName == $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName'])) {
             if ($kinepolise->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, DateSeanceEnd, SalleName, Nombre_de_place) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $fusionDateEnd_AjouterSeance .'", "' . $_POST['SalleName'] .'", "' . $_POST['Nombre_de_place'] .'");') !== false) {}
                 }
             } else {
