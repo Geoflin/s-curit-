@@ -8,10 +8,13 @@ function unix_timestamp($datetime){
    return mktime($c[3], $c[4], $c[5], $c[1], $c[2], $c[0]);
  } 
 
+ $SalleName= $_POST['SalleName'];
+ $concatSearch= $fusionDateBegin_AjouterSeance.' '.$SalleName;
+
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 
-foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE DateSeanceBegin= "' .$fusionDateBegin_AjouterSeance. '"', PDO::FETCH_ASSOC) as $search) {
-  $doublonArray[]= $search['DateSeanceBegin'];
+foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "$fusionDateBegin_AjouterSeance%" AND SalleName LIKE "$SalleName%"', PDO::FETCH_ASSOC) as $search) {
+  $doublonArray[]= $seance['DateSeanceBegin'];
   $doublonInt= count($doublonArray);
 };
 if (isset($doublonInt)){echo $doublonInt.'</br>';};
@@ -34,4 +37,8 @@ if (isset($doublonInt)){echo $doublonInt.'</br>';};
                 if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, DateSeanceEnd, SalleName, Nombre_de_place) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $fusionDateEnd_AjouterSeance .'", "' . $_POST['SalleName'] .'", "' . $_POST['Nombre_de_place'] .'");') !== false) {}
           };
           };
-          
+
+          //SELECT * FROM `seance_cinema1` WHERE CONCAT(TRIM(Unix_DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%Unix_fusionDateBegin "'. $_POST['SalleName'] . '"%'
+          //SELECT * FROM `seance_cinema1` WHERE CONCAT(TRIM(DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%John Salle1%'
+          //2021-10-05 14:41:00
+          //SELECT DateSeanceBegin, SalleName FROM `seance_cinema1` WHERE CONCAT(TRIM(DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%2021-10-05 14:41:00 Salle1%'
