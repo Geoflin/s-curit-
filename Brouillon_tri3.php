@@ -58,6 +58,10 @@
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
+            <?php if (isset($_POST['modifierseance'])){
+                              require_once 'fusion_dateTime.php'; 
+                              require_once 'conversion_dateTime_&&_Unix2.php'; 
+            }?>
         <!-- Form  modifierseance-->
         <form method="post" action="">
         <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
@@ -71,10 +75,6 @@
         </tr>
         
     </table>
-    <?php if (isset($_POST['modifierseance'])){
-                              require_once 'Modifier_fusion_dateTime.php';
-                              require_once 'Modifier_conversion_dateTime_&&_Unix2.php';
-         } ?>
          <?php } ?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
