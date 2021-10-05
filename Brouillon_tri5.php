@@ -56,7 +56,7 @@
 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
 $fusionDateEnd_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourEnd'];
 
-require_once 'traitement_gestionnaire5.php';
+require_once 'traitement_gestionnaire7.php';
                               }?>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
@@ -65,7 +65,7 @@ require_once 'traitement_gestionnaire5.php';
             ?>
         <!-- Form  modifierseance-->
         <form method="post" action="">
-        <td id="Colonne1"><input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
+        <td id="Colonne1" value="<?php echo $seance['Id']; ?>"> <input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
         <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/><input type="date"  name="DateSeanceBegin"  id="Modifier_DateSeanceBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('Y-m-d');?>"></td>
         <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
@@ -126,7 +126,9 @@ require_once 'traitement_gestionnaire5.php';
      }
     ?>
     </span>
+
     </body>
+    
     <style>
     body {
         font-family: Calibri, serif;
