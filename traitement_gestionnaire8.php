@@ -10,14 +10,14 @@ function unix_timestamp($datetime){
 
  $SalleName= $_POST['SalleName'];
  $concatSearch= $fusionDateBegin_AjouterSeance.' '.$SalleName;
+ $fusion= $fusionDateBegin_AjouterSeance.":00";
 
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 
-foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "$fusionDateBegin_AjouterSeance%" AND SalleName LIKE "$SalleName%"', PDO::FETCH_ASSOC) as $search) {
-  $doublonArray[]= $seance['DateSeanceBegin'];
+foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "'.$fusion.'" AND SalleName LIKE "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $search) {
+  $doublonArray[]= $search['DateSeanceBegin'];
   $doublonInt= count($doublonArray);
 };
-if (isset($doublonInt)){echo $doublonInt.'</br>';};
 //  
 
         foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
@@ -42,3 +42,7 @@ if (isset($doublonInt)){echo $doublonInt.'</br>';};
           //SELECT * FROM `seance_cinema1` WHERE CONCAT(TRIM(DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%John Salle1%'
           //2021-10-05 14:41:00
           //SELECT DateSeanceBegin, SalleName FROM `seance_cinema1` WHERE CONCAT(TRIM(DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%2021-10-05 14:41:00 Salle1%'
+
+          //foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE '.$fusionDateBegin_AjouterSeance.' AND SalleName LIKE '.$SalleName.' ', PDO::FETCH_ASSOC) as $search) {
+
+            //foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "2021-10-05 14:41:00" AND SalleName LIKE "Salle1" ', PDO::FETCH_ASSOC) as $search) {
