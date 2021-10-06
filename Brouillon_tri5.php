@@ -77,7 +77,7 @@ require_once 'traitement_gestionnaire8.php';
         </select>
           </td> 
         <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/><input type="date"  name="DateSeanceBegin"  id="Modifier_DateSeanceBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('Y-m-d');?>"></td>
-        <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i:s');?>"></td>
+        <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
         <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?><div id="div"><input type="time"  name="HourEnd" id="Modifier_HourEnd" classe="modifier" value="<?php echo $DateSeanceEnd->format('H:i');?>"></div></td>
         <td id="Colonne6">
           <?php echo $seance['SalleName'];?></br>
