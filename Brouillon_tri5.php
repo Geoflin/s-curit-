@@ -23,7 +23,6 @@
         <td>Heure de début</td>
         <td>Heure de fin</td>
         <td>Salle</td>
-        <td>Nombre de place</td>
         </thead>
     <tr>
     </form>
@@ -46,7 +45,6 @@
                 }
                 ?>
         </select></td>
-        <td><input type="number" required="required" name="Nombre_de_place" id="Nombre_de_place" placeholder="Saisissez Nombre de place"></td>
             </form>
 
         <!-- Corps du tableau-->
@@ -70,8 +68,20 @@ require_once 'traitement_gestionnaire8.php';
         <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/><input type="date"  name="DateSeanceBegin"  id="Modifier_DateSeanceBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('Y-m-d');?>"></td>
         <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i:s');?>"></td>
         <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?><div id="div"><input type="time"  name="HourEnd" id="Modifier_HourEnd" classe="modifier" value="<?php echo $DateSeanceEnd->format('H:i');?>"></div></td>
-        <td id="Colonne6"><?php echo $seance['SalleName'];?><div id="div"><input type="SalleName"  name="SalleName" id="SalleName" classe="modifier" placeholder="<?php echo $seance['SalleName'];?>" value="<?php echo $seance['SalleName'];?>"></div></td>
-        <td id="Colonne7"><?php echo $seance['Nombre_de_place'];?></br><div id="div"><input type="number" name="Nombre_de_place" id="Nombre_de_place" classe="modifier" placeholder="<?php echo $seance['Nombre_de_place'];?>" value="<?php echo $seance['Nombre_de_place'];?>"></div></td>
+        <td id="Colonne6">
+          <?php echo $seance['SalleName'];?></br>
+          <select name="SalleName" required="required" id="SalleName">
+        <?php
+                try {
+                    $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+                    foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
+                        <option id="Salle"> <?php echo $seance['SalleName'].'<br>'; ?></option> <?php
+                    }
+                } catch (PDOException $e) {
+                    echo 'Récupération Salle impossible';
+                }
+                ?>
+        </select></td>
         </form>
         </tr>
         <?php } ?>
