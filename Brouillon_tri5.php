@@ -28,23 +28,27 @@
     </form>
         <!-- Form  ajoutseance-->
     <form method="post" action="">
-    <td><input type="checkbox" name="NoRepeat" id="NoRepeat" required="required" value="NoRepeat"><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
-    <td><input type="text" required="required" name="FilmName" id="FilmName" placeholder="Saisissez nom du film"></td>
+    <td><input type="checkbox" name="NoRepeat" required="required" value="NoRepeat"><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
+    <td>
+    <select name="FilmName" required="required">
+        <?php
+                    foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                        <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
+                    <?php } ?>
+        </select>
+    </td>
     <td><input type="date" required="required" name="DateSeanceBegin" id="DateSeanceBegin" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
     <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
-        <td><select name="SalleName" required="required" id="SalleName">
+        <td>
+          <select name="SalleName" required="required" id="SalleName">
         <?php
-                try {
                     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
                     foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
-                        <option id="Salle"> <?php echo $seance['SalleName'].'<br>'; ?></option> <?php
-                    }
-                } catch (PDOException $e) {
-                    echo 'Récupération Salle impossible';
-                }
-                ?>
-        </select></td>
+                        <option id="Salle"> <?php echo $seance['SalleName'].'<br>'; ?></option> 
+                        <?php } ?>
+        </select>
+      </td>
             </form>
 
         <!-- Corps du tableau-->
@@ -64,7 +68,14 @@ require_once 'traitement_gestionnaire8.php';
         <!-- Form  modifierseance-->
         <form method="post" action="">
         <td id="Colonne1" value="<?php echo $seance['Id']; ?>"> <input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
-        <td id="Colonne2"><?php echo $seance['FilmName'];?><div id="div"><input type="text" name="FilmName" id="FilmName" classe="modifier" placeholder="<?php echo $seance['FilmName'];?>" value="<?php echo $seance['FilmName'];?>"></div></td> 
+        <td id="Colonne2">
+          <?php echo $seance['FilmName'];?></br>
+          <select name="FilmName" required="required">
+                    <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                        <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
+                    <?php } ?>
+        </select>
+          </td> 
         <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/><input type="date"  name="DateSeanceBegin"  id="Modifier_DateSeanceBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('Y-m-d');?>"></td>
         <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i:s');?>"></td>
         <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?><div id="div"><input type="time"  name="HourEnd" id="Modifier_HourEnd" classe="modifier" value="<?php echo $DateSeanceEnd->format('H:i');?>"></div></td>
