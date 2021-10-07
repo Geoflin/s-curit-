@@ -39,7 +39,7 @@
     </td>
     <td><input type="date" required="required" name="DateSeanceBegin" id="DateSeanceBegin" placeholder="Saisissez Date de séance"></td>
     <td><input type="time" required="required" name="HourBegin" id="HourBegin" placeholder="Choisissez heure de début"></td>
-    <td><input type="time" required="required" name="HourEnd" id="HourEnd" placeholder="Choisissez heure de fin"></td>
+    <td></td>
         <td>
           <select name="SalleName" required="required" id="SalleName">
         <?php
@@ -54,12 +54,12 @@
         <!-- Corps du tableau-->
         </tr>
         <?php if (isset($_POST['ajoutseance'])){
-require_once 'traitement_gestionnaire8.php';
-                              }?>
+          require_once 'traitement_gestionnaire8.php';
+                                        }?>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-              $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
+      $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
             ?>
         <!-- Form  modifierseance-->
         <form method="post" action="">
@@ -74,11 +74,7 @@ require_once 'traitement_gestionnaire8.php';
           </td> 
         <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/><input type="date"  name="DateSeanceBegin"  id="Modifier_DateSeanceBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('Y-m-d');?>"></td>
         <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
-        <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?><div id="div"><input type="time"  name="HourEnd" id="Modifier_HourEnd" classe="modifier" value="<?php echo $DateSeanceEnd->format('H:i');?>"></div></td>
-
-        <!--Calcul_fin_seance.php-->
-        <?php require_once 'Calcul_fin_seance.php'; ?>
-
+        <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?></td>
         <td id="Colonne6">
           <?php echo $seance['SalleName'];?></br>
           <select name="SalleName" required="required" id="SalleName">
@@ -100,7 +96,6 @@ require_once 'traitement_gestionnaire8.php';
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
                                 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
-                                $fusionDateEnd_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourEnd'];
                               require_once 'Modifier_seance1.php';
                               }?>
         <!-- Table  suprimmerSeance-->
