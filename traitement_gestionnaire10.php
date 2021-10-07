@@ -29,14 +29,14 @@ foreach ($pdo->query('SELECT `FilmName` FROM `seance_cinema1` WHERE `DateSeanceB
   $countCreneauconflict= count($creneauconflict);
 };
 
-        foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
-            $DateSeanceBegin= $maxid['DateSeanceBegin'];
-            $SalleName= $maxid['SalleName'];
-            if(isset($DateSeanceBegin)) {
-              $Unix_DateSeanceBegin = unix_timestamp($maxid['DateSeanceBegin']);
-              $Unix_fusionDateBegin = unix_timestamp($fusionDateBegin_AjouterSeance);
-            };
-        };
+foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
+  $DateSeanceBegin= $maxid['DateSeanceBegin'];
+  $SalleName= $maxid['SalleName'];
+  if(isset($DateSeanceBegin)) {
+    $Unix_DateSeanceBegin = unix_timestamp($maxid['DateSeanceBegin']);
+    $Unix_fusionDateBegin = unix_timestamp($fusionDateBegin_AjouterSeance);
+  };
+};
         
         //On insére valeure formulaire sous condition
         if (isset($Unix_DateSeanceBegin)){
@@ -54,15 +54,14 @@ foreach ($pdo->query('SELECT `FilmName` FROM `seance_cinema1` WHERE `DateSeanceB
                                 } else { 
                                   echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
                                 };
-        } else {
-          if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $seance['SalleName'] .'");') !== false) {
-            //on ajoute date de fin séance
-            $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$seance['Id']."' ";
-            $count = $conn->exec($sql);
-            $conn = null;
-        };
-      };
-
+                              } else {
+                                if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $seance['SalleName'] .'");') !== false) {
+                                  //on ajoute date de fin séance
+                                  $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$seance['Id']."' ";
+                                  $count = $conn->exec($sql);
+                                  $conn = null;
+                              };
+                            };
 
           //SELECT * FROM `seance_cinema1` WHERE CONCAT(TRIM(Unix_DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%Unix_fusionDateBegin "'. $_POST['SalleName'] . '"%'
           //SELECT * FROM `seance_cinema1` WHERE CONCAT(TRIM(DateSeanceBegin), ' ', TRIM(SalleName)) LIKE '%John Salle1%'

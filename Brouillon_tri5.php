@@ -53,9 +53,6 @@
 
         <!-- Corps du tableau-->
         </tr>
-        <?php if (isset($_POST['ajoutseance'])){
-          require_once 'traitement_gestionnaire8.php';
-                                        }?>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
@@ -98,6 +95,10 @@
                                 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
                               require_once 'Modifier_seance1.php';
                               }?>
+                                      <?php if (isset($_POST['ajoutseance'])){
+          foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {};
+          require_once 'traitement_gestionnaire10.php';
+                                        }?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">

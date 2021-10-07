@@ -15,8 +15,9 @@ $heure= $explosion[0];
 $minute = $explosion[1];
 
 //On ajoute les heures et minutes au début du film
-$DateFinSeance= date('Y-m-d H:i:s',strtotime("+$heure hours $minute minutes", strtotime($DateSeanceBegin1)));
-echo $DateFinSeance;
+if (isset($DateSeanceBegin1)){
+  $DateFinSeance= date('Y-m-d H:i:s',strtotime("+$heure hours $minute minutes", strtotime($DateSeanceBegin1)));
+};
 
 $conn = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
 $conn->exec("SET CHARACTER SET utf8");
@@ -25,8 +26,3 @@ $conn->exec("SET CHARACTER SET utf8");
 foreach ($pdo->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $seance) {
   $Id_creation= $seance['Id'];
 };
-
-$sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$Id_creation."' ";
-$count = $conn->exec($sql);
-
-$conn = null;
