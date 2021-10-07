@@ -28,7 +28,7 @@
     </form>
         <!-- Form  ajoutseance-->
     <form method="post" action="">
-    <td><input type="checkbox" name="NoRepeat" required="required" value="NoRepeat"><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
+    <td><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
     <td>
     <select name="FilmName" required="required">
         <?php
@@ -63,7 +63,7 @@
             ?>
         <!-- Form  modifierseance-->
         <form method="post" action="">
-        <td id="Colonne1" value="<?php echo $seance['Id']; ?>"> <input type="checkbox" name="Id[]" id="Id" required="required" value=" <?php echo $seance['Id']; ?> "><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
+        <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td id="Colonne2">
           <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">

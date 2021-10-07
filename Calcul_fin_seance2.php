@@ -5,7 +5,7 @@ foreach ($pdo->query('SELECT Duree FROM `info_film` WHERE FilmName LIKE "'.$_POS
 };
 
   //On récupère la date de la séance
-foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE FilmName LIKE "'.$_POST['FilmName'].'" ', PDO::FETCH_ASSOC) as $DateSeanceBegin) {
+foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE `seance_cinema1`.`Id` = "'.$Id_modif.'" ', PDO::FETCH_ASSOC) as $DateSeanceBegin) {
   $DateSeanceBegin1= $DateSeanceBegin['DateSeanceBegin'];
 };
 
@@ -21,12 +21,7 @@ echo $DateFinSeance;
 $conn = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
 $conn->exec("SET CHARACTER SET utf8");
 
-//On récupère l'Id de la séance crée
-foreach ($pdo->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $seance) {
-  $Id_creation= $seance['Id'];
-};
-
-$sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$Id_creation."' ";
+$sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$Id_modif."' ";
 $count = $conn->exec($sql);
 
 $conn = null;

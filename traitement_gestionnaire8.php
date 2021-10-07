@@ -32,16 +32,14 @@ foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSea
           if (isset($doublonInt)<1){
             if (isset($Unix_DateSeanceBegin)) {
             if (($Unix_DateSeanceBegin != $Unix_fusionDateBegin && $SalleName == $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName'])) {
-              if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false) {
-                                      //on calcul et ajoute date de fin séance
-                                      require_once 'Calcul_fin_seance.php';
-              };
+              if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false) {};
+                                                    //on calcul et ajoute date de fin séance
+                                                    require_once 'Calcul_fin_seance.php';
             };
             } else {
-                if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false) {
-                  //on calcul et ajoute date de fin séance
-                  require_once 'Calcul_fin_seance.php';
-                }
+                if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false) {};
+                                  //on calcul et ajoute date de fin séance
+                                  require_once 'Calcul_fin_seance.php';
           };
           };
 
