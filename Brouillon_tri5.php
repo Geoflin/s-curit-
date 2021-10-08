@@ -12,7 +12,7 @@
         $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
 
         <table class="table1">
-        <thead>
+        <tr class="thead">
             <!-- Form  triNomFilm-->
         <td>Modifier</td>
         <td>Nom du film</td>
@@ -20,11 +20,11 @@
         <td>Heure de début</td>
         <td>Heure de fin</td>
         <td>Salle</td>
-        </thead>
-    <tr>
+</tr>
     </form>
         <!-- Form  ajoutseance-->
     <form method="post" action="">
+       <tr>
     <td><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
     <td>
     <select name="FilmName" required="required">
@@ -104,9 +104,9 @@
         <button  type="reset">Réinitialiser la séléction</button>
         <button  type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
-    <thead>
+    <tr class="thead">
     <td>Supprimer</td>
-    </thead>
+                                      </tr>
     <td></td>
     <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
@@ -156,7 +156,7 @@
     
     <?php if(isset($_POST['tri'])){?>
       <style>
-        tr:not(.<?php echo $_POST['FilmNameTest']?>){
+        tr:not(.<?php echo $_POST['FilmNameTest']?>, .thead){
         display: none;
       }
     </style>
@@ -212,7 +212,7 @@
         word-wrap: break-word;
         height: 100px;
     }
-    thead td{
+    .thead{
         background-color: rgb(192, 189, 189);
         font-weight: bold;
     }
