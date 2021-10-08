@@ -1,7 +1,14 @@
 <?php
-$doublonInt=1;
-if (isset($doublonInt)<1){
-  echo 'pas de doublon';
-} else {
-  echo '1 doublon';
-}
+//<?php $salleName
+$salleName= 'Salle1';
+?>
+<table>
+  <td class=<?php echo $salleName?>><?php echo $salleName?></td>
+</table>
+
+<style>
+  .<?php echo $salleName?>{
+    color: red;
+  }
+</style>
+

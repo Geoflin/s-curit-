@@ -60,9 +60,9 @@
             ?>
         <!-- Form  modifierseance-->
         <form method="post" action="">
+          <tr class=<?php echo $seance['FilmName']?>>
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
-        <td id="Colonne2">
-          <?php echo $seance['FilmName'];?></br>
+        <td class=<?php echo $seance['FilmName']?>> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
                     <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
                         <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
@@ -86,8 +86,9 @@
                 }
                 ?>
         </select></td>
-        </form>
         </tr>
+        </form>
+        
         <?php } ?>
     </table>
                               <!-- Traitement modifierseance-->
@@ -143,6 +144,24 @@
      }
     ?>
     </span>
+
+  <!--Function Tri-->
+  <form class="ligne2" method="POST" action="">
+  <select name="FilmNameTest" required="required">
+    <?php
+                foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                    <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
+                <?php } ?>
+    </select>
+    <input type="SUBMIT" value="Tri !" name="tri">
+    
+    <?php if(isset($_POST['tri'])){?>
+      <style>
+      .<?php echo $_POST['FilmNameTest']?>{
+        display: none;
+      }
+    </style>
+    <?php }; ?>
 
     </body>
     
