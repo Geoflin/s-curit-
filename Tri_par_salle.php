@@ -2,11 +2,11 @@
        <span class="blockTri2">
        <form method="POST" action="">
   <div class="type_of_tri">Tri par nom de Salle</div></br>
-    <select name="SalleNameTest" value="<?php echo $seance['SalleName'];?>">
-    <option id="SalleName"><?php echo "".'<br>'; ?></option>
+    <select name="SalleNameTest" value="<?php echo $Salle['SalleName'];?>">
+    <option id="SalleName">Tout afficher<br></option>
     <?php 
   foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
-                    <option id="SalleName"><?php echo $Salle['SalleName'].'<br>'; ?></option>
+                    <option><?php echo $Salle['SalleName'].'<br>'; ?></option>
   <?php } ?>
   </select>
   <input type="SUBMIT" value="Tri !" name="triSalleName">
