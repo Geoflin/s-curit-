@@ -116,52 +116,8 @@
     </form>
     </table>
 
-<!--Barre de recherche-->
-     <form class="ligne2" method="POST" action=""> 
-     <div>Rechercher une séance : <input type="text" name="recherche"><input type="SUBMIT" value="Search!"><div> 
-     </form>
-
-     <span class="ligne2">
-     <?php
-    $db_server = 'localhost'; // Adresse du serveur MySQL
-    $db_name = 'kinepolise';            // Nom de la base de données
-    $db_user_login = 'root';  // Nom de l'utilisateur
-    $db_user_pass = '';       // Mot de passe de l'utilisateur
-    // Ouvre une connexion au serveur MySQL
-    $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
-     // Récupère la recherche
-     $recherche = isset($_POST['recherche']) ? $_POST['recherche'] : '';
-     // la requete mysql
-     $q = $conn->query(
-     "SELECT FilmName FROM seance_cinema1
-      WHERE FilmName LIKE '%$recherche%'");
-     // affichage du résultat
-     while( $r = mysqli_fetch_array($q)){
-     echo $r['FilmName'].'<br/>';
-     }
-    ?>
-    </span>
-
   <!--Function Tri-->
-  <form class="ligne2" method="POST" action="">
-    <select name="FilmNameTest" value="<?php echo $seance['FilmName'];?>">
-    <option id="FilmName"><?php echo "".'<br>'; ?></option>
-    <?php 
-  foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
-                    <option id="FilmName"><?php echo $film['FilmName'].'<br>'; ?></option>
-  <?php } ?>
-  </select>
-  <input type="SUBMIT" value="Tri !" name="tri">
-  </form>
-    
-    <?php if(isset($_POST['tri'])){?>
-      <style>
-        tr:not(.<?php echo $_POST['FilmNameTest']?>, .thead){
-        display: none;
-      }
-    </style>
-    <?php }; ?>
-
+<?php require_once 'Tri_par_nom.php'; ?>
     </body>
     
     <style>
@@ -169,7 +125,7 @@
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows: 100px 25px 70px 1fr;
+        grid-template-rows: 100px 100px 70px 1fr;
     }
     .table1, .table2{
         border-collapse: collapse;
@@ -187,6 +143,12 @@
         grid-row: 2/2;
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .ligne2 select, .ligne2 input{
+      display: ;
+      float: left;
     }
     .ligne3{
         grid-row: 3/3;
