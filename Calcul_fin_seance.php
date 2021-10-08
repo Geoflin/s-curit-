@@ -17,6 +17,8 @@ $minute = $explosion[1];
 //On ajoute les heures et minutes au début du film
 if (isset($DateSeanceBegin1)){
   $DateFinSeance= date('Y-m-d H:i:s',strtotime("+$heure hours $minute minutes", strtotime($DateSeanceBegin1)));
+}else {
+  $DateFinSeance= date('Y-m-d H:i:s',strtotime("+$heure hours $minute minutes", strtotime($fusionDateBegin_AjouterSeance)));
 };
 
 $conn = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');

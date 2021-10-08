@@ -44,8 +44,8 @@
           <select name="SalleName" required="required" id="SalleName">
         <?php
                     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-                    foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
-                        <option id="Salle"> <?php echo $seance['SalleName'].'<br>'; ?></option> 
+                    foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos) { ?>
+                        <option id="Salle"> <?php echo $infos['SalleName'].'<br>'; ?></option> 
                         <?php } ?>
         </select>
       </td>

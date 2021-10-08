@@ -5,6 +5,6 @@ foreach ($pdo->query('SELECT 1 FROM seance_cinema1 WHERE EXISTS (SELECT * FROM s
   if(!isset($isVideTable)){
     echo 'table vide';
   } else {
-    echo 'table remplit';
-  };
+    echo 
+  }
 };
