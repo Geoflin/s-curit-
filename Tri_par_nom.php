@@ -1,7 +1,7 @@
   <!-- Tri Par Nom-->
-  <form class="ligne2" method="POST" action="">
-  <h3>Tri de l'affichage</h3>
-  <div>Tri par nom de film</div></br>
+  <span class="blockTri1">
+  <form method="POST" action="">
+  <div class="type_of_tri"> Tri par nom de film</div></br>
     <select name="FilmNameTest" value="<?php echo $seance['FilmName'];?>">
     <option id="FilmName"><?php echo "".'<br>'; ?></option>
     <?php 
@@ -11,6 +11,7 @@
   </select>
   <input type="SUBMIT" value="Tri !" name="triFilmName">
   </form>
+  </span>
     
     <?php if(isset($_POST['triFilmName'])){?>
       <style>

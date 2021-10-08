@@ -48,7 +48,7 @@
       </td>
             </form>
 
-        <!-- Corps du tableau-->
+        <!-- Boucle Corps du tableau-->
         </tr>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
@@ -57,7 +57,7 @@
             ?>
         <!-- Form  modifierseance-->
         <form class="modifierSeance" method="post" action="">
-          <tr class=<?php echo $seance['FilmName']?>>
+          <tr class=<?php echo $seance['FilmName']?> <?php echo $seance['FilmName']?>>
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td class=<?php echo $seance['FilmName']?>> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
@@ -117,7 +117,10 @@
     </table>
 
   <!--Function Tri-->
-<?php require_once 'Tri_par_nom.php'; ?>
+  <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
+  <span class="ligne2">
+  <?php require_once 'Tri_par_nom.php'; ?>
+  <?php require_once 'Tri_par_salle.php'; ?>
     </body>
     
     <style>
@@ -142,13 +145,16 @@
         grid-column: 1/3;
         grid-row: 2/2;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        flex-direction: column;
+        margin-left:300px;
+        margin-right:300px;
     }
-    .ligne2 select, .ligne2 input{
-      display: ;
-      float: left;
+    .type_of_tri{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
     }
     .ligne3{
         grid-row: 3/3;
