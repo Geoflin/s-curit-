@@ -14,9 +14,6 @@
         <table class="table1">
         <thead>
             <!-- Form  triNomFilm-->
-            <form method="post" action="">
-            <input type="checkbox" required="required" value="tri"></br>
-        <button name="triNomFilm" type="submit">trier</button>
         <td>Modifier</td>
         <td>Nom du film</td>
         <td>Jour de séance</td>
@@ -59,7 +56,7 @@
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
             ?>
         <!-- Form  modifierseance-->
-        <form method="post" action="">
+        <form class="modifierSeance" method="post" action="">
           <tr class=<?php echo $seance['FilmName']?>>
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td class=<?php echo $seance['FilmName']?>> <?php echo $seance['FilmName'];?></br>
@@ -147,17 +144,19 @@
 
   <!--Function Tri-->
   <form class="ligne2" method="POST" action="">
-  <select name="FilmNameTest" required="required">
-    <?php
-                foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
-                    <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
-                <?php } ?>
-    </select>
-    <input type="SUBMIT" value="Tri !" name="tri">
+    <select name="FilmNameTest" value="<?php echo $seance['FilmName'];?>">
+    <option id="FilmName"><?php echo "".'<br>'; ?></option>
+    <?php 
+  foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                    <option id="FilmName"><?php echo $film['FilmName'].'<br>'; ?></option>
+  <?php } ?>
+  </select>
+  <input type="SUBMIT" value="Tri !" name="tri">
+  </form>
     
     <?php if(isset($_POST['tri'])){?>
       <style>
-      .<?php echo $_POST['FilmNameTest']?>{
+        tr:not(.<?php echo $_POST['FilmNameTest']?>){
         display: none;
       }
     </style>
