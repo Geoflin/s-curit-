@@ -50,6 +50,9 @@
 
         <!-- Boucle Corps du tableau-->
         </tr>
+        <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
+                    <option id="SalleName"><?php echo $Salle['SalleName'].'<br>'; ?></option>
+  <?php } ?>
         <?php
     foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
@@ -57,11 +60,12 @@
             ?>
         <!-- Form  modifierseance-->
         <form class="modifierSeance" method="post" action="">
-          <tr class=<?php echo $seance['FilmName']?> <?php echo $seance['FilmName']?>>
+          <tr class=<?php echo $seance['FilmName']?> <?php echo $Salle['SalleName']?>>
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
-        <td class=<?php echo $seance['FilmName']?>> <?php echo $seance['FilmName'];?></br>
+        <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
                     <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                      <option id="FilmName"> <?php echo $seance['FilmName'].'<br>'; ?></option>
                         <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
                     <?php } ?>
         </select>
