@@ -22,7 +22,6 @@
   } else {
     $FilmSalle1= "null";
   };
-  echo $FilmSalle1;
   } ?>
       <style>
         tr:not(.<?php echo $FilmSalle1 ?>, .thead){
