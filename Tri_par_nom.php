@@ -2,7 +2,7 @@
   <span class="blockTri1">
   <form method="POST" action="">
   <div class="type_of_tri"> Tri par nom de film</div></br>
-    <select name="FilmNameTest" value="<?php echo $seance['FilmName'];?>">
+    <select name="FilmNameTest">
     <option id="FilmName" value=" ">Tout afficher<br></option>
     <?php 
   foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
@@ -17,7 +17,7 @@
       <style>
         tr:not(.<?php echo $_POST['FilmNameTest']?>, .thead){
         display: none;
-        
+
       }
     </style>
     <?php }; ?>

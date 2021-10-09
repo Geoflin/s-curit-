@@ -3,10 +3,10 @@
 
   <form method="POST" action="">
   <div class="type_of_tri">Tri par nom de Salle</div></br>
-  <select name="SalleNameTest" value="<?php echo $Salle['SalleName'];?>">
+  <select name="SalleNameTest">
   <option id="SalleName">Tout afficher<br></option>
   <?php 
-  foreach ($pdo->query('SELECT SalleName FROM seance_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
+  foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
                     <option><?php echo $Salle['SalleName'].'<br>'; ?></option>
   <?php } ?>
   </select>
@@ -16,8 +16,13 @@
 
   <?php if(isset($_POST['triSalleName'])){?>
     <?php
-  foreach ($pdo->query('SELECT FilmName FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) { 
-  $FilmSalle1= $FilmSalle['FilmName'];
+  foreach ($pdo->query('SELECT FilmName FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
+  if(isset($FilmSalle['FilmName'])){
+    $FilmSalle1= $FilmSalle['FilmName'];
+  } else {
+    $FilmSalle1= "null";
+  };
+  echo $FilmSalle1;
   } ?>
       <style>
         tr:not(.<?php echo $FilmSalle1 ?>, .thead){
