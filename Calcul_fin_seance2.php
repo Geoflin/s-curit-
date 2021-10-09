@@ -16,7 +16,6 @@ $minute = $explosion[1];
 
 //On ajoute les heures et minutes au début du film
 $DateFinSeance= date('Y-m-d H:i:s',strtotime("+$heure hours $minute minutes", strtotime($DateSeanceBegin1)));
-echo $DateFinSeance;
 
 $conn = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
 $conn->exec("SET CHARACTER SET utf8");

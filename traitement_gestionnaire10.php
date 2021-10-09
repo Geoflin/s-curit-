@@ -5,7 +5,6 @@ require_once 'function_dateTime.php';
 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
 //on récupère nom salle
  $SalleName= $_POST['SalleName'];
- echo  $SalleName;
  //on concatène date début et nom salle
  $concatSearch= $fusionDateBegin_AjouterSeance.' '.$SalleName;
   //on ajoute des 00 pour les secondes de la date de début
@@ -46,7 +45,6 @@ foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHER
                   $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`DateSeanceEnd` IS NULL";
                  $count = $conn->exec($sql);
                  $conn = null;
-                };
               } else { 
                 if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
                 //On récupère l'Id de la séance crée
@@ -61,6 +59,9 @@ foreach ($pdo->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $sea
             } else {
               echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
             };
+          } else {
+            echo "Séance en double !"; 
+          };
 
 
 
