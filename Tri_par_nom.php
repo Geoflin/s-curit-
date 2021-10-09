@@ -17,6 +17,7 @@
       <style>
         tr:not(.<?php echo $_POST['FilmNameTest']?>, .thead){
         display: none;
+        
       }
     </style>
     <?php }; ?>
