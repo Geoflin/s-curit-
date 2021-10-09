@@ -21,8 +21,8 @@ foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSea
 require_once 'Calcul_fin_seance.php';
 
 //On Vérifie que le créneau est disponible
-foreach ($pdo->query('SELECT `FilmName` FROM `seance_cinema1` WHERE `DateSeanceBegin` >= "'.$fusionDateBegin_AjouterSeance.'" AND `DateSeanceBegin` <= "'.$DateFinSeance.'" AND `SalleName` = "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $creneau) {
-  $creneauconflict[]= $creneau['FilmName'];
+foreach ($pdo->query('SELECT SalleName FROM `seance_cinema1` WHERE `DateSeanceBegin` >= "'.$fusion.'" AND `DateSeanceBegin` <= "'.$DateFinSeance.'" AND `SalleName` = "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $creneau) {
+  $creneauconflict[]= $creneau['SalleName'];
   //on compte nombre de créneau en conflicts
   $countCreneauconflict= count($creneauconflict);
 };
