@@ -119,8 +119,57 @@
   <?php require_once 'Tri_par_nom.php'; ?>
   <?php require_once 'Tri_par_salle.php'; ?>
   <?php require_once 'Tri_par_jour_de_seance.php'; ?>
-    </body>
+  </span>
+
+  <!--Infos des Films-->
+  <span>
+    <h3><br/></br>Infos des Films</h3>
+    <table class="table3">
+
+                <!--Head-->
+    <tr class="thead">
+        <td>Ajouter</td>
+        <td>Nom du film</td>
+        <td>Duree</td>
+</tr>
+<!--form creation_infos_film-->
+<form method="post" action="">
+       <tr>
+    <td><button name="ajoutseance" type="submit">Créer Infos_film</button></td>
+    <td><input type="text" required="required" name="FilmName" placeholder="Saisissez Nom du film"></td>
+    <td><input type="time" name="duree"></td>
+</form>
+<!--Traitement form creation_infos_film-->
+<?php if (isset($_POST['ajoutseance'])){
+                              require_once 'creation_infos_film.php';
+                            }?>
+<!--form Modifier Infos_film-->
+<form method="post" action="">
+
+    <?php foreach ($pdo->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
+      $dateSeanceBegin = new DateTime($info_film['Duree']);
+      $DateSeanceEnd = new DateTime($info_film['Duree']);
+      ?>
+        <tr class=<?php echo $info_film['FilmName']?>>
+        <td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier Infos_film</button></td>
+
+        <td> <?php echo $info_film['FilmName'];?></br>
+          <select name="FilmName" required="required">
+                        <option value=<?php echo $info_film['FilmName']; ?>><?php echo $info_film['FilmName'].'<br>'; ?></option>
+        </select>
+        </td> 
+
+        <td><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
+
+      </tr>
+    <?php } ?>
     
+    </form>
+    </table>
+
+    </span>
+    </body>
+
     <style>
     body {
         font-family: Calibri, serif;
@@ -128,7 +177,7 @@
         grid-template-columns: 10% 90%;
         grid-template-rows: 100px 100px 70px 1fr;
     }
-    .table1, .table2{
+    .table1, .table2, .table3{
         border-collapse: collapse;
         width: 100%;
         height: 300px;
@@ -160,6 +209,12 @@
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 0px;
+    }
+    .ligne4{
+      grid-row: 4/4;
+      display: flex;
+      justify-content: ;
+      align-items: flex-end;
     }
     .table1{
         grid-column: 2/2;
