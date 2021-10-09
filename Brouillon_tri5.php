@@ -64,7 +64,7 @@
         <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
                     <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
-                        <option id="FilmName" value=""><?php echo $film['FilmName'].'<br>'; ?></option>
+                        <option id="FilmName" value=<?php echo $film['FilmName']; ?>><?php echo $film['FilmName'].'<br>'; ?></option>
                     <?php } ?>
         </select>
         </td> 
