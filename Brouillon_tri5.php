@@ -118,6 +118,7 @@
   <span class="ligne2">
   <?php require_once 'Tri_par_nom.php'; ?>
   <?php require_once 'Tri_par_salle.php'; ?>
+  <?php require_once 'Tri_par_jour_de_seance.php'; ?>
     </body>
     
     <style>
