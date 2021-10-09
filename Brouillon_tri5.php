@@ -59,7 +59,7 @@
             ?>
         <!-- Form  modifierseance-->
         <form class="modifierSeance" method="post" action="">
-        <tr class=<?php echo $seance['FilmName']?> <?php echo $Salle['SalleName']?>>
+        <tr class=<?php echo $seance['FilmName']?>>
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
         <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
