@@ -42,9 +42,11 @@ foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSea
 
 
     
-          
+        } else {
+          echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
+        };
             
-    
+        if (isset($countCreneauconflict)<1){
 
           
     

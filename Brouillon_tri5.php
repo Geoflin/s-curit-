@@ -98,7 +98,6 @@
                               require_once 'Modifier_seance1.php';
                               }?>
                                       <?php if (isset($_POST['ajoutseance'])){
-          foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {};
           require_once 'traitement_gestionnaire10.php';
                                         }?>
         <!-- Table  suprimmerSeance-->

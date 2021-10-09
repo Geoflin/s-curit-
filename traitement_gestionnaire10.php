@@ -41,7 +41,6 @@ foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHER
         if (isset($doublonInt)<1){
           if (isset($countCreneauconflict)<1){
           if (isset($Unix_DateSeanceBegin)){
-              if (($Unix_DateSeanceBegin != $Unix_fusionDateBegin && $SalleName == $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName']) || ($Unix_DateSeanceBegin == $Unix_fusionDateBegin && $SalleName != $_POST['SalleName'])){
                 if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
                 //on ajoute date de fin séance
                   $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`DateSeanceEnd` IS NULL";
@@ -62,9 +61,6 @@ foreach ($pdo->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $sea
             } else {
               echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
             };
-          } else {
-            echo "Séance en double !"; 
-          };
 
 
 
