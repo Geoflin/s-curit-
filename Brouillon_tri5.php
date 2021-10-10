@@ -277,4 +277,4 @@
                             }?>
                             <?php if (isset($_POST['supprimer_info_film'])){
                               require_once 'supprimer_infos_film.php';
-                            }?>
+                            }?> 
