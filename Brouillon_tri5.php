@@ -266,9 +266,11 @@
         grid-template-columns: 10% 90%;
         grid-template-rows: 100px 100px 70px 1fr;
         row-gap: 10px;
+        background-color: black;
+        color: white;
     }
     table td{
-        border: 1px solid black;
+        border: 1px solid rgba(29, 29, 29);
         padding: 1rem;
         text-align: center;
         max-width: 100px;
@@ -277,13 +279,14 @@
         height: 100px;
     }
     .thead{
-        background-color: rgb(192, 189, 189);
+      background-color:rgb(69, 69, 69);
         font-weight: bold;
     }
     .ligne4, .table2, .ligne6, .table4, .ligne8, .table6{
         border-collapse: collapse;
         width: 100%;
         height: 300px;
+        background-color: rgb(39, 39, 39);
     }
     .ligne1{
         grid-column: 1/3;
