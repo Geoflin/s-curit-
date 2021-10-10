@@ -144,28 +144,30 @@
                               require_once 'creation_infos_film.php';
                             }?>
 <!--form Modifier Infos_film-->
-<form method="post" action="">
 
     <?php foreach ($pdo->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
       $dateSeanceBegin = new DateTime($info_film['Duree']);
-      $DateSeanceEnd = new DateTime($info_film['Duree']);
       ?>
+      <form method="post" action="">
         <tr class=<?php echo $info_film['FilmName']?>>
-        <td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier Infos_film</button></td>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier Infos_film</button></td>
 
         <td> <?php echo $info_film['FilmName'];?></br>
-          <select name="FilmName" required="required">
-                        <option value=<?php echo $info_film['FilmName']; ?>><?php echo $info_film['FilmName'].'<br>'; ?></option>
-        </select>
+        <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?>>
         </td> 
 
-        <td><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="HourBegin" id="Modifier_HourBegin" classe="modifier" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
+        <td><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="Duree" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
 
       </tr>
     <?php } ?>
     
     </form>
     </table>
+
+    <!-- Traitement modifier_info_film-->
+    <?php if (isset($_POST['Modifier_Infos_film'])){
+                              require_once 'Modifier_info_film.php';
+                              }?>
 
             <!-- Table  suprimmerSeance-->       
     <section class="ligne5">
