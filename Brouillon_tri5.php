@@ -122,7 +122,7 @@
   </span>
 
   <!--Infos des Films-->
-    <h3 class="ligne5"><br/></br>Infos des Films</h3>
+    <h3 class="ligne5">Infos des Films</h3>
     <form><input class="ligne5" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
     <table class="table3 ligne6">
 
@@ -135,12 +135,12 @@
 <!--form creation_infos_film-->
 <form method="post" action="">
        <tr>
-    <td><button name="ajoutseance" type="submit">Créer Infos_film</button></td>
+    <td><button name="ajoutInfo_film" type="submit">Créer Infos_film</button></td>
     <td><input type="text" required="required" name="FilmName" placeholder="Saisissez Nom du film"></td>
-    <td><input type="time" name="duree"></td>
+    <td><input type="time" name="Duree"></td>
 </form>
 <!--Traitement form creation_infos_film-->
-<?php if (isset($_POST['ajoutseance'])){
+<?php if (isset($_POST['ajoutInfo_film'])){
                               require_once 'creation_infos_film.php';
                             }?>
 <!--form Modifier Infos_film-->
@@ -171,7 +171,7 @@
     <section class="ligne5">
     <form method="post" class="ligne5">
         <button class="ligne5"  type="reset">Réinitialiser la séléction</button>
-        <button class="ligne5"  type="submit" name="supprimerseance">Supprimer la séléction</button>
+        <button class="ligne5"  type="submit" name="supprimer_info_film">Supprimer la séléction</button>
     </section>
 
     <table class="table4 ligne6">
@@ -274,4 +274,7 @@
                               <!-- Traitement supprimerSeance-->
                               <?php if (isset($_POST['supprimerseance'])){
                               require_once 'traitement_supprimer_seance.php';
+                            }?>
+                            <?php if (isset($_POST['supprimer_info_film'])){
+                              require_once 'supprimer_infos_film.php';
                             }?>
