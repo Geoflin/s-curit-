@@ -123,8 +123,8 @@
 
   <!--Infos des Films-->
     <h3 class="ligne5">Infos des Films</h3>
-    <form><input class="ligne5" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
-    <table class="table3 ligne6">
+    <form><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+    <table class="table3 ligne5">
 
                 <!--Head-->
     <tr class="thead">
@@ -170,10 +170,10 @@
                               }?>
 
             <!-- Table  suprimmerSeance-->       
-    <section class="ligne5">
-    <form method="post" class="ligne5">
-        <button class="ligne5"  type="reset">Réinitialiser la séléction</button>
-        <button class="ligne5"  type="submit" name="supprimer_info_film">Supprimer la séléction</button>
+    <section class="ligne6">
+    <form method="post" class="ligne6">
+        <button class="ligne6"  type="reset">Réinitialiser la séléction</button>
+        <button class="ligne6"  type="submit" name="supprimer_info_film">Supprimer la séléction</button>
     </section>
 
     <table class="table4 ligne6">
@@ -188,7 +188,73 @@
     <?php } ?>
     </form>
     </table>
+
+
+  <!--Infos du cinema-->
+    <h3 class="ligne7">Infos du cinema</h3>
+    <form><input class="ligne7" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+    <table class="table5 ligne8">
+
+                <!--Head-->
+    <tr class="thead ligne8">
+        <td>Ajouter</td>
+        <td>Nom de la salle</td>
+        <td>Nombre de place</td>
+</tr>
+<!--form creation_infos_cinema-->
+<form method="post" action="">
+       <tr>
+    <td><button name="creation_infos_cinema" type="submit">Créer infos cinema</button></td>
+    <td><input type="text" required="required" name="SalleName" placeholder="Saisissez Nom de la Salle"></td>
+    <td><input type="int" name="Nombre_de_place"></td>
+</form>
+<!--Traitement form creation_infos_film-->
+<?php if (isset($_POST['creation_infos_cinema'])){
+                              require_once 'creation_infos_cinema.php';
+                            }?>
+<!--form Modifier Infos_film-->
+
+    <?php foreach ($pdo->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $modifier_infos_cinema1) { 
+      ?>
+      <form method="post" action="">
+        <tr class=<?php echo $modifier_infos_cinema1['SalleName']?>>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id']; ?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
+
+        <td> <?php echo $modifier_infos_cinema1['Nombre_de_place'];?></br>
+        <input type="text" name="Nombre_de_place" placeholder=<?php echo $modifier_infos_cinema1['Nombre_de_place'];?>>
+        </td> 
+
+      </tr>
+    <?php } ?>
     
+    </form>
+    </table>
+
+    <!-- Traitement modifier_infos_film-->
+    <?php if (isset($_POST['modifier_infos_cinema1'])){
+                              require_once 'modifier_infos_cinema1.php';
+                              }?>
+
+            <!-- Table  suprimmerSeance-->       
+    <section class="ligne7">
+    <form method="post" class="ligne7">
+        <button class="ligne7"  type="reset">Réinitialiser la séléction</button>
+        <button class="ligne7"  type="submit" name="supprimer_info_cinema">Supprimer la séléction</button>
+    </section>
+
+    <table class="table6 ligne8">
+    <tr class="thead ligne8">
+    <td class="ligne8">Supprimer</td>
+                                      </tr>
+    <td class="ligne8"></td>
+    <?php
+    foreach ($pdo->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos_cinema1) { 
+            ?>
+        <tr class=<?php echo $infos_cinema1['SalleName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $infos_cinema1['Id']; ?> "></td></tr>   
+    <?php } ?>
+    </form>
+    </table>
+
     </body>
 
     <style>
@@ -196,10 +262,11 @@
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows: 100px 100px 70px 1fr 70px 1fr;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
+        row-gap: 10px;
     }
     
-    .table1, .table2, .table3, .table4{
+    .table1, .table2, .table3, .table4, .table5, .table6{
         border-collapse: collapse;
         width: 100%;
         height: 300px;
@@ -236,16 +303,32 @@
     .ligne5{
       grid-row: 5/5;
       display: flex;
-      justify-content: ;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .ligne6{
+      grid-row: 6/6;
+      display: flex;
+      align-items: flex-end;
+    }
+    .ligne7{
+      grid-row: 7/7;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .ligne8{
+      grid-row: 8/8;
+      display: flex;
       align-items: flex-end;
     }
     .table1{
         grid-column: 2/2;
-        grid-row: 4/4;
+        grid-row: 5/5;
     }
     .table2{
         grid-column: 1/1;
-        grid-row: 4/4;
+        grid-row: 5/5;
     }
     .table3{
       grid-column: 2/2;
@@ -254,6 +337,14 @@
     .table4{
       grid-column: 1/1;
       grid-row: 6/6;
+    }
+    .table5{
+      grid-column: 2/2;
+      grid-row: 8/8;
+    }
+    .table6{
+      grid-column: 1/1;
+      grid-row: 8/8;
     }
     table td{
         border: 1px solid black;
@@ -279,4 +370,7 @@
                             }?>
                             <?php if (isset($_POST['supprimer_info_film'])){
                               require_once 'supprimer_infos_film.php';
+                            }?> 
+                            <?php if (isset($_POST['supprimer_info_cinema'])){
+                              require_once 'supprimer_info_cinema.php';
                             }?> 
