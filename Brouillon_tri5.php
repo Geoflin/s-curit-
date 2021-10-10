@@ -122,9 +122,9 @@
   </span>
 
   <!--Infos des Films-->
-  <span>
-    <h3><br/></br>Infos des Films</h3>
-    <table class="table3">
+    <h3 class="ligne5"><br/></br>Infos des Films</h3>
+    <form><input class="ligne5" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+    <table class="table3 ligne6">
 
                 <!--Head-->
     <tr class="thead">
@@ -167,7 +167,26 @@
     </form>
     </table>
 
-    </span>
+            <!-- Table  suprimmerSeance-->       
+    <section class="ligne5">
+    <form method="post" class="ligne5">
+        <button class="ligne5"  type="reset">Réinitialiser la séléction</button>
+        <button class="ligne5"  type="submit" name="supprimerseance">Supprimer la séléction</button>
+    </section>
+
+    <table class="table4 ligne6">
+    <tr class="thead ligne6">
+    <td class="ligne6">Supprimer</td>
+                                      </tr>
+    <td class="ligne6"></td>
+    <?php
+    foreach ($pdo->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
+            ?>
+        <tr class=<?php echo $info_film['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "></td></tr>   
+    <?php } ?>
+    </form>
+    </table>
+    
     </body>
 
     <style>
@@ -175,9 +194,10 @@
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows: 100px 100px 70px 1fr;
+        grid-template-rows: 100px 100px 70px 1fr 70px 1fr;
     }
-    .table1, .table2, .table3{
+    
+    .table1, .table2, .table3, .table4{
         border-collapse: collapse;
         width: 100%;
         height: 300px;
@@ -197,12 +217,7 @@
         margin-left:300px;
         margin-right:300px;
     }
-    .type_of_tri{
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-direction: row;
-    }
+
     .ligne3{
         grid-row: 3/3;
         display: flex;
@@ -216,6 +231,12 @@
       justify-content: ;
       align-items: flex-end;
     }
+    .ligne5{
+      grid-row: 5/5;
+      display: flex;
+      justify-content: ;
+      align-items: flex-end;
+    }
     .table1{
         grid-column: 2/2;
         grid-row: 4/4;
@@ -223,6 +244,14 @@
     .table2{
         grid-column: 1/1;
         grid-row: 4/4;
+    }
+    .table3{
+      grid-column: 2/2;
+      grid-row: 6/6;
+    }
+    .table4{
+      grid-column: 1/1;
+      grid-row: 6/6;
     }
     table td{
         border: 1px solid black;
