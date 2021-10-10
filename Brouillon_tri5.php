@@ -60,7 +60,7 @@
         <!-- Form  modifierseance-->
         <form class="modifierSeance" method="post" action="">
         <tr class=<?php echo $seance['FilmName']?>>
-        <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier les séances</button></td>
+        <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier séance</button></td>
         <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
                     <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
@@ -150,7 +150,7 @@
       ?>
       <form method="post" action="">
         <tr class=<?php echo $info_film['FilmName']?>>
-        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier Infos_film</button></td>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier <?php echo $info_film['FilmName']?></button></td>
 
         <td> <?php echo $info_film['FilmName'];?></br>
         <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?>>
