@@ -8,10 +8,10 @@
   <h1>Kinepolise</h1>
   <h3>Votre cinéma</h3>
   <span>
-  <button name="reservation"><a href="formulaire_client.php">réserver mes places</a></button>
-  <button name="connexion"><a href="connexion_gestionnaire.php">espace gestionnaire</a></button>
+  <button name="reservation"><a href="client/formulaire_client.php">réserver mes places</a></button>
+  <button name="connexion"><a href="gestionnaire/connexion_gestionnaire.php">espace gestionnaire</a></button>
 </span>
-<img src="meduse.jpg"/>
+<img src="accueil/meduse.jpg"/>
 
 </div>
     </BODY>
