@@ -4,7 +4,7 @@
 </head>
 <body>
   <nav>
-<button name="accueil"><a href="index.php">retour à l'accueil</a></button>
+<button name="accueil"><a href="../index.php">retour à l'accueil</a></button>
 </nav>
 
 <form method="post" action="traitement_client.php">

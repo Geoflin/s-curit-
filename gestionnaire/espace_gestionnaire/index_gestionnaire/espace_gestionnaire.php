@@ -4,8 +4,8 @@
 </head>
 <body>
 <nav>
-<button name="accueil"><a href="../index.php">retour à l'accueil</a></button>
-<button name="connexion"><a href="connexion_gestionnaire.php">retour connexion</a></button></br>
+<button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
+<button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button></br>
 </nav>
 <?php
 
@@ -105,10 +105,10 @@ if (isset($_SESSION['username']))
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
                                 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
-                              require_once 'Modifier_seance1.php';
+                              require_once 'calculs/modifications/Modifier_seance1.php';
                               }?>
                                       <?php if (isset($_POST['ajoutseance'])){
-          require_once 'traitement_gestionnaire10.php';
+          require_once 'calculs/creations/traitement_gestionnaire10.php';
                                         }?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
@@ -132,9 +132,9 @@ if (isset($_SESSION['username']))
   <!--Function Tri-->
   <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
   <span class="ligne2">
-  <?php require_once 'Tri_par_nom.php'; ?>
-  <?php require_once 'Tri_par_salle.php'; ?>
-  <?php require_once 'Tri_par_jour_de_seance.php'; ?>
+  <?php require_once 'calculs/tris/Tri_par_nom.php'; ?>
+  <?php require_once 'calculs/tris/Tri_par_salle.php'; ?>
+  <?php require_once 'calculs/tris/Tri_par_jour_de_seance.php'; ?>
   </span>
 
   <!--Infos des Films-->
@@ -156,7 +156,7 @@ if (isset($_SESSION['username']))
 </form>
 <!--Traitement form creation_infos_film-->
 <?php if (isset($_POST['ajoutInfo_film'])){
-                              require_once 'creation_infos_film.php';
+                              require_once 'calculs/creations/creation_infos_film.php';
                             }?>
 <!--form Modifier Infos_film-->
 
@@ -181,7 +181,7 @@ if (isset($_SESSION['username']))
 
     <!-- Traitement modifier_info_film-->
     <?php if (isset($_POST['Modifier_Infos_film'])){
-                              require_once 'Modifier_info_film.php';
+                              require_once 'calculs/modifications/Modifier_info_film.php';
                               }?>
 
             <!-- Table  supprimer_info_film-->       
@@ -223,7 +223,7 @@ if (isset($_SESSION['username']))
 </form>
 <!--Traitement form modifier_infos_cinema1-->
 <?php if (isset($_POST['creation_infos_cinema'])){
-                              require_once 'creation_infos_cinema.php';
+                              require_once 'calculs/creations/creation_infos_cinema.php';
                             }?>
 <!--form modifier_infos_cinema1-->
 
@@ -249,7 +249,7 @@ if (isset($_SESSION['username']))
 
     <!-- Traitement modifier_infos_cinema1-->
     <?php if (isset($_POST['modifier_infos_cinema1'])){
-                              require_once 'modifier_infos_cinema1.php';
+                              require_once 'calculs/modifications/modifier_infos_cinema1.php';
                               }?>
 
             <!-- Table  supprimer_infos_cinema1-->       
@@ -278,13 +278,13 @@ if (isset($_SESSION['username']))
 
 <!-- Traitement supprimerSeance-->
 <?php if (isset($_POST['supprimerseance'])){
-require_once 'traitement_supprimer_seance.php';
+require_once 'calculs/suppressions/traitement_supprimer_seance.php';
 }?>
 <?php if (isset($_POST['supprimer_info_film'])){
-require_once 'supprimer_infos_film.php';
+require_once 'calculs/suppressions/supprimer_infos_film.php';
 }?> 
 <?php if (isset($_POST['supprimer_info_cinema'])){
-require_once 'supprimer_info_cinema.php';
+require_once 'calculs/suppressions/supprimer_info_cinema.php';
 }?> 
 
 <!-- erreur connexion -->
