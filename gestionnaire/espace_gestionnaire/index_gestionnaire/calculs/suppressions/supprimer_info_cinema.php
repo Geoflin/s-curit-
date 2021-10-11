@@ -1,26 +1,5 @@
 <?php
-//debug
-                             $debug = false;
-                             if ($debug) {
-                             
-                                 // gère et affiche tous les niveaux d'erreurs en mode débogage
-                             
-                                 error_reporting(E_ALL);
-                             
-                                 ini_set('display_errors', '1');
-                             
-                             } else {
-                             
-                                 // en mode production, ne gère pas certains niveaux pour des raisons de performance (ceux précédés de ~), tel que suggéré dans php.ini
-                             
-                                 // même pour les niveaux gérés, aucun message ne sera affiché
-                             
-                                 error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
-                             
-                                 ini_set('display_errors', '0');
-                             
-                             }
-                             //debug
+
                                  if(isset($_POST['Id']))
                                  {
                                    // On assigne notre variable $_POST['checkbox_id']
@@ -38,9 +17,10 @@
                                    for( $i=0; $i<$total; $i++ )
                                    {
                                      $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-                                     $statement = $pdo->prepare('DELETE FROM info_cinema WHERE Id = :Id');
+                                     $statement = $pdo->prepare('DELETE FROM infos_cinema1 WHERE Id = :Id');
                                      $statement->bindValue(':Id', $nombre[$i], PDO::PARAM_INT);        
                                          if ($statement->execute()) {
+
                                          } else {
                                              echo "erreur";
                                          }

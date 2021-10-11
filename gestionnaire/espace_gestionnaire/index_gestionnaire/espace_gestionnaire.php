@@ -5,20 +5,37 @@
 <body>
 <nav>
 <button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
-<button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button></br>
+<button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button>
+<form><button name="deconnexion" type="submit">déconnexion</button></form>
 </nav>
+
 <?php
-
-if ($_POST['username'] == 'john' && $_POST['password'] == 'ripples1947') {
-
-    session_start();
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['password']= $_POST['password'];
-if (isset($_SESSION['username'])) 
-{
-  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL;
-}
-  ?>
+if(isset($_POST['connexion'])){
+$username = $_POST['username'];
+$password = $_POST['password'];
+};
+//2ème étape : affichage
+// Affichage
+print_r($_COOKIE['username']);
+print_r($_COOKIE['password']);
+// Suppression
+setcookie('username', '', time() - 3600);
+setcookie('password', '', time() - 3600);
+if(!empty($_COOKIE['username'] && $_COOKIE['password'])){
+  // 1ère étape : déclaration
+  $username = $_COOKIE['username'];
+  $password = $_COOKIE['password'];
+};
+?>
+<?php
+if (($username == 'john' && $password == 'ripples1947') || ($_COOKIE['username'] == 'john' && $_COOKIE['password'] == 'ripples1947')) {
+  if(empty($_COOKIE['username'] && $_COOKIE['password'])){
+      // 1ère étape : déclaration
+      setcookie('username', $username);
+      setcookie('password', $password);
+  };
+  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", getenv('username')) . PHP_EOL; 
+?>
     <!--Actualiser la page-->
     <form class="ligne3"><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
     <h2 class="ligne1">Liste des séance</h2>
@@ -231,14 +248,14 @@ if (isset($_SESSION['username']))
       ?>
       <form method="post" action="">
         <tr class=<?php echo $modifier_infos_cinema1['SalleName']?>>
-        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id']; ?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
+        <td><input type="checkbox" name="Id" value=" <?php echo $modifier_infos_cinema1['Id']; ?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
 
         <td> <?php echo $modifier_infos_cinema1['SalleName'];?></br>
-        <input type="text" name="SalleName" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?>>
+        <input type="text" name="SalleName" value="<?php echo $modifier_infos_cinema1['SalleName'];?>" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?>>
         </td> 
 
         <td> <?php echo $modifier_infos_cinema1['Nombre_de_place'];?></br>
-        <input type="number" name="Nombre_de_place" placeholder=<?php echo $modifier_infos_cinema1['Nombre_de_place'];?>>
+        <input type="number" name="Nombre_de_place" value="<?php echo $modifier_infos_cinema1['Nombre_de_place'];?>" placeholder=<?php echo $modifier_infos_cinema1['Nombre_de_place'];?>>
         </td> 
 
       </tr>
@@ -287,13 +304,6 @@ require_once 'calculs/suppressions/supprimer_infos_film.php';
 require_once 'calculs/suppressions/supprimer_info_cinema.php';
 }?> 
 
-<!-- erreur connexion -->
-<?php
-} else {
-echo "<div class=center>Connexion refusé, vous n'avez pas les droits</div>";
-}
-?>
-
     <style>
 
     body {
@@ -331,7 +341,7 @@ echo "<div class=center>Connexion refusé, vous n'avez pas les droits</div>";
         justify-content: flex-start;
         align-items: center;
     }
-    nav button{
+    nav button, nav form{
       background-color: white;
       z-index: 2;
       height: 25px;
@@ -411,3 +421,15 @@ echo "<div class=center>Connexion refusé, vous n'avez pas les droits</div>";
       flex-direction: row;
     }
     </style>
+
+<?php
+if(isset($_POST['deconnexion'])){
+  session_destroy();
+};
+?>
+
+<?php
+} else {
+echo "<div class=center>Connexion refusé, vous n'avez pas les droits</div>";
+};
+?>
