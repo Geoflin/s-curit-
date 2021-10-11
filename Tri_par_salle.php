@@ -16,15 +16,16 @@
 
   <?php if(isset($_POST['triSalleName'])){?>
     <?php
-  foreach ($pdo->query('SELECT FilmName FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
+  foreach ($pdo->query('SELECT * FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
   if(isset($FilmSalle['FilmName'])){
     $FilmSalle1= $FilmSalle['FilmName'];
+    $SalleName= $FilmSalle['SalleName'];
   } else {
     $FilmSalle1= "null";
   };
   } ?>
       <style>
-        tr:not(.<?php echo $FilmSalle1 ?>, .thead){
+        tr:not(.<?php echo $FilmSalle1 ?>, .thead, .<?php echo $SalleName ?>){
         display: none;
       }
     </style>

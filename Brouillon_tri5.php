@@ -127,7 +127,7 @@
     <table class="ligne6">
                 <!--Head-->
     <tr class="thead">
-        <td>Ajouter</td>
+        <td>Modifier</td>
         <td>Nom du film</td>
         <td>Duree</td>
 </tr>
@@ -194,7 +194,7 @@
 
                 <!--Head-->
     <tr class="thead ">
-        <td>Ajouter</td>
+        <td>Modifier</td>
         <td>Nom de la salle</td>
         <td>Nombre de place</td>
 </tr>
