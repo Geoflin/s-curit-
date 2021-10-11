@@ -11,3 +11,5 @@ $_SESSION['favoriteLangages'] = ['PHP', 'HTML', 'CSS'];
 echo 'Session initialisée';
 ?>
 
+
+

@@ -9,31 +9,25 @@
 <form><button name="deconnexion" type="submit">déconnexion</button></form>
 </nav>
 
-<?php $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
-
-<h3 class="center">Connexion à l'espace gestionnaire</h3>
-
-<form method="post" action="">
-    <label for="username">utilisateur</label>
-    <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
-    <label for="password">mot de passe</label>
-    <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
-    <button name="connexion" type="submit">connexion</button>
-    </form>
-
 <?php
 if(isset($_POST['connexion'])){
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+$pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+  foreach ($pdo->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) { 
+  $username= $dataConnexion['username'];
+  $password= $dataConnexion['password'];
+}; 
 };
+?>
 
+<?php
 session_start();
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['password'] = $_POST['password'];
 echo 'Session initialisée';
 ?>
+
 <?php
-if (($username == 'john' && $password == 'ripples1947') || ($_SESSION['username'] == 'john' && $_SESSION['password'] == 'ripples1947')) {
+if (($_POST['username'] == 'john'  && $_POST['username'] == 'ripples1947') || ($_SESSION['username'] == 'john' && $_SESSION['password'] == 'ripples1947')) {
   echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", getenv('username')) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
