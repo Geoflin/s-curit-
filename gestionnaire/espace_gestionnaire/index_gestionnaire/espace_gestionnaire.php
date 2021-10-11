@@ -9,31 +9,31 @@
 <form><button name="deconnexion" type="submit">déconnexion</button></form>
 </nav>
 
+<?php $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
+
+<h3 class="center">Connexion à l'espace gestionnaire</h3>
+
+<form method="post" action="">
+    <label for="username">utilisateur</label>
+    <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
+    <label for="password">mot de passe</label>
+    <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
+    <button name="connexion" type="submit">connexion</button>
+    </form>
+
 <?php
 if(isset($_POST['connexion'])){
-$username = $_POST['username'];
-$password = $_POST['password'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 };
-//2ème étape : affichage
-// Affichage
-print_r($_COOKIE['username']);
-print_r($_COOKIE['password']);
-// Suppression
-setcookie('username', '', time() - 3600);
-setcookie('password', '', time() - 3600);
-if(!empty($_COOKIE['username'] && $_COOKIE['password'])){
-  // 1ère étape : déclaration
-  $username = $_COOKIE['username'];
-  $password = $_COOKIE['password'];
-};
+
+session_start();
+$_SESSION['username'] = $_POST['username'];
+$_SESSION['password'] = $_POST['password'];
+echo 'Session initialisée';
 ?>
 <?php
-if (($username == 'john' && $password == 'ripples1947') || ($_COOKIE['username'] == 'john' && $_COOKIE['password'] == 'ripples1947')) {
-  if(empty($_COOKIE['username'] && $_COOKIE['password'])){
-      // 1ère étape : déclaration
-      setcookie('username', $username);
-      setcookie('password', $password);
-  };
+if (($username == 'john' && $password == 'ripples1947') || ($_SESSION['username'] == 'john' && $_SESSION['password'] == 'ripples1947')) {
   echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", getenv('username')) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
