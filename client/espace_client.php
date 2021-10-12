@@ -5,7 +5,7 @@
 <body>
 <nav>
 <button name="accueil"><a href="../index.php">retour à l'accueil</a></button>
-<button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button>
+<button name="connexion"><a href="connexion/connexion_client.php">retour connexion</a></button>
 <form><button name="deconnexion" type="submit">déconnexion</button></form>
 </nav>
 
@@ -40,7 +40,13 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td>Salle</td>
 </tr>
     </form>
-    <h3 class="title1">Liste séance à réserver</h3>
+    <h2 class="title1">Séance disponibles</h2>
+    <section class="title1">
+    <form class="title1" method="post">
+    <input class="title1" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+        <button class="title1" type="reset">Réinitialiser la séléction</button>
+        <button class="title1" type="submit" name="supprimerseance">Supprimer la séléction</button>
+    </section>
         <!-- Boucle Corps du tableau-->
         </tr>
         <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
@@ -68,7 +74,35 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
           require_once 'traitement/traitement_ReserverSeance.php';
         }
         ?>
-        
+        <?php } ?>
+    </table>
+
+    <!--Seance que vous avez réservée-->
+    <h2 class="title2">Séance que vous avez réservée</h2>
+    <section class="title2">
+    <form class="title2" method="post">
+    <input class="title2" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+        <button class="title2" type="reset">Réinitialiser la séléction</button>
+        <button class="title2" type="submit" name="supprimerseance">Supprimer la séléction</button>
+    </section>
+
+    <table class="ligne6">
+    <?php foreach ($pdo->query('SELECT * FROM reservation_client1', PDO::FETCH_ASSOC) as $seanceReservee) { 
+      $dateSeanceBegin = new DateTime($seanceReservee['DateSeanceBegin']);
+      $DateSeanceEnd = new DateTime($seanceReservee['DateSeanceEnd']);
+            ?>
+        <!-- Form  ReserverSeance-->
+        <form class="ReserverSeance" method="post" action="">
+        <tr class=<?php echo $seanceReservee['FilmName']?>>
+        <td><input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button type="submit" name="ReserverSeance">Réserver la séance</button></td>
+        <td><?php echo $seanceReservee['FilmName'];?></td> 
+        <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td>
+        <td><?php echo $dateSeanceBegin->format('H:i');?></td>
+        <td><?php echo $DateSeanceEnd->format('H:i');?></td>
+        <td><?php echo $seanceReservee['SalleName'];?></td>
+        </tr>
+        </form>
+
         <?php } ?>
     </table>
 
@@ -84,25 +118,27 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         a, h2{
       color:rgb(155, 89, 182);
       text-align: center;
+      text-decoration: underline;
     }
     .title1{
-      grid-column: 1/3;
       grid-row: 4/4;
-      text-align: center;
-      text-decoration: underline;
-      color:rgb(155, 89, 182);
       display: flex;
-      align-items:flex-end;
-      justify-content: center;
-      padding: 0px;
-      margin: 0px;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-bottom: 0px;
+    }
+    .title2{
+      grid-row: 6/6;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-bottom: 0px;
     }
     body {
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows:50px 100px 100px 40px 1fr;
-        row-gap: 10px;
+        grid-template-rows:50px 100px 100px 70px 1fr;
         background-color: black;
         color: white;
     }
@@ -119,10 +155,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       background-color:rgb(69, 69, 69);
         font-weight: bold;
     }
-    .ligne4, .table2{
+    .ligne4, .ligne6{
         border-collapse: collapse;
         width: 100%;
-        height: 300px;
+        height: 100px;
         background-color: rgb(39, 39, 39);
     }
     nav{
