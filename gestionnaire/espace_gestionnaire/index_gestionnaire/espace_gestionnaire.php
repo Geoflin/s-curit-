@@ -10,18 +10,16 @@
 </nav>
 
 <?php
-if(isset($_POST['connexion'])){
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
   foreach ($pdo->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) { 
   $username= $dataConnexion['username'];
   $password= $dataConnexion['password'];
-}; 
 };
 session_start();
 ?>
 
 <?php
-if (($_SESSION['username'] == 'john'  && $_SESSION['password'] == 'ripples1947')) {
+if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password'])) {
   echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
