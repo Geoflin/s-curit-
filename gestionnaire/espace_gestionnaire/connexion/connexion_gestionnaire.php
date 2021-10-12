@@ -9,12 +9,13 @@
 </nav>
 <h3 class="center">Connexion à l'espace gestionnaire</h3>
 
-<form method="post" action="../index_gestionnaire\espace_gestionnaire.php">
+<form method="post" action="Frontiere.php">
     <label for="username">utilisateur</label>
     <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
     <label for="password">mot de passe</label>
     <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
     <button name="connexion" type="submit">connexion</button>
+
     </form>
 
 </body>

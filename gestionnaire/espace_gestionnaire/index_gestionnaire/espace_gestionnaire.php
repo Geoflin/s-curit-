@@ -17,18 +17,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
   $password= $dataConnexion['password'];
 }; 
 };
-?>
-
-<?php
 session_start();
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['password'] = $_POST['password'];
-echo 'Session initialisée';
 ?>
 
 <?php
-if (($_POST['username'] == 'john'  && $_POST['username'] == 'ripples1947') || ($_SESSION['username'] == 'john' && $_SESSION['password'] == 'ripples1947')) {
-  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", getenv('username')) . PHP_EOL; 
+if (($_SESSION['username'] == 'john'  && $_SESSION['password'] == 'ripples1947')) {
+  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
     <form class="ligne3"><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
