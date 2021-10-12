@@ -4,7 +4,7 @@
 </head>
 <body>
 <nav>
-<button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
+<button name="accueil"><a href="../index.php">retour à l'accueil</a></button>
 <button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button>
 <form><button name="deconnexion" type="submit">déconnexion</button></form>
 </nav>
@@ -20,10 +20,9 @@ session_start();
 
 <?php
 if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password'])) {
-  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
+  echo sprintf("<nav class=center><h3>Bonjour %s, voici nos séance disponibles:<h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
-    <form class="ligne3"><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
     <h2 class="ligne1">Liste des séance</h2>
     <!--Tableaux-->
     <!-- Thead-->
@@ -33,6 +32,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <table class="ligne4">
         <tr class="thead">
             <!-- Form  triNomFilm-->
+        <td>Réserver la séance</td>
         <td>Nom du film</td>
         <td>Jour de séance</td>
         <td>Heure de début</td>
@@ -40,6 +40,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td>Salle</td>
 </tr>
     </form>
+    <h3 class="title1">Liste séance à réserver</h3>
         <!-- Boucle Corps du tableau-->
         </tr>
         <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
@@ -49,9 +50,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
             ?>
-        <!-- Form  modifierseance-->
-        <form class="modifierSeance" method="post" action="">
+        <!-- Form  ReserverSeance-->
+        <form class="ReserverSeance" method="post" action="">
         <tr class=<?php echo $seance['FilmName']?>>
+        <td><input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button type="submit" name="ReserverSeance">Réserver la séance</button></td>
         <td><?php echo $seance['FilmName'];?></td> 
         <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td>
         <td><?php echo $dateSeanceBegin->format('H:i');?></td>
@@ -59,6 +61,13 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td><?php echo $seance['SalleName'];?></td>
         </tr>
         </form>
+        
+        <!-- traitement  ReserverSeance-->
+        <?php
+        if(isset($_POST['ReserverSeance'])){
+          require_once 'traitement/traitement_ReserverSeance.php';
+        }
+        ?>
         
         <?php } ?>
     </table>
@@ -72,14 +81,27 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
   </span>
 
     <style>
-        a{
-      color:#A111BD;
+        a, h2{
+      color:rgb(155, 89, 182);
+      text-align: center;
+    }
+    .title1{
+      grid-column: 1/3;
+      grid-row: 4/4;
+      text-align: center;
+      text-decoration: underline;
+      color:rgb(155, 89, 182);
+      display: flex;
+      align-items:flex-end;
+      justify-content: center;
+      padding: 0px;
+      margin: 0px;
     }
     body {
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows:50px 100px 100px 70px 1fr;
+        grid-template-rows:50px 100px 100px 40px 1fr;
         row-gap: 10px;
         background-color: black;
         color: white;
@@ -126,7 +148,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         grid-column: 1/3;
         grid-row: 2/2;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
     }
     .ligne2{
         grid-column: 1/3;
@@ -136,13 +158,6 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         align-items: center;
         margin-left:300px;
         margin-right:300px;
-    }
-    .ligne3{
-        grid-row: 4/4;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 0px;
     }
     /*tableau1*/
     .ligne4{

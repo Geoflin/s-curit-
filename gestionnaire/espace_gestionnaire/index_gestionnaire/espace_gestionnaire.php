@@ -23,8 +23,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
   echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
-    <form class="ligne3"><input type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
-    <h2 class="ligne1">Liste des séance</h2>
+    <h2 class="ligne3">Liste des séance</h2>
     <!--Tableaux-->
     <!-- Thead-->
     <?php
@@ -116,9 +115,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">
-    <form method="post">
-        <button  type="reset">Réinitialiser la séléction</button>
-        <button  type="submit" name="supprimerseance">Supprimer la séléction</button>
+    <form class="ligne3" method="post">
+    <input class="ligne3" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+        <button class="ligne3" type="reset">Réinitialiser la séléction</button>
+        <button class="ligne3" type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
     <tr class="thead">
     <td>Supprimer</td>
@@ -133,7 +133,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </table>
 
   <!--Function Tri-->
-  <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
+  <h2 class="ligne1">Tri de l'affichage</h2>
   <span class="ligne2">
   <?php require_once 'calculs/tris/Tri_par_nom.php'; ?>
   <?php require_once 'calculs/tris/Tri_par_salle.php'; ?>
@@ -141,7 +141,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
   </span>
 
   <!--Infos des Films-->
-    <h3 class="ligne5">Infos des Films</h3>
+    <h2 class="ligne5">Infos des Films</h2>
 
     <table class="ligne6">
                 <!--Head-->
@@ -190,6 +190,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
             <!-- Table  supprimer_info_film-->       
     <section class="ligne5">
     <form method="post" class="ligne5">
+        <input class="ligne5" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne5"  type="reset">Réinitialiser la séléction</button>
         <button class="ligne5"  type="submit" name="supprimer_info_film">Supprimer la séléction</button>
     </section>
@@ -208,7 +209,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </table>
 
   <!--Infos du cinema-->
-    <h3 class="ligne7">Infos du cinema</h3>
+    <h2 class="ligne7">Infos du cinema</h2>
     <table class="ligne8">
 
                 <!--Head-->
@@ -258,6 +259,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
             <!-- Table  supprimer_infos_cinema1-->       
     <section class="ligne7">
     <form method="post" class="ligne7">
+        <input class="ligne7" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne7"  type="reset">Réinitialiser la séléction</button>
         <button class="ligne7"  type="submit" name="supprimer_info_cinema">Supprimer la séléction</button>
     </section>
@@ -291,15 +293,16 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
 }?> 
 
     <style>
-    a{
-      color:#A111BD;
+        a, h2{
+      color:rgb(155, 89, 182);
+      text-align: center;
+      text-decoration: underline;
     }
     body {
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
         grid-template-rows:50px 100px 100px 70px 1fr;
-        row-gap: 10px;
         background-color: black;
         color: white;
     }
@@ -345,7 +348,7 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
         grid-column: 1/3;
         grid-row: 2/2;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
     }
     .ligne2{
         grid-column: 1/3;
@@ -357,11 +360,23 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
         margin-right:300px;
     }
     .ligne3{
-        grid-row: 4/4;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 0px;
+      grid-row: 4/4;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin-bottom: 0px;
+    }
+    .title1{
+      grid-column: 1/3;
+      grid-row: 4/4;
+      text-align: center;
+      text-decoration: underline;
+      color:rgb(155, 89, 182);
+      display: flex;
+      align-items:flex-end;
+      justify-content: ;
+      padding: 0px;
+      margin: 0px;
     }
     /*tableau1*/
     .ligne4{
@@ -377,6 +392,7 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
       display: flex;
       justify-content: ;
       align-items: flex-end;
+      margin-bottom:0px;
     }
     /*tableau2*/
       .ligne6{
@@ -392,6 +408,7 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
       display: flex;
       justify-content: ;
       align-items: flex-end;
+      margin-bottom:0px;
     }
     /*tableau3*/
     .ligne8{

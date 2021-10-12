@@ -38,8 +38,8 @@ $_SESSION['password']= $_POST['password'];
     à récupérer deux fichiers distincts.
     Dans un cas d'usage "réel", ces éléments doivent être externalisés
      */
-    a{
-      color:#A111BD;
+    a, h2{
+      color:rgb(155, 89, 182);
     }
     body {
         font-family: Calibri, serif;
