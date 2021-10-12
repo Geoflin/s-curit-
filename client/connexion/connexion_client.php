@@ -5,20 +5,33 @@
 <body>
 
 <nav>
-<button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
+<button name="accueil"><a href="../../index.php">retour à l'accueil</a></button>
 </nav>
 <h3 class="center">Connexion à l'espace client</h3>
 
+<!--On permet au client de ce connecter-->
+<h2 class="center">Je veux me connecter à mon compte</h2> 
 <form method="post" action="">
     <label for="username">utilisateur</label>
     <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
     <label for="password">mot de passe</label>
     <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
-    <button name="connexion" type="submit">connexion</button>
+    <button name="connexion_client" type="submit">connexion</button>
     </form>
 
+    <!--On permet au client de créer son compte-->
+    <h2 class="center">Je veux créer mon compte</h2> 
+    <form method="post" action="">
+    <label for="username">utilisateur</label>
+    <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
+    <label for="password">mot de passe</label>
+    <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
+    <button name="creation_client" type="submit">connexion</button>
+    </form>
+
+    <!--On traite la connexion au compte-->
     <?php
-    if (isset($_POST['connexion'])){
+    if (isset($_POST['connexion_client'])){
         session_start();
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['password']= $_POST['password'];
@@ -31,13 +44,13 @@ $_SESSION['password']= $_POST['password'];
 </style>
     <?php }; ?>
 
+    <!--On traite la création de compte-->
+    <?php
+    if (isset($_POST['creation_client'])){
+        require_once '../traitement/traitement_creation_client.php';
+    }?>
 </body>
 <style>
-/**
-    Attention, ce CSS est là uniquement pour rendre le formulaire "agréable" à la lecture sans que vous n'ayez
-    à récupérer deux fichiers distincts.
-    Dans un cas d'usage "réel", ces éléments doivent être externalisés
-     */
     a, h2{
       color:rgb(155, 89, 182);
     }
@@ -46,7 +59,7 @@ $_SESSION['password']= $_POST['password'];
         background-color: black;
         color: white;
         display: grid;
-        grid-template-rows:50px 100px 1fr;
+        grid-template-rows:1fr 1fr 1fr;
         row-gap: 10px;
     }
     h1{
@@ -73,6 +86,9 @@ $_SESSION['password']= $_POST['password'];
       align-items: center;
       background-color: rgb(39, 39, 39);
       z-index: 1;
+      height: 50px;
+      margin-left: 10%;
+      margin-right: 10%;
     }
     form {
         max-width: 50%;
