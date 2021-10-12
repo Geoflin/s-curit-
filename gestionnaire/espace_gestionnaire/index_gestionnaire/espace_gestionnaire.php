@@ -416,8 +416,23 @@ if(isset($_POST['deconnexion'])){
 };
 ?>
 
-<?php
-} else {
-echo "<div class=center>Connexion refusé, vous n'avez pas les droits</div>";
-};
-?>
+
+<?php } else { ?>
+<h1>Mot de passe ou nom utilisateur faux</h1>
+
+<style>
+h1{
+  grid-row: 3/3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color:red;
+  background-color: rgb(39,39,39);
+  padding: 1em;
+  margin: auto;
+}
+body{
+  background-color: black;
+}
+</style>
+<?php }; ?>

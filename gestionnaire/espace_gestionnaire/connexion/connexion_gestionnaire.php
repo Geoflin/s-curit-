@@ -9,14 +9,27 @@
 </nav>
 <h3 class="center">Connexion à l'espace gestionnaire</h3>
 
-<form method="post" action="Frontiere.php">
+<form method="post" action="">
     <label for="username">utilisateur</label>
     <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
     <label for="password">mot de passe</label>
     <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
     <button name="connexion" type="submit">connexion</button>
-
     </form>
+
+    <?php
+    if (isset($_POST['connexion'])){
+        session_start();
+$_SESSION['username'] = $_POST['username'];
+$_SESSION['password']= $_POST['password'];
+?>
+<h1><a href="..\index_gestionnaire\espace_gestionnaire.php">Accèder à mon espace</a></h1>
+<style>
+    form{
+        display:none;
+    }
+</style>
+    <?php }; ?>
 
 </body>
 <style>
@@ -32,6 +45,12 @@
         display: grid;
         grid-template-rows:50px 100px 1fr;
         row-gap: 10px;
+    }
+    h1{
+        grid-row: 3/3;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
     }
     nav{
         grid-row: 1/1;
