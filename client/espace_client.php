@@ -77,7 +77,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <?php } ?>
     </table>
 
-    <!--Seance que vous avez réservée-->
+    <!--Seance_que_vous_avez_réservée-->
     <h2 class="title2">Séance que vous avez réservée</h2>
     <section class="title2">
     <form class="title2" method="post">
@@ -91,10 +91,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       $dateSeanceBegin = new DateTime($seanceReservee['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seanceReservee['DateSeanceEnd']);
             ?>
-        <!-- Form  ReserverSeance-->
-        <form class="ReserverSeance" method="post" action="">
+        <!-- Affichage  Seance_que_vous_avez_réservée-->
+        <form class="annulation_ReserverSeance" method="post" action="">
         <tr class=<?php echo $seanceReservee['FilmName']?>>
-        <td><input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button type="submit" name="ReserverSeance">Réserver la séance</button></td>
+        <td><input type="checkbox" name="Id[]" id="Id" required="required" value="<?php echo $seanceReservee['Id'];?>"><button type="submit" name="annulation_ReserverSeance">Annuler la réservation</button></td>
         <td><?php echo $seanceReservee['FilmName'];?></td> 
         <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td>
         <td><?php echo $dateSeanceBegin->format('H:i');?></td>
@@ -102,8 +102,14 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td><?php echo $seanceReservee['SalleName'];?></td>
         </tr>
         </form>
-
         <?php } ?>
+
+        <!-- Traitement annulation Seance_que_vous_avez_réservée-->
+        <?php
+        if(isset($_POST['annulation_ReserverSeance'])){
+          require_once 'traitement/annulation_ReserverSeance.php';
+        }
+        ?>
     </table>
 
   <!--Function Tri-->
