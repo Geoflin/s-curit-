@@ -7,7 +7,7 @@
 <nav>
 <button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
 </nav>
-<h3 class="center">Connexion à l'espace gestionnaire</h3>
+<h3 class="center">Connexion à l'espace client</h3>
 
 <form method="post" action="">
     <label for="username">utilisateur</label>
@@ -23,7 +23,7 @@
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['password']= $_POST['password'];
 ?>
-<h1><a href="..\index_gestionnaire\espace_gestionnaire.php">Accèder à mon espace</a></h1>
+<h1><a href="..\espace_client.php">Accèder à mon espace</a></h1>
 <style>
     form{
         display:none;

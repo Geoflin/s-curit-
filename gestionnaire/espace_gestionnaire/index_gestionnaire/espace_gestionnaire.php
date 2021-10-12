@@ -291,7 +291,9 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
 }?> 
 
     <style>
-
+    a{
+      color:#A111BD;
+    }
     body {
         font-family: Calibri, serif;
         display: grid;

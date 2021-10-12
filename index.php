@@ -8,7 +8,7 @@
   <h1>Kinepolise</h1>
   <h3>Votre cinéma</h3>
   <span>
-  <button name="reservation"><a href="client/formulaire_client.php">réserver mes places</a></button>
+  <button name="reservation"><a href="client/connexion/connexion_client.php">réserver mes places</a></button>
   <button name="connexion"><a href="gestionnaire\espace_gestionnaire\connexion\connexion_gestionnaire.php">espace gestionnaire</a></button>
 </span>
 <img src="accueil/meduse.jpg"/>
@@ -17,6 +17,9 @@
     </BODY>
 
     <style>
+          a{
+      color:#A111BD;
+    }
           body {
         font-family: Calibri, serif;
         background-color: black;
