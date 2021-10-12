@@ -83,7 +83,6 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <form class="title2" method="post">
     <input class="title2" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
         <button class="title2" type="reset">Réinitialiser la séléction</button>
-        <button class="title2" type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
 
     <table class="ligne6">
