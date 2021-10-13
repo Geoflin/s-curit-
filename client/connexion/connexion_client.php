@@ -29,7 +29,6 @@
     <button name="creation_client" type="submit">connexion</button>
     </form>
 
-
     <style>
     a, h2{
       color:rgb(155, 89, 182);
@@ -119,6 +118,8 @@ $_SESSION['password']= $_POST['password'];
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: rgb(39,39,39);
+        margin-bottom: 100px;
     }
 </style>
     <?php }; ?>
