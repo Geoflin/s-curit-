@@ -10,16 +10,16 @@
 </nav>
 
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-  foreach ($pdo->query('SELECT * FROM password WHERE Id= "2"', PDO::FETCH_ASSOC) as $dataConnexion) { 
-  $username= $dataConnexion['username'];
-  $password= $dataConnexion['password'];
-};
 session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+foreach ($pdo->query('SELECT * FROM `info_client` WHERE username= "'.$_SESSION['username'].'" AND password="'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $dataCompte) {
+  $username = $dataCompte['username'];
+  $password = $dataCompte['password'];
+  };
 ?>
 
 <?php
-if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password'])) {
+if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] == $dataCompte['password'])) {
   echo sprintf("<nav class=center><h3>Bonjour %s, voici nos séance disponibles:<h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
@@ -223,6 +223,7 @@ if(isset($_POST['deconnexion'])){
 <?php } else { ?>
 <h1>Mot de passe ou nom utilisateur faux</h1>
 
+
 <style>
 h1{
   grid-row: 3/3;
@@ -236,6 +237,7 @@ h1{
 }
 body{
   background-color: black;
+  color:white;
 }
 </style>
 <?php }; ?>
