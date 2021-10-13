@@ -11,8 +11,8 @@
 
 <?php
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
-foreach ($pdo->query('SELECT * FROM `info_client` WHERE username= "'.$_SESSION['username'].'" AND password="'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $dataCompte) {
+$pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+foreach ($pdo1->query('SELECT * FROM `info_client` WHERE username= "'.$_SESSION['username'].'" AND password="'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $dataCompte) {
   $username = $dataCompte['username'];
   $password = $dataCompte['password'];
   };
@@ -26,8 +26,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     <h2 class="ligne1">Liste des séance</h2>
     <!--Tableaux-->
     <!-- Thead-->
-    <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
+    <?php $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
 
         <table class="ligne4">
         <tr class="thead">
@@ -86,7 +85,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     </section>
 
     <table class="ligne6">
-    <?php foreach ($pdo->query('SELECT * FROM reservation_client1', PDO::FETCH_ASSOC) as $seanceReservee) { 
+    <?php foreach ($pdo1->query('SELECT * FROM reservation_client WHERE username= "'.$_SESSION['username'].'" AND password= "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $seanceReservee) { 
       $dateSeanceBegin = new DateTime($seanceReservee['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seanceReservee['DateSeanceEnd']);
             ?>
@@ -220,7 +219,7 @@ if(isset($_POST['deconnexion'])){
 ?>
 
 
-<?php } else { ?>
+<?php } else { echo $_SESSION['username'].'</br>'.$_SESSION['password'];?>
 <h1>Mot de passe ou nom utilisateur faux</h1>
 
 

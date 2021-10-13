@@ -29,28 +29,8 @@
     <button name="creation_client" type="submit">connexion</button>
     </form>
 
-    <!--On traite la connexion au compte-->
-    <?php
-    if (isset($_POST['connexion_client'])){
-        session_start();
-$_SESSION['username'] = $_POST['username'];
-$_SESSION['password']= $_POST['password'];
-?>
-<h1><a href="..\espace_client.php">Accèder à mon espace</a></h1>
-<style>
-    form{
-        display:none;
-    }
-</style>
-    <?php }; ?>
 
-    <!--On traite la création de compte-->
-    <?php
-    if (isset($_POST['creation_client'])){
-        require_once '../traitement/traitement_creation_client.php';
-    }?>
-</body>
-<style>
+    <style>
     a, h2{
       color:rgb(155, 89, 182);
     }
@@ -61,12 +41,6 @@ $_SESSION['password']= $_POST['password'];
         display: grid;
         grid-template-rows:1fr 1fr 1fr;
         row-gap: 10px;
-    }
-    h1{
-        grid-row: 3/3;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
     }
     nav{
         grid-row: 1/1;
@@ -127,3 +101,31 @@ $_SESSION['password']= $_POST['password'];
         margin-top: 15px;
     }
 </style> 
+
+    <!--On traite la connexion au compte-->
+    <?php
+    if (isset($_POST['connexion_client'])){
+        session_start();
+$_SESSION['username'] = $_POST['username'];
+$_SESSION['password']= $_POST['password'];
+?>
+<h1><a href="..\espace_client.php">Accèder à mon espace</a></h1>
+<style>
+    form, .center{
+        display:none;
+    }
+    h1{
+        grid-row: 2/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+    <?php }; ?>
+
+    <!--On traite la création de compte-->
+    <?php
+    if (isset($_POST['creation_client'])){
+        require_once '../traitement/traitement_creation_client.php';
+    }?>
+</body>

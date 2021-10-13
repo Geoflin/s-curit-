@@ -16,8 +16,7 @@
                                        a sélectionné dans notre formulaire */
                                    for( $i=0; $i<$total; $i++ )
                                    {
-                                     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-                                     $statement = $pdo->prepare('DELETE FROM reservation_client1 WHERE Id = :Id');
+                                     $statement = $pdo1->prepare('DELETE FROM reservation_client WHERE Id = :Id');
                                      $statement->bindValue(':Id', $nombre[$i], PDO::PARAM_INT);        
                                          if ($statement->execute()) {
 

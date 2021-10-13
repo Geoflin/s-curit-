@@ -11,7 +11,7 @@ $SalleName= $reservationSeance['SalleName'];
 };
 
 //On Vérifie que le créneau est disponible
-foreach ($pdo->query('SELECT * FROM `reservation_client1` WHERE `DateSeanceBegin` <= "'.$DateSeanceBegin.'" AND `DateSeanceEnd` >= "'.$DateSeanceBegin.'" ', PDO::FETCH_ASSOC) as $creneau) {
+foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE `DateSeanceBegin` <= "'.$DateSeanceBegin.'" AND `DateSeanceEnd` >= "'.$DateSeanceBegin.'" AND username = "'.$_SESSION['username'].'" AND password = "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $creneau) {
     $creneauconflict[]= $creneau['SalleName'];
     //on compte nombre de créneau en conflicts
     $countCreneauconflict= count($creneauconflict);
@@ -19,8 +19,7 @@ foreach ($pdo->query('SELECT * FROM `reservation_client1` WHERE `DateSeanceBegin
 
 //On stocke sous condition séance réservée dans table réservation du client
 if (isset($countCreneauconflict)<1){
-    if ($pdo->exec('INSERT INTO reservation_client1 (Id, FilmName, DateSeanceBegin, DateSeanceEnd, SalleName) VALUES ("'.$Id.'", "'.$FilmName.'", "'.$DateSeanceBegin.'", "'.$DateSeanceEnd.'", "'.$SalleName.'");') !== false){}; 
+    if ($pdo1->exec('INSERT INTO reservation_client (Id, username, password, FilmName, DateSeanceBegin, DateSeanceEnd, SalleName) VALUES ("'.$Id.'", "'.$_SESSION['username'].'", "'.$_SESSION['password'].'", "'.$FilmName.'", "'.$DateSeanceBegin.'", "'.$DateSeanceEnd.'", "'.$SalleName.'");') !== false){}; 
 } else {
     echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
   };
-?>
