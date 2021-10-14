@@ -173,7 +173,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier <?php echo $info_film['FilmName']?></button></td>
 
         <td> <?php echo $info_film['FilmName'];?></br>
-        <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?>>
+        <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?> value=<?php echo $info_film['FilmName'];?>>
         </td> 
 
         <td><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="Duree" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
