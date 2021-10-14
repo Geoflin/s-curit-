@@ -2,8 +2,11 @@
 $pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 
+foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
 //On récupère l'heure et la date de la séance
-
+$DateSeanceBegin= $seance['DateSeanceBegin'];
+$SalleName= $seance['SalleName'];
+};
 
 //On récupère le nombre de place de la salle
 foreach ($pdo->query('SELECT Nombre_de_place FROM `infos_cinema1` WHERE SalleName= "'.$seance['SalleName'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) {
@@ -20,10 +23,11 @@ foreach ($pdo1->query('SELECT SalleName FROM `reservation_client` WHERE SalleNam
         $reservation_count= '0';
     };
     echo $reservation_count.'</br>';
+    //On soustrait le nombre de place aux réservations
+$place_disponible=($place - $reservation_count);
+echo $place_disponible.'</br>';
 };
 
-//On stocke le nombre de réservation
-if ($pdo->exec('INSERT INTO seance_cinema1 (username, password) VALUES ("'.$username.'", "'.$password.'");') !== false){}; 
 
-//On soustrait le nombre de place aux réservations
-$place_disponible=($place - $reservation_count);
+//On stocke le nombre de réservation
+//if ($pdo->exec('INSERT INTO seance_cinema1 (reservation) VALUES ("'.$username.'");') !== false){}; 

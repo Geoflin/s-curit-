@@ -65,39 +65,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         <td><?php echo $dateSeanceBegin->format('H:i');?></td>
         <td><?php echo $DateSeanceEnd->format('H:i');?></td>
         <td><?php echo $seance['SalleName'];?></td>
-
-        <?php
-$pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
-$pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-
-//On récupère l'heure et la date de la séance
-
-
-//On récupère le nombre de place de la salle
-foreach ($pdo->query('SELECT Nombre_de_place FROM `infos_cinema1` WHERE SalleName= "'.$seance['SalleName'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) {
-    $place= $Nombre_de_place['Nombre_de_place'];
-    
-};
-
-//On récupère le nombre de réservation pour une séance
-foreach ($pdo1->query('SELECT SalleName FROM `reservation_client` WHERE SalleName= "'.$seance['SalleName'].'" AND DateSeanceBegin= "'.$seance['DateSeanceBegin'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_reservations) {
-  $reservation_count= '0';
-  $reservation[]= $Nombre_de_reservations['SalleName'];
-};
-if(isset($reservation)){
-  $reservation_count= count($reservation);
-} else {
-  $reservation_count= '0';
-};
-echo $reservation_count.'</br>';
-
-//On soustrait le nombre de place aux réservations
-$place_disponible=($place - $reservation_count);
-$reservation_count= '0';
-?>
-        <td><?php echo $place_disponible;?></td>
-        
-
+        <td><?php echo $seance['SalleName'];?></td>
         </tr>
         </form>
         <?php } ?>

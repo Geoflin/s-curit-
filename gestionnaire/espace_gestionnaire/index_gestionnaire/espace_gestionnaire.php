@@ -116,7 +116,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <table class="table2">
     <section class="ligne3">
     <form class="ligne3" method="post">
-    <input class="ligne3" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
+    <input class="ligne3" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne3" type="reset">Réinitialiser la séléction</button>
         <button class="ligne3" type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
@@ -278,8 +278,6 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </table>
 
     </body>
-
-    <script src="script.js"></script>
 
 <!-- Traitement supprimerSeance-->
 <?php if (isset($_POST['supprimerseance'])){
