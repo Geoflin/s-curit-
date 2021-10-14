@@ -66,6 +66,11 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       </td>
             </form>
 
+<!-- Traitement ajouts seance-->
+            <?php if (isset($_POST['ajoutseance'])){
+          require_once 'calculs/creations/traitement_gestionnaire10.php';
+                                        }?>
+
         <!-- Boucle Corps du tableau-->
         </tr>
         <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
@@ -109,9 +114,6 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
                                 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
                               require_once 'calculs/modifications/Modifier_seance1.php';
                               }?>
-                                      <?php if (isset($_POST['ajoutseance'])){
-          require_once 'calculs/creations/traitement_gestionnaire10.php';
-                                        }?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
     <section class="ligne3">

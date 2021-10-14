@@ -8,7 +8,7 @@ $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'
  //on concatène date début et nom salle
  $concatSearch= $fusionDateBegin_AjouterSeance.' '.$SalleName;
   //on ajoute des 00 pour les secondes de la date de début
- $fusion= $fusionDateBegin_AjouterSeance.":00";
+ $fusion= $fusionDateBegin_AjouterSeance;
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 //On sélectionne les dates débuts séance de la salle de la séance à créer 
 foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "'.$fusion.'" AND SalleName LIKE "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $search) {
