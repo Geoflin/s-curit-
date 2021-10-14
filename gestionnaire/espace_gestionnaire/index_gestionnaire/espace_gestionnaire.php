@@ -100,7 +100,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <?php
                     $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
                     foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
-                        <option id="Salle"> <?php echo $seance['SalleName'].'<br>'; ?></option> <?php
+                        <option id="Salle" value=<?php echo $seance['SalleName']; ?>><?php echo $seance['SalleName'].'<br>'; ?></option> <?php
                     }
                 ?>
         </select></td>
@@ -173,7 +173,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier <?php echo $info_film['FilmName']?></button></td>
 
         <td> <?php echo $info_film['FilmName'];?></br>
-        <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?> value=<?php echo $info_film['FilmName'];?>>
+        <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?> value>
         </td> 
 
         <td><?php echo $dateSeanceBegin->format('H:i:s');?><br/><input type="time" name="Duree" value="<?php echo $dateSeanceBegin->format('H:i');?>"></td>
@@ -227,7 +227,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <td><input   type="text" required="required" name="SalleName" placeholder="Nom de Salle"></td>
     <td><input  type="number" name="Nombre_de_place" placeholder="Nombre de place"></td>
 </form>
-<!--Traitement form modifier_infos_cinema1-->
+<!--Traitement form creation_infos_cinema-->
 <?php if (isset($_POST['creation_infos_cinema'])){
                               require_once 'calculs/creations/creation_infos_cinema.php';
                             }?>
@@ -237,10 +237,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       ?>
       <form method="post" action="">
         <tr class=<?php echo $modifier_infos_cinema1['SalleName']?>>
-        <td><input type="checkbox" name="Id" value=" <?php echo $modifier_infos_cinema1['Id']; ?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id'];?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
 
         <td> <?php echo $modifier_infos_cinema1['SalleName'];?></br>
-        <input type="text" name="SalleName" value="<?php echo $modifier_infos_cinema1['SalleName'];?>" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?>>
+        <input type="text" name="SalleName" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?> value>
         </td> 
 
         <td> <?php echo $modifier_infos_cinema1['Nombre_de_place'];?></br>
