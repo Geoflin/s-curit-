@@ -17,6 +17,18 @@ foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_
   $reservation1-- ;
  }; 
 
+ //On récupère Nombre_de_place
+ foreach ($pdo->query('SELECT Nombre_de_place FROM infos_cinema1 WHERE SalleName= "'.$_POST['SalleName'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) { 
+    $Nombre_de_place1= $Nombre_de_place['Nombre_de_place'];
+    };
+
+//On calcule les place_dispo
+if(isset($reservation1)){
+$reservation1++ ;
+$place_dispo= $Nombre_de_place1 - $reservation1;
+$reservation1-- ;
+};
+
 
                                  if(isset($_POST['Id']))
                                  {
@@ -44,10 +56,18 @@ foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_
                                    }
                              } else {};
 
-                                //On actualise le nombre de réservation
+//On actualise le nombre de réservation
   $pdo1->exec("SET CHARACTER SET utf8");
   if(isset($reservation1)){
     $sql2 = 'UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ';
+    $count4 = $pdo->exec($sql2);
+
+    $conn3 = null;
+  };
+
+//On actualise le nombre de place_dispo
+if(isset($place_dispo)){
+    $sql2 = 'UPDATE seance_cinema1 SET place_disponible= "'.$place_dispo.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ';
     $count4 = $pdo->exec($sql2);
 
     $conn3 = null;
