@@ -47,6 +47,8 @@ foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_
                                 //On actualise le nombre de réservation
   $pdo1->exec("SET CHARACTER SET utf8");
   if(isset($reservation1)){
-    if($pdo1->exec('UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'");') !==false){};
+    $sql2 = 'UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ';
+    $count4 = $pdo->exec($sql2);
+
+    $conn3 = null;
   };?>
-  <td><?php echo $reservation1;?></td>
