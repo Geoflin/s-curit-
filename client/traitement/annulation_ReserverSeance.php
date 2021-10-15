@@ -1,5 +1,23 @@
 <?php
 
+//On récupère données séance réservée
+foreach ($pdo->query('SELECT * FROM seance_cinema1 ', PDO::FETCH_ASSOC) as $reservationSeance) { 
+    $Id= $reservationSeance['Id'];
+    $FilmName= $reservationSeance['FilmName'];
+    $DateSeanceBegin= $reservationSeance['DateSeanceBegin'];
+    $DateSeanceEnd= $reservationSeance['DateSeanceEnd'];
+    $SalleName= $reservationSeance['SalleName'];
+    };
+
+//On récupère le nombre de réservation pour une séance
+$pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_reservations) {
+  $reservation[]= $Nombre_de_reservations['FilmName']; 
+  $reservation1= count($reservation);
+  $reservation1-- ;
+ }; 
+
+
                                  if(isset($_POST['Id']))
                                  {
                                    // On assigne notre variable $_POST['checkbox_id']
@@ -24,6 +42,11 @@
                                              echo "erreur";
                                          }
                                    }
-                             } else {
-                                 
-                             };
+                             } else {};
+
+                                //On actualise le nombre de réservation
+  $pdo1->exec("SET CHARACTER SET utf8");
+  if(isset($reservation1)){
+    if($pdo1->exec('UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'");') !==false){};
+  };?>
+  <td><?php echo $reservation1;?></td>

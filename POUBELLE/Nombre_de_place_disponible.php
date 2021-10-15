@@ -1,6 +1,6 @@
 <?php
 
-require_once "espace_client.php";
+require_once "../client/espace_client.php";
 
 $pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
 //On récupère le nombre de réservation pour une séance

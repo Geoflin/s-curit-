@@ -38,7 +38,9 @@ if (isset($countCreneauconflict)<1){
   //On stocke nombre de réservation pour une séance dans seance_cinema1
   $conn3 = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
   $conn3->exec("SET CHARACTER SET utf8");
+  if(isset($reservation1)){
           $sql3 = 'UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$SalleName.'" AND DateSeanceBegin= "'.$DateSeanceBegin.'" ';
           $count3 = $conn3->exec($sql3);
   
           $conn3 = null;
+        };

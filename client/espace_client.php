@@ -96,14 +96,15 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         <form class="annulation_ReserverSeance" method="post" action="">
         <tr class=<?php echo $seanceReservee['FilmName']?>>
         <td><input type="checkbox" name="Id[]" id="Id" required="required" value="<?php echo $seanceReservee['Id'];?>"><button type="submit" name="annulation_ReserverSeance">Annuler la réservation</button></td>
-        <td><?php echo $seanceReservee['FilmName'];?></td> 
-        <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td>
-        <td><?php echo $dateSeanceBegin->format('H:i');?></td>
-        <td><?php echo $DateSeanceEnd->format('H:i');?></td>
-        <td><?php echo $seanceReservee['SalleName'];?></td>
+        <td><?php echo $seanceReservee['FilmName'];?></td><input class="display_none" type="text" name="FilmName" required="" value="<?php echo $seanceReservee['FilmName'];?>">
+        <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td><input class="display_none" type="text" name="DateSeanceBegin" required="" value="<?php echo $seanceReservee['DateSeanceBegin'];?>">
+        <td><?php echo $dateSeanceBegin->format('H:i');?></td><input class="display_none" type="text" name="DateSeanceBegin" required="" value="<?php echo $seanceReservee['DateSeanceBegin'];?>">
+        <td><?php echo $DateSeanceEnd->format('H:i');?></td><input class="display_none" type="text" name="DateSeanceEnd" required="" value="<?php echo $seanceReservee['DateSeanceEnd'];?>">
+        <td><?php echo $seanceReservee['SalleName'];?></td><input class="display_none" type="text" name="SalleName" required="" value="<?php echo $seanceReservee['SalleName'];?>">
         </tr>
         </form>
         <?php } ?>
+
 
         <!-- Traitement annulation Seance_que_vous_avez_réservée-->
         <?php
@@ -212,6 +213,9 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       justify-content: space-around;
       align-items: center;
       flex-direction: row;
+    }
+    .display_none{
+      display: none;
     }
     </style>
 
