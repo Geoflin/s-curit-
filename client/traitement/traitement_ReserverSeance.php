@@ -26,6 +26,16 @@ foreach ($pdo1->query('SELECT SalleName FROM `reservation_client` WHERE SalleNam
   $reservation1= count($reservation);
  }; 
 
+  //On récupère Nombre_de_place
+  foreach ($pdo->query('SELECT Nombre_de_place FROM infos_cinema1 WHERE SalleName= "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) { 
+    $Nombre_de_place1= $Nombre_de_place['Nombre_de_place'];
+    };
+
+//On calcule les place_dispo
+if(isset($reservation1)){
+$place_dispo= $Nombre_de_place1 + $reservation1;
+};
+
 
 //On stocke sous condition séance réservée dans table réservation du client
 if (isset($countCreneauconflict)<1){
@@ -44,3 +54,11 @@ if (isset($countCreneauconflict)<1){
   
           $conn3 = null;
         };
+
+  //On actualise le nombre de place_dispo
+if(isset($place_dispo)){
+  $sql2 = 'UPDATE seance_cinema1 SET place_disponible= "'.$place_dispo.'" WHERE SalleName= "'.$SalleName.'" AND DateSeanceBegin= "'.$DateSeanceBegin.'" ';
+  $count4 = $pdo->exec($sql2);
+
+  $conn3 = null;
+};?>

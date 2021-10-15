@@ -14,7 +14,6 @@ $pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
 foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_reservations) {
   $reservation[]= $Nombre_de_reservations['FilmName']; 
   $reservation1= count($reservation);
-  $reservation1-- ;
  }; 
 
  //On récupère Nombre_de_place
@@ -24,9 +23,8 @@ foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_
 
 //On calcule les place_dispo
 if(isset($reservation1)){
-$reservation1++ ;
-$place_dispo= $Nombre_de_place1 - $reservation1;
 $reservation1-- ;
+$place_dispo= $Nombre_de_place1 - $reservation1;
 };
 
 
