@@ -65,7 +65,8 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         <td><?php echo $dateSeanceBegin->format('H:i');?></td>
         <td><?php echo $DateSeanceEnd->format('H:i');?></td>
         <td><?php echo $seance['SalleName'];?></td>
-        <td><?php echo $seance['SalleName'];?></td>
+        <?php foreach ($pdo->query('SELECT Nombre_de_place FROM infos_cinema1 WHERE SalleName="'.$seance['SalleName'].'"', PDO::FETCH_ASSOC) as $seance2){}?>
+          <td><?php echo $seance2['Nombre_de_place'];?></td>
         </tr>
         </form>
         <?php } ?>
