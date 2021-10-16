@@ -18,6 +18,36 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   };
 ?>
 
+<span class="blockTri1">
+  <form method="POST" action="">
+  <div class="type_of_tri"> Choisissez votre cinéma</div></br>
+    <select name="FilmNameTest">
+    <option id="FilmName" value=" ">Tout<br></option>
+    <?php 
+    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+  foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
+ <option><?php echo $adresse['adresse'].'<br>'; ?></option> 
+ <?php 
+     $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
+  foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
+  <option><?php echo $adresse['adresse'].'<br>'; ?></option>
+  </select>
+  <input type="SUBMIT" value="Tri !" name="triFilmName">
+  </form>
+  </span>
+
+
+
+  <!--Function Tri-->
+  <h2 class="ligne1">Tri de l'affichage</h2>
+
+  <!--Tri dans cinema-->
+  <span class="ligne2">
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris\Tri_par_jour_de_seance.php' ;?>
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris/Tri_par_salle.php'; ?>
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris/Tri_par_jour_de_seance.php'; ?>
+  </span>
+
 <?php
 if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] == $dataCompte['password'])) {
   echo sprintf("<nav class=center><h3>Bonjour %s<h3/></nav>", $_SESSION['username']) . PHP_EOL; 
@@ -125,6 +155,7 @@ if(isset($_POST['deconnexion'])){
   session_destroy();
 };
 ?>
+
 
 
 <?php } else { echo $_SESSION['username'].'</br>'.$_SESSION['password'];?>
