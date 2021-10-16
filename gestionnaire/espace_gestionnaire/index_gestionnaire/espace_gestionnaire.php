@@ -253,11 +253,6 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </form>
     </table>
 
-    <!-- Traitement modifier_infos_cinema1-->
-    <?php if (isset($_POST['modifier_infos_cinema1'])){
-                              require_once 'calculs/modifications/modifier_infos_cinema1.php';
-                              }?>
-
             <!-- Table  supprimer_infos_cinema1-->       
     <section class="ligne7">
     <form method="post" class="ligne7">
@@ -278,6 +273,11 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <?php } ?>
     </form>
     </table>
+
+        <!-- Traitement modifier_infos_cinema1-->
+        <?php if (isset($_POST['modifier_infos_cinema1'])){
+                              require_once 'calculs/modifications/modifier_infos_cinema1.php';
+                              }?>
 
     </body>
 
