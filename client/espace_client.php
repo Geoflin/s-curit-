@@ -37,7 +37,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         <td>Heure de début</td>
         <td>Heure de fin</td>
         <td>Salle</td>
-        <td>Nombre reservation</td>
+        <td>Place disponible</td>
 </tr>
     </form>
     <h2 class="title1">Séance disponibles</h2>
@@ -65,7 +65,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         <td><?php echo $dateSeanceBegin->format('H:i');?></td>
         <td><?php echo $DateSeanceEnd->format('H:i');?></td>
         <td><?php echo $seance['SalleName'];?></td>
-        <td><?php echo $seance['Nombre_de_reservation'];?></td>
+        <td><?php echo $seance['place_disponible'];?></td>
         </tr>
         </form>
         <?php } ?>
