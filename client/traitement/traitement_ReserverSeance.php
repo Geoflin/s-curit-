@@ -1,7 +1,7 @@
 <?php
 
-$pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+
 foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {};
 
 //On récupère données séance réservée
