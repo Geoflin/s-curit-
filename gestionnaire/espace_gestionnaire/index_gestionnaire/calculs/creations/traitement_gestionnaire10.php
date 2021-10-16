@@ -38,7 +38,7 @@ foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin, SalleName FROM 
 };
 
 //on récupère les places disponibles
-foreach ($pdo_kinepolise_cinema1->query('SELECT Nombre_de_place FROM `infos_cinema1` WHERE `SalleName`= "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT Nombre_de_place FROM `infos_cinema1` WHERE `SalleName`= "'. $_POST['SalleName'] .'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) {
   $place_disponible = $Nombre_de_place['Nombre_de_place'];
 };
 
