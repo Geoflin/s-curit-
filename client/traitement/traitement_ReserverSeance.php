@@ -1,7 +1,7 @@
 <?php
 
+$pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-
 foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {};
 
 //On récupère données séance réservée
@@ -43,6 +43,8 @@ $place_dispo= $Nombre_de_place1 - $reservation1;
 
 
 //On stocke sous condition séance réservée dans table réservation du client
+$pdo_kinepolise_client = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+$pdo_kinepolise_client->exec("SET CHARACTER SET utf8");
 if ($seance['place_disponible']>0){
 if (isset($countCreneauconflict)<1){
     if ($pdo_kinepolise_client->exec('INSERT INTO reservation_client (Id, username, password, FilmName, DateSeanceBegin, DateSeanceEnd, SalleName) VALUES ("'.$Id.'", "'.$_SESSION['username'].'", "'.$_SESSION['password'].'", "'.$FilmName.'", "'.$DateSeanceBegin.'", "'.$DateSeanceEnd.'", "'.$SalleName.'");') !== false){}; 
@@ -62,10 +64,11 @@ if (isset($countCreneauconflict)<1){
         };
 
   //On actualise le nombre de place_dispo
-if(isset($place_dispo)){
   $pdo_kinepolise_cinema1 = new PDO('mysql:dbname=kinepolise_cinema1;host=localhost', 'root', '');
+  $pdo_kinepolise_cinema1->exec("SET CHARACTER SET utf8");
+if(isset($place_dispo)){
   $sql2  = 'UPDATE seance_cinema1 SET place_disponible= "'.$place_dispo.'" WHERE SalleName= "'.$SalleName.'" AND DateSeanceBegin= "'.$DateSeanceBegin.'" ';
-  $count4 = $pdo_kinepolise_cinema1->exec($sql2 );
+  $count3 = $pdo_kinepolise_cinema1->exec($sql2 );
 
   $pdo_kinepolise_cinema1  = null;
 };

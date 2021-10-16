@@ -114,15 +114,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         ?>
     </table>
 
-  <!--Function Tri-->
-  <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
-  <span class="ligne2">
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris\Tri_par_nom.php'; ?>
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_salle.php'; ?>
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_jour_de_seance.php'; ?>
-  </span>
-
-  <style>
+    <style>
         a, h2{
       color:rgb(155, 89, 182);
       text-align: center;
@@ -218,6 +210,16 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       display: none;
     }
     </style>
+
+  <!--Function Tri-->
+  <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
+  <span class="ligne2">
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris\Tri_par_nom.php'; ?>
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_salle.php'; ?>
+  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_jour_de_seance.php'; ?>
+  </span>
+
+ 
 
 <?php
 if(isset($_POST['deconnexion'])){

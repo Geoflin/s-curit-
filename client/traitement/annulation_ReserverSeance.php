@@ -61,13 +61,14 @@ $place_dispo= $Nombre_de_place1 - $reservation1;
     $sql2 = 'UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ';
     $count4 = $pdo_kinepolise_cinema1->exec($sql2);
 
-    $conn3 = null;
+    $pdo_kinepolise_cinema1 = null;
   };
 
 //On actualise le nombre de place_dispo
 if(isset($place_dispo)){
+  $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
     $sql2 = 'UPDATE seance_cinema1 SET place_disponible= "'.$place_dispo.'" WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ';
     $count4 = $pdo_kinepolise_cinema1->exec($sql2);
 
-    $conn3 = null;
+    $pdo_kinepolise_cinema1 = null;
   };?>

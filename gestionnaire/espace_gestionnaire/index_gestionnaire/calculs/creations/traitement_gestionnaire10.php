@@ -27,6 +27,7 @@ foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM `seance_cinema1` 
   $countCreneauconflict= count($creneauconflict);
 };
 
+//On converti en timestamps
 foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
   $DateSeanceBegin= $maxid['DateSeanceBegin'];
   $SalleName= $maxid['SalleName'];
@@ -35,18 +36,23 @@ foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin, SalleName FROM 
     $Unix_fusionDateBegin = unix_timestamp($fusionDateBegin_AjouterSeance);
   };
 };
-        
+
+//on récupère les places disponibles
+foreach ($pdo_kinepolise_cinema1->query('SELECT Nombre_de_place FROM `infos_cinema1` WHERE `SalleName`= "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $Nombre_de_place) {
+  $place_disponible = $Nombre_de_place['Nombre_de_place'];
+};
+
         //On insére valeure formulaire sous condition
         if (isset($doublonInt)<1){
           if (isset($countCreneauconflict)<1){
           if (isset($Unix_DateSeanceBegin)){
-                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
+                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName, place_disponible) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'", "'. $place_disponible .'");') !== false){};
                 //on ajoute date de fin séance
                   $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`DateSeanceEnd` IS NULL";
                  $count = $pdo_kinepolise_cinema1->exec($sql);
                  $pdo_kinepolise_cinema1 = null;
               } else { 
-                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
+                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName, place_disponible) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'",  "'. $place_disponible .'");') !== false){};
                 //On récupère l'Id de la séance crée
 foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $seance) {
   $Id_creation= $seance['Id'];

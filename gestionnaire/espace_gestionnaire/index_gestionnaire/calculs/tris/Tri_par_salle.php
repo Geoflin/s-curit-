@@ -16,6 +16,7 @@
 
   <?php if(isset($_POST['triSalleName'])){?>
     <?php
+  $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
   if(isset($FilmSalle['FilmName'])){
     $FilmSalle1= $FilmSalle['FilmName'];

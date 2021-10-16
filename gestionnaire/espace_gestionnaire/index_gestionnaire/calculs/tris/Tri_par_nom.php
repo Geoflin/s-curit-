@@ -5,6 +5,7 @@
     <select name="FilmNameTest">
     <option id="FilmName" value=" ">Tout afficher<br></option>
     <?php 
+    $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
   foreach ($pdo_kinepolise->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
                     <option><?php echo $film['FilmName'].'<br>'; ?></option>
   <?php } ?>
