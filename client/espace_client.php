@@ -11,8 +11,8 @@
 
 <?php
 session_start();
-$pdo1 = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
-foreach ($pdo1->query('SELECT * FROM `info_client` WHERE username= "'.$_SESSION['username'].'" AND password="'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $dataCompte) {
+$pdo_kinepolise_client = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+foreach ($pdo_kinepolise_client->query('SELECT * FROM `info_client` WHERE username= "'.$_SESSION['username'].'" AND password="'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $dataCompte) {
   $username = $dataCompte['username'];
   $password = $dataCompte['password'];
   };
@@ -26,7 +26,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     <h2 class="ligne1">Liste des séance</h2>
     <!--Tableaux-->
     <!-- Thead-->
-    <?php $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
+    <?php $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
 
         <table class="ligne4">
         <tr class="thead">
@@ -45,14 +45,14 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     <form class="title1" method="post">
     <input class="title1" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
         <button class="title1" type="reset">Réinitialiser la séléction</button>
-        <button class="title1" type="submit" name="supprimerseance">Supprimer la séléction</button>
     </section>
         <!-- Boucle Corps du tableau-->
         </tr>
-        <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
+        <?php $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+        foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
   <?php } ?>
         <?php
-    foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
+    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
             ?>
@@ -88,7 +88,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     </section>
 
     <table class="ligne6">
-    <?php foreach ($pdo1->query('SELECT * FROM reservation_client WHERE username= "'.$_SESSION['username'].'" AND password= "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $seanceReservee) { 
+    <?php foreach ($pdo_kinepolise_client->query('SELECT * FROM reservation_client WHERE username= "'.$_SESSION['username'].'" AND password= "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $seanceReservee) { 
       $dateSeanceBegin = new DateTime($seanceReservee['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seanceReservee['DateSeanceEnd']);
             ?>
@@ -122,7 +122,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
   <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_jour_de_seance.php'; ?>
   </span>
 
-    <style>
+  <style>
         a, h2{
       color:rgb(155, 89, 182);
       text-align: center;

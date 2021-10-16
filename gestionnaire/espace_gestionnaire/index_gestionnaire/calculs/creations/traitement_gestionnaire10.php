@@ -9,9 +9,9 @@ $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'
  $concatSearch= $fusionDateBegin_AjouterSeance.' '.$SalleName;
   //on ajoute des 00 pour les secondes de la date de début
  $fusion= $fusionDateBegin_AjouterSeance;
-$pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+$pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
 //On sélectionne les dates débuts séance de la salle de la séance à créer 
-foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "'.$fusion.'" AND SalleName LIKE "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $search) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSeanceBegin LIKE "'.$fusion.'" AND SalleName LIKE "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $search) {
   $doublonArray[]= $search['DateSeanceBegin'];
   //on compte le nombre de date de début de la salle de la séance à créer identique
   $doublonInt= count($doublonArray);
@@ -21,13 +21,13 @@ foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE DateSea
 require_once 'Calcul_fin_seance.php';
 
 //On Vérifie que le créneau est disponible
-foreach ($pdo->query('SELECT SalleName FROM `seance_cinema1` WHERE `DateSeanceBegin` >= "'.$fusion.'" AND `DateSeanceBegin` <= "'.$DateFinSeance.'" AND `SalleName` = "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $creneau) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM `seance_cinema1` WHERE `DateSeanceBegin` >= "'.$fusion.'" AND `DateSeanceBegin` <= "'.$DateFinSeance.'" AND `SalleName` = "'.$SalleName.'" ', PDO::FETCH_ASSOC) as $creneau) {
   $creneauconflict[]= $creneau['SalleName'];
   //on compte nombre de créneau en conflicts
   $countCreneauconflict= count($creneauconflict);
 };
 
-foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHERE Id=(SELECT max(Id) FROM seance_cinema1);')as $maxid) {
   $DateSeanceBegin= $maxid['DateSeanceBegin'];
   $SalleName= $maxid['SalleName'];
   if(isset($DateSeanceBegin)) {
@@ -40,15 +40,15 @@ foreach ($pdo->query('SELECT DateSeanceBegin, SalleName FROM seance_cinema1 WHER
         if (isset($doublonInt)<1){
           if (isset($countCreneauconflict)<1){
           if (isset($Unix_DateSeanceBegin)){
-                if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
+                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
                 //on ajoute date de fin séance
                   $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`DateSeanceEnd` IS NULL";
-                 $count = $conn->exec($sql);
-                 $conn = null;
+                 $count = $pdo_kinepolise_cinema1->exec($sql);
+                 $pdo_kinepolise_cinema1 = null;
               } else { 
-                if ($pdo->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
+                if ($pdo_kinepolise_cinema1->exec('INSERT INTO seance_cinema1 (FilmName, DateSeanceBegin, SalleName) VALUES ("'. $_POST['FilmName'] . '", "' . $fusionDateBegin_AjouterSeance . '", "' . $_POST['SalleName'] .'");') !== false){};
                 //On récupère l'Id de la séance crée
-foreach ($pdo->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $seance) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `seance_cinema1`', PDO::FETCH_ASSOC) as $seance) {
   $Id_creation= $seance['Id'];
 };
                 //on ajoute date de fin séance

@@ -10,8 +10,8 @@
 </nav>
 
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-  foreach ($pdo->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) { 
+$pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+  foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) { 
   $username= $dataConnexion['username'];
   $password= $dataConnexion['password'];
 };
@@ -27,7 +27,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <!--Tableaux-->
     <!-- Thead-->
     <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
+        $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
 
         <table class="ligne4">
         <tr class="thead">
@@ -47,7 +47,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <td>
     <select name="FilmName" required="required">
         <?php
-                    foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                    foreach ($pdo_kinepolise->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
                         <option id="FilmName"> <?php echo $film['FilmName'].'<br>'; ?></option>
                     <?php } ?>
         </select>
@@ -58,8 +58,8 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td>
           <select name="SalleName" required="required" id="SalleName">
         <?php
-                    $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-                    foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos) { ?>
+                    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+                    foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos) { ?>
                         <option id="Salle"> <?php echo $infos['SalleName'].'<br>'; ?></option> 
                         <?php } ?>
         </select>
@@ -73,10 +73,10 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
 
         <!-- Boucle Corps du tableau-->
         </tr>
-        <?php foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
+        <?php foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
   <?php } ?>
         <?php
-    foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
+    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
             ?>
@@ -86,7 +86,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier séance</button></td>
         <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
-                    <?php foreach ($pdo->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
+                    <?php foreach ($pdo_kinepolise->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
                         <option id="FilmName" value=<?php echo $film['FilmName']; ?>><?php echo $film['FilmName'].'<br>'; ?></option>
                     <?php } ?>
         </select>
@@ -98,8 +98,8 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
           <?php echo $seance['SalleName'];?></br>
           <select name="SalleName" required="required" id="SalleName">
         <?php
-                    $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
-                    foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
+                    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+                    foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $seance) { ?>
                         <option id="Salle" value=<?php echo $seance['SalleName']; ?>><?php echo $seance['SalleName'].'<br>'; ?></option> <?php
                     }
                 ?>
@@ -127,7 +127,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </tr>
     <td></td>
     <?php
-    foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
+    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
         <tr class=<?php echo $seance['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $seance['Id']; ?> "></td></tr>   
     <?php } ?>
@@ -165,7 +165,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
                             }?>
 <!--form Modifier Infos_film-->
 
-    <?php foreach ($pdo->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
+    <?php foreach ($pdo_kinepolise->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
       $dateSeanceBegin = new DateTime($info_film['Duree']);
       ?>
       <form method="post" action="">
@@ -203,7 +203,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     </tr>
     <td></td>
     <?php
-    foreach ($pdo->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
+    foreach ($pdo_kinepolise->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
             ?>
         <tr class=<?php echo $info_film['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "></td></tr>   
     <?php } ?>
@@ -233,7 +233,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
                             }?>
 <!--form modifier_infos_cinema1-->
 
-    <?php foreach ($pdo->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $modifier_infos_cinema1) { 
+    <?php foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $modifier_infos_cinema1) { 
       ?>
       <form method="post" action="">
         <tr class=<?php echo $modifier_infos_cinema1['SalleName']?>>
@@ -272,7 +272,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
                                       </tr>
     <td class=""></td>
     <?php
-    foreach ($pdo->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos_cinema1) { 
+    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM infos_cinema1', PDO::FETCH_ASSOC) as $infos_cinema1) { 
             ?>
         <tr class=<?php echo $infos_cinema1['SalleName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $infos_cinema1['Id']; ?> "></td></tr>   
     <?php } ?>

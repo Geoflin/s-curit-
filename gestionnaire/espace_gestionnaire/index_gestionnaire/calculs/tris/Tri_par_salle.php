@@ -6,7 +6,7 @@
   <select name="SalleNameTest">
   <option id="SalleName">Tout afficher<br></option>
   <?php 
-  foreach ($pdo->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
+  foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
                     <option><?php echo $Salle['SalleName'].'<br>'; ?></option>
   <?php } ?>
   </select>
@@ -16,7 +16,7 @@
 
   <?php if(isset($_POST['triSalleName'])){?>
     <?php
-  foreach ($pdo->query('SELECT * FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
+  foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
   if(isset($FilmSalle['FilmName'])){
     $FilmSalle1= $FilmSalle['FilmName'];
     $SalleName= $FilmSalle['SalleName'];

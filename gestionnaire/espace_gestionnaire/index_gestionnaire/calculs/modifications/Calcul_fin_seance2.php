@@ -1,11 +1,11 @@
 <?php
 //On récupère la durée du film
-foreach ($pdo->query('SELECT Duree FROM `info_film` WHERE FilmName LIKE "'.$_POST['FilmName'].'" ', PDO::FETCH_ASSOC) as $duree) {
+foreach ($pdo_kinepolise->query('SELECT Duree FROM `info_film` WHERE FilmName LIKE "'.$_POST['FilmName'].'" ', PDO::FETCH_ASSOC) as $duree) {
   $dureeFilm= $duree['Duree'];
 };
 
   //On récupère la date de la séance
-foreach ($pdo->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE `seance_cinema1`.`Id` = "'.$Id_modif.'" ', PDO::FETCH_ASSOC) as $DateSeanceBegin) {
+foreach ($pdo_kinepolise_cinema1->query('SELECT DateSeanceBegin FROM `seance_cinema1` WHERE `seance_cinema1`.`Id` = "'.$Id_modif.'" ', PDO::FETCH_ASSOC) as $DateSeanceBegin) {
   $DateSeanceBegin1= $DateSeanceBegin['DateSeanceBegin'];
 };
 
