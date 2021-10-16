@@ -19,7 +19,7 @@
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1 WHERE SalleName= "'.$_POST['SalleNameTest'].'" ', PDO::FETCH_ASSOC) as $FilmSalle) {
   if(isset($FilmSalle['FilmName'])){
     $FilmSalle1= $FilmSalle['FilmName'];
-    $SalleName= $FilmSalle['SalleName'];
+    $SalleName= $FilmSalle['FilmName'];
   } else {
     $FilmSalle1= "null";
   };

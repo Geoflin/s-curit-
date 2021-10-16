@@ -6,7 +6,7 @@
 <nav>
 <button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>
 <button name="connexion"><a href="../connexion/connexion_gestionnaire.php">retour connexion</a></button>
-<form><button name="deconnexion" type="submit">déconnexion</button></form>
+<form><button name="deconnexion" type="submit" onclick='window.location.reload(false)'>déconnexion</button></form>
 </nav>
 
 <?php
@@ -43,7 +43,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <!-- Form  ajoutseance-->
     <form method="post" action="">
        <tr>
-    <td><button name="ajoutseance" type="submit">Créer nouvelle séance</button></td>
+    <td><button name="ajoutseance" type="submit" onclick='window.location.reload(false)'>Créer nouvelle séance</button></td>
     <td>
     <select name="FilmName" required="required">
         <?php
@@ -73,9 +73,8 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
 
         <!-- Boucle Corps du tableau-->
         </tr>
-        <?php foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
-  <?php } ?>
         <?php
+        $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
     foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
       $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
@@ -83,7 +82,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         <!-- Form  modifierseance-->
         <form class="modifierSeance" method="post" action="">
         <tr class=<?php echo $seance['FilmName']?>>
-        <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit">Modifier séance</button></td>
+        <td id="Colonne1"> <input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button name="modifierseance"id="modifier" class="submit" onclick='window.location.reload(false)'>Modifier séance</button></td>
         <td> <?php echo $seance['FilmName'];?></br>
           <select name="FilmName" required="required">
                     <?php foreach ($pdo_kinepolise->query('SELECT FilmName FROM info_film', PDO::FETCH_ASSOC) as $film) { ?>
@@ -107,7 +106,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
         </tr>
         </form>
         
-        <?php } ?>
+        <?php }; ?>
     </table>
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
@@ -120,7 +119,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <form class="ligne3" method="post">
     <input class="ligne3" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne3" type="reset">Réinitialiser la séléction</button>
-        <button class="ligne3" type="submit" name="supprimerseance">Supprimer la séléction</button>
+        <button class="ligne3" type="submit" name="supprimerseance" onclick='window.location.reload(false)'>Supprimer la séléction</button>
     </section>
     <tr class="thead">
     <td>Supprimer</td>
@@ -155,7 +154,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
 <!--form creation_infos_film-->
 <form method="post" action="">
        <tr>
-    <td><button name="ajoutInfo_film" type="submit">Créer Infos_film</button></td>
+    <td><button name="ajoutInfo_film" type="submit" onclick='window.location.reload(false)'>Créer Infos_film</button></td>
     <td><input type="text" required="required" name="FilmName" placeholder="Saisissez Nom du film"></td>
     <td><input type="time" name="Duree"></td>
 </form>
@@ -170,7 +169,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       ?>
       <form method="post" action="">
         <tr class=<?php echo $info_film['FilmName']?>>
-        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit">Mofidier <?php echo $info_film['FilmName']?></button></td>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $info_film['Id']; ?> "><button name="Modifier_Infos_film" type="submit" onclick='window.location.reload(false)'>Mofidier <?php echo $info_film['FilmName']?></button></td>
 
         <td> <?php echo $info_film['FilmName'];?></br>
         <input type="text" name="FilmName" placeholder=<?php echo $info_film['FilmName'];?> value>
@@ -194,7 +193,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <form method="post" class="ligne5">
         <input class="ligne5" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne5"  type="reset">Réinitialiser la séléction</button>
-        <button class="ligne5"  type="submit" name="supprimer_info_film">Supprimer la séléction</button>
+        <button class="ligne5"  type="submit" onclick='window.location.reload(false)' name="supprimer_info_film">Supprimer la séléction</button>
     </section>
 
     <table class="table4">
@@ -223,7 +222,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
 <!--form creation_infos_cinema-->
 <form method="post" action="">
 <tr>
-    <td><button  name="creation_infos_cinema" type="submit">Créer infos cinema</button></td>
+    <td><button  name="creation_infos_cinema" type="submit" onclick='window.location.reload(false)'>Créer infos cinema</button></td>
     <td><input   type="text" required="required" name="SalleName" placeholder="Nom de Salle"></td>
     <td><input  type="number" name="Nombre_de_place" placeholder="Nombre de place"></td>
 </form>
@@ -237,7 +236,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
       ?>
       <form method="post" action="">
         <tr class=<?php echo $modifier_infos_cinema1['SalleName']?>>
-        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id'];?> "><button name="modifier_infos_cinema1" type="submit">Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
+        <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id'];?> "><button name="modifier_infos_cinema1" type="submit" onclick='window.location.reload(false)'>Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
 
         <td> <?php echo $modifier_infos_cinema1['SalleName'];?></br>
         <input type="text" name="SalleName" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?> value>
@@ -258,7 +257,7 @@ if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password
     <form method="post" class="ligne7">
         <input class="ligne7" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/>
         <button class="ligne7"  type="reset">Réinitialiser la séléction</button>
-        <button class="ligne7"  type="submit" name="supprimer_info_cinema">Supprimer la séléction</button>
+        <button class="ligne7"  type="submit" name="supprimer_info_cinema" onclick='window.location.reload(false)'>Supprimer la séléction</button>
     </section>
 
     <table class="table6 ">

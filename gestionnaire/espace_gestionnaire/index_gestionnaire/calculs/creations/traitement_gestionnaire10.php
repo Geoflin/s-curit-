@@ -53,8 +53,8 @@ foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `seance_cinema1`', PDO::F
 };
                 //on ajoute date de fin séance
                 $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$seance['Id']."' ";
-                $count = $conn->exec($sql);
-                $conn = null;
+                $count = $pdo_kinepolise_cinema1->exec($sql);
+                $pdo_kinepolise_cinema1 = null;
               };
             } else {
               echo "Créneau déjà occupé par ".$countCreneauconflict." séances"; 
