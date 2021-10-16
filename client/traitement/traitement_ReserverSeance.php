@@ -1,6 +1,9 @@
 <?php
 
 $pdo = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+
+foreach ($pdo->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) {};
+
 //On récupère données séance réservée
 foreach ($pdo->query('SELECT * FROM seance_cinema1 WHERE Id= "'.$_POST['Id'].'" ', PDO::FETCH_ASSOC) as $reservationSeance) { 
 $Id= $reservationSeance['Id'];
@@ -38,6 +41,7 @@ $place_dispo= $Nombre_de_place1 - $reservation1;
 
 
 //On stocke sous condition séance réservée dans table réservation du client
+if ($seance['place_disponible']>0){
 if (isset($countCreneauconflict)<1){
     if ($pdo1->exec('INSERT INTO reservation_client (Id, username, password, FilmName, DateSeanceBegin, DateSeanceEnd, SalleName) VALUES ("'.$Id.'", "'.$_SESSION['username'].'", "'.$_SESSION['password'].'", "'.$FilmName.'", "'.$DateSeanceBegin.'", "'.$DateSeanceEnd.'", "'.$SalleName.'");') !== false){}; 
 } else {
@@ -61,4 +65,7 @@ if(isset($place_dispo)){
   $count4 = $pdo->exec($sql2);
 
   $conn3 = null;
-};?>
+};
+} else {
+  echo "Il n'y a plus de place !";
+}
