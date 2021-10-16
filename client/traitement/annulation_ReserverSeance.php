@@ -23,7 +23,7 @@ foreach ($pdo1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_
 
 //On calcule les place_dispo
 if(isset($reservation1)){
-$reservation1-- ;
+  $reservation1-- ;
 $place_dispo= $Nombre_de_place1 - $reservation1;
 };
 
