@@ -19,9 +19,15 @@
 
     <?php
     if (isset($_POST['connexion'])){
-        session_start();
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['password']= $_POST['password'];
+?>
+
+<?php
+$pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
+foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) {};
+foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "3"', PDO::FETCH_ASSOC) as $dataConnexion2) {};
+if (($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password'])) {
 ?>
 <h1><a href="..\index_gestionnaire\espace_gestionnaire.php">Accèder à mon espace</a></h1>
 <style>
@@ -29,7 +35,17 @@ $_SESSION['password']= $_POST['password'];
         display:none;
     }
 </style>
-    <?php }; ?>
+<?php } elseif (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['password'] == $dataConnexion2['password'])) { ?>
+<h1><a href="..\index_gestionnaire\espace_gestionnaire_cinema_2.php">Accèder à mon espace</a></h1>
+<style>
+    form{
+        display:none;
+    }
+</style>
+<?php
+};
+}; 
+?>
 
 </body>
 <style>
