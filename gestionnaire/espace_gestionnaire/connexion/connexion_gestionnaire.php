@@ -19,6 +19,7 @@
 
     <?php
     if (isset($_POST['connexion'])){
+        session_start();
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['password']= $_POST['password'];
 ?>
