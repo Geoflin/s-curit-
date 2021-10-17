@@ -126,6 +126,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
     </tr>
     <td></td>
     <?php
+    $pdo_kinepolise_cinema2 = new PDO('mysql:dbname=kinepolise_cinema2;host=localhost', 'root', '');
     foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
             ?>
         <tr class=<?php echo $seance['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $seance['Id']; ?> "></td></tr>   

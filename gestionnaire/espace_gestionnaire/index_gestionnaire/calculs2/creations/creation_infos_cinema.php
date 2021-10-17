@@ -1,4 +1,5 @@
 <?php
+require_once 'debug/debug.php';
 //On Vérifie qu'il n'y ait pas de Salle en double
 foreach ($pdo_kinepolise_cinema2->query('SELECT SalleName FROM `infos_cinema1` WHERE `SalleName` = "'.$_POST['SalleName'].'" ', PDO::FETCH_ASSOC) as $infos_cinema1) {
   $infos_cinema1_double[]= $infos_cinema1_double['SalleName'];

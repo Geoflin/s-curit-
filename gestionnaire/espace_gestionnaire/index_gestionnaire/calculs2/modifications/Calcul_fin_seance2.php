@@ -21,6 +21,6 @@ $conn = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
 $conn->exec("SET CHARACTER SET utf8");
 
 $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE `seance_cinema1`.`Id` = '".$Id_modif."' ";
-$count = $conn->exec($sql);
+$count = $pdo_kinepolise_cinema2->exec($sql);
 
 $conn = null;
