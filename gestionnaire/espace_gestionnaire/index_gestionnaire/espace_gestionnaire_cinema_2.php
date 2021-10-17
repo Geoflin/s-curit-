@@ -68,7 +68,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
 
 <!-- Traitement ajouts seance-->
             <?php if (isset($_POST['ajoutseance'])){
-          require_once 'calculs/creations/traitement_gestionnaire10.php';
+          require_once 'calculs2/creations/traitement_gestionnaire10.php';
                                         }?>
 
         <!-- Boucle Corps du tableau-->
@@ -111,7 +111,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
                               <!-- Traitement modifierseance-->
                               <?php if (isset($_POST['modifierseance'])){
                                 $fusionDateBegin_AjouterSeance= $_POST['DateSeanceBegin'].' '.$_POST['HourBegin'];
-                              require_once 'calculs/modifications/Modifier_seance1.php';
+                              require_once 'calculs2/modifications/Modifier_seance1.php';
                               }?>
         <!-- Table  suprimmerSeance-->
     <table class="table2">
@@ -133,14 +133,6 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
     </form>
     </table>
 
-  <!--Function Tri-->
-  <h2 class="ligne1">Tri de l'affichage</h2>
-  <span class="ligne2">
-  <?php require_once 'calculs/tris/Tri_par_nom.php'; ?>
-  <?php require_once 'calculs/tris/Tri_par_salle.php'; ?>
-  <?php require_once 'calculs/tris/Tri_par_jour_de_seance.php'; ?>
-  </span>
-
   <!--Infos des Films-->
     <h2 class="ligne5">Infos des Films</h2>
 
@@ -160,7 +152,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
 </form>
 <!--Traitement form creation_infos_film-->
 <?php if (isset($_POST['ajoutInfo_film'])){
-                              require_once 'calculs/creations/creation_infos_film.php';
+                              require_once 'calculs2/creations/creation_infos_film.php';
                             }?>
 <!--form Modifier Infos_film-->
 
@@ -185,7 +177,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
 
     <!-- Traitement modifier_info_film-->
     <?php if (isset($_POST['Modifier_Infos_film'])){
-                              require_once 'calculs/modifications/Modifier_info_film.php';
+                              require_once 'calculs2/modifications/Modifier_info_film.php';
                               }?>
 
             <!-- Table  supprimer_info_film-->       
@@ -228,7 +220,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
 </form>
 <!--Traitement form creation_infos_cinema-->
 <?php if (isset($_POST['creation_infos_cinema'])){
-                              require_once 'calculs/creations/creation_infos_cinema.php';
+                              require_once 'calculs2/creations/creation_infos_cinema.php';
                             }?>
 <!--form modifier_infos_cinema1-->
 
@@ -275,20 +267,20 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
 
         <!-- Traitement modifier_infos_cinema1-->
         <?php if (isset($_POST['modifier_infos_cinema1'])){
-                              require_once 'calculs/modifications/modifier_infos_cinema1.php';
+                              require_once 'calculs2/modifications/modifier_infos_cinema1.php';
                               }?>
 
     </body>
 
 <!-- Traitement supprimerSeance-->
 <?php if (isset($_POST['supprimerseance'])){
-require_once 'calculs/suppressions/traitement_supprimer_seance.php';
+require_once 'calculs2/suppressions/traitement_supprimer_seance.php';
 }?>
 <?php if (isset($_POST['supprimer_info_film'])){
-require_once 'calculs/suppressions/supprimer_infos_film.php';
+require_once 'calculs2/suppressions/supprimer_infos_film.php';
 }?> 
 <?php if (isset($_POST['supprimer_info_cinema'])){
-require_once 'calculs/suppressions/supprimer_info_cinema.php';
+require_once 'calculs2/suppressions/supprimer_info_cinema.php';
 }?> 
 
     <style>
@@ -425,6 +417,15 @@ require_once 'calculs/suppressions/supprimer_info_cinema.php';
       flex-direction: row;
     }
     </style>
+
+      <!--Function Tri-->
+  <h2 class="ligne1">Tri de l'affichage</h2>
+  <span class="ligne2">
+  <?php require_once 'calculs2/tris/Tri_par_nom.php'; ?>
+  <?php require_once 'calculs2/tris/Tri_par_salle.php'; ?>
+  <?php require_once 'calculs2/tris/Tri_par_jour_de_seance.php'; ?>
+  </span>
+
 
 <?php
 if(isset($_POST['deconnexion'])){
