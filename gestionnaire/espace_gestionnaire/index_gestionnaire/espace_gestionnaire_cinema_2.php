@@ -232,7 +232,7 @@ if (($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['passwor
         <td><input type="checkbox" name="Id" id="Id" value=" <?php echo $modifier_infos_cinema1['Id'];?> "><button name="modifier_infos_cinema1" type="submit" onclick='window.location.reload(false)'>Mofidier <?php echo $modifier_infos_cinema1['SalleName']?></button></td>
 
         <td> <?php echo $modifier_infos_cinema1['SalleName'];?></br>
-        <input type="text" name="SalleName" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?> value>
+        <input type="text" name="SalleName" value="<?php echo $modifier_infos_cinema1['SalleName'];?>" placeholder=<?php echo $modifier_infos_cinema1['SalleName'];?>>
         </td> 
 
         <td> <?php echo $modifier_infos_cinema1['Nombre_de_place'];?></br>
