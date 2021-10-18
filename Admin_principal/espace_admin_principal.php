@@ -6,7 +6,7 @@
 <nav>
 <button name="accueil"><a href="../index.php">retour à l'accueil</a></button>
 <button name="connexion"><a href="connexion\connexion_admin_principal.php">retour connexion</a></button>
-<form><button name="deconnexion" type="submit">déconnexion</button></form>
+<form><button name="deconnexion" type="submit" onclick='window.location.reload(false)'>déconnexion</button></form>
 </nav>
 
 <?php
@@ -24,7 +24,7 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
 
   <!--Tri dans cinema-->
   <span class="ligne2">
-  <form method="POST" action="">
+  <form class="form" method="POST" action="">
   <div class="type_of_tri"> Choisissez votre cinéma</div></br>
     <select name="FilmNameTest">
     <option id="FilmName" value=" ">Tout<br></option>
@@ -44,24 +44,55 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   <a class="a" href='test.php'>test.php</a>
 
   <?php
-  if (isset($_POST['triFilmName'])){
-?>
- <span class="ligne2">
-<h1><a href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Accèder à mon espace</a></h1>
-</span>
-<style>
-    form{
-        display:none;
-    }
-    h1{
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        background-color: rgb(39,39,39);
-        margin-bottom: 800px;    
+  if (isset($_POST['triFilmName'])){ ?>
+    <?php if($_POST['FilmNameTest']== 'a'){ ?>
+      <span class="ligne2">
+      <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Cinéma1: espace gestionnaire</a></h1>
+      </span>
+      <style>
+        .return{
+          display: flex;
+          z-index: 3;
         }
-</style>
-    <?php }; ?>
+          .form{
+              display:none;
+          }
+          h1{
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              background-color: rgb(39,39,39);
+              margin-bottom: 800px;    
+              }
+      </style>
+          <?php } else{ ?>
+      <span class="ligne2">
+      <h1><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire_cinema_2.php">Cinéma2: espace gestionnaire</a></h1>
+      </span>
+      <style>
+          .form{
+              display:none;
+          }
+          h1{
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              background-color: rgb(39,39,39);
+              margin-bottom: 800px;    
+              }
+      </style>
+   <?php };
+   }; ?>
+
+  <?php if (isset($_POST['return'])){ ?>
+    <style>
+    form{
+      display:flex;
+  }
+  </style>
+  <?php }; ?>
+    
+
 
 <?php
 if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] == $dataCompte['password'])) {
@@ -122,9 +153,9 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         justify-content: flex-start;
         align-items: center;
     }
-    nav button, nav form{
+    nav button, nav form, .deconnexion{
       background-color: white;
-      z-index: 2;
+      z-index: 3;
       height: 25px;
       margin-left: 10px;
     }
@@ -190,3 +221,10 @@ body{
 }
 </style>
 <?php }; ?>
+
+
+<?php
+if(isset($_POST['deconnexion'])){
+  session_destroy();
+};
+?>
