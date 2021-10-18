@@ -19,19 +19,18 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
 ?>
 
   <!--Function Tri-->
-  <h2 class="ligne1">Tri de l'affichage</h2>
+  <h2 class="ligne1">Explorer les espaces gestionnaire</h2>
 
 
   <!--Tri dans cinema-->
   <span class="ligne2">
   <form class="form" method="POST" action="">
-  <div class="type_of_tri"> Choisissez votre cinéma</div></br>
+  <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
     <select name="FilmNameTest">
-    <option id="FilmName" value=" ">Tout<br></option>
     <?php 
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
- <option value="a"><a href='test.php'>test.php</a></option> 
+ <option value="a"><?php echo $adresse['adresse'].'<br>'; ?></option> 
  <?php 
      $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
@@ -100,6 +99,28 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
 ?>
 
     <style>
+          body {
+        font-family: Calibri, serif;
+        display: grid;
+        grid-template-columns: 10% 90%;
+        grid-template-rows:100px 100px 100px;
+        background-color: black;
+        color: white;
+    }
+    .ligne1{
+        grid-column: 1/3;
+        grid-row: 2/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .ligne2{
+        grid-column: 1/3;
+        grid-row: 3/3;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
         a, h2{
       color:rgb(155, 89, 182);
       text-align: center;
@@ -118,14 +139,6 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       justify-content: flex-start;
       align-items: flex-end;
       margin-bottom: 0px;
-    }
-    body {
-        font-family: Calibri, serif;
-        display: grid;
-        grid-template-columns: 10% 90%;
-        grid-template-rows:100px 100px;
-        background-color: black;
-        color: white;
     }
     table td{
         border: 1px solid rgba(29, 29, 29);
@@ -164,22 +177,6 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       justify-content: center;
       background-color: rgb(39, 39, 39);
       z-index: 1;
-    }
-    .ligne1{
-        grid-column: 1/3;
-        grid-row: 2/2;
-        display: flex;
-        justify-content: center;
-    }
-    .ligne2{
-        grid-column: 1/3;
-        grid-row: 3/3;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin-left:300px;
-        margin-right:300px;
-        margin-bottom: 400px;
     }
     .type_of_tri{
       display: flex;
