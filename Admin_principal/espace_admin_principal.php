@@ -19,86 +19,12 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
 ?>
 
   <!--Function Tri-->
-  <h2 class="ligne1">Explorer les espaces gestionnaire</h2>
-
-
-  <!--Tri espace gestionnaire-->
-  <span class="ligne2">
-  <form class="form" method="POST" action="">
-  <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
-  <input type="SUBMIT" value="Aller à" name="triFilmName">
-    <select name="FilmNameTest">
-    <?php 
-    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-  foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
- <option value="a"><?php echo $adresse['adresse'].'<br>'; ?></option> 
- <?php 
-     $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
-  foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
-  <option value="b"><?php echo $adresse['adresse'].'<br>'; ?></option>
-  </select>
-  </form>
-  </span>
+  <h1 class="ligne1">Explorer vos cinéma</h1>
 
   <?php
-  if (isset($_POST['triFilmName'])){ ?>
-    <?php if($_POST['FilmNameTest']== 'a'){ ?>
-      <span class="return">
-      <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Cinéma1: espace gestionnaire</a></h1>
-      </span>
-      <style>
-        .return{
-          grid-row:3/3;
-          grid-column:1/3;
-          display: flex;
-          justify-content: center;
-          z-index: 3;
-        }
-          .form{
-              display:none;
-          }
-          h1{
-              display: flex;
-              justify-content: center;
-              align-items: flex-start;
-              background-color: rgb(39,39,39);
-              margin-bottom: 800px;    
-              }
-      </style>
-          <?php } else{ ?>
-      <span class="return">
-      <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire_cinema_2.php">Cinéma2: espace gestionnaire</a></h1>
-      </span>
-      <style>
-        .return{
-          grid-row:3/3;
-          grid-column:1/3;
-          display: flex;
-          justify-content: center;
-          z-index: 3;
-        }
-          .form{
-              display:none;
-          }
-          h1{
-              display: flex;
-              justify-content: center;
-              align-items: flex-start;
-              background-color: rgb(39,39,39);
-              margin-bottom: 800px;    
-              }
-      </style>
-   <?php };
-   }; ?>
-
-  <?php if (isset($_POST['return'])){ ?>
-    <style>
-    form{
-      display:flex;
-  }
-  </style>
-  <?php }; ?>
-    
+  require_once "exploration_gestionnaire.php";
+  require_once "exploration_espace_client.php";
+  ?>
 
 
 <?php
@@ -110,8 +36,8 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
           body {
         font-family: Calibri, serif;
         display: grid;
-        grid-template-columns: 10% 90%;
-        grid-template-rows:100px 100px 100px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:100px 100px 100px 100px 100px;
         background-color: black;
         color: white;
     }
@@ -123,13 +49,41 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         align-items: center;
     }
     .ligne2{
-        grid-column: 1/3;
+        grid-column: 1/1;
+        grid-row: 3/3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .ligne2_1{
+        grid-column: 2/2;
         grid-row: 3/3;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
-        a, h2{
+    .ligne3{
+        grid-column: 1/1;
+        grid-row: 4/4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .ligne3_1{
+        grid-column: 2/2;
+        grid-row: 4/4;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .ligne4{
+      grid-column: 1/3;
+        grid-row: 5/5;
+        display: block;
+        text-align: center;
+        border: 5px solid rgb(155, 89, 182);
+    }
+        a, h2, h1{
       color:rgb(155, 89, 182);
       text-align: center;
       text-decoration: underline;
@@ -147,19 +101,6 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       justify-content: flex-start;
       align-items: flex-end;
       margin-bottom: 0px;
-    }
-    table td{
-        border: 1px solid rgba(29, 29, 29);
-        padding: 1rem;
-        text-align: center;
-        max-width: 100px;
-        min-width: 100px;
-        word-wrap: break-word;
-        height: 100px;
-    }
-    .thead{
-      background-color:rgb(69, 69, 69);
-        font-weight: bold;
     }
     .ligne4, .ligne6{
         border-collapse: collapse;
