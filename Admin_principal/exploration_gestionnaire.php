@@ -33,7 +33,7 @@
               display: flex;
               justify-content: center;
               align-items: flex-end;
-              background-color: rgb(39,39,39);
+              
               margin-bottom: 10px;    
               }
       </style>
@@ -49,7 +49,7 @@
               display: flex;
               justify-content: center;
               align-items: flex-end;
-              background-color: rgb(39,39,39);
+              
               margin-bottom: 10px;    
               }
       </style>

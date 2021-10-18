@@ -23,7 +23,6 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
 
   <?php
   require_once "exploration_gestionnaire.php";
-  require_once "exploration_espace_client.php";
   ?>
 
 

@@ -9,11 +9,6 @@
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
  <option value="a"><?php echo $adresse['adresse'].'<br>'; ?></option> 
- <?php 
-     $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
-  foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
-  <option value="b"><?php echo $adresse['adresse'].'<br>'; ?></option>
-  </select>
   </form>
   </span>
 
@@ -23,7 +18,7 @@
   if (isset($_POST['triFilmName'])){ ?>
     <?php if($_POST['FilmNameTest']== 'a'){ ?>
       <span class="ligne4">
-      <h1><form><button class="" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Cinéma1: espace gestionnaire</a></h1>
+      <h1><form><button class="" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../client\espace_client.php">Cinéma1: espace gestionnaire</a></h1>
       </span>
       <style>
           .form{
@@ -33,23 +28,7 @@
               display: flex;
               justify-content: center;
               align-items: flex-end;
-              background-color: rgb(39,39,39);
-              margin-bottom: 10px;    
-              }
-      </style>
-          <?php } else{ ?>
-      <span class="return ligne4">
-      <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire_cinema_2.php">Cinéma2: espace gestionnaire</a></h1>
-      </span>
-      <style>
-          .form{
-              display:none;
-          }
-          h1{
-              display: flex;
-              justify-content: center;
-              align-items: flex-end;
-              background-color: rgb(39,39,39);
+
               margin-bottom: 10px;    
               }
       </style>
