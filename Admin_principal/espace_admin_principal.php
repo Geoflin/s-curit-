@@ -22,10 +22,11 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   <h2 class="ligne1">Explorer les espaces gestionnaire</h2>
 
 
-  <!--Tri dans cinema-->
+  <!--Tri espace gestionnaire-->
   <span class="ligne2">
   <form class="form" method="POST" action="">
   <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
+  <input type="SUBMIT" value="Aller à" name="triFilmName">
     <select name="FilmNameTest">
     <?php 
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
@@ -36,21 +37,21 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
   <option value="b"><?php echo $adresse['adresse'].'<br>'; ?></option>
   </select>
-  <input type="SUBMIT" value="Tri !" name="triFilmName">
   </form>
   </span>
-
-  <a class="a" href='test.php'>test.php</a>
 
   <?php
   if (isset($_POST['triFilmName'])){ ?>
     <?php if($_POST['FilmNameTest']== 'a'){ ?>
-      <span class="ligne2">
+      <span class="return">
       <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Cinéma1: espace gestionnaire</a></h1>
       </span>
       <style>
         .return{
+          grid-row:3/3;
+          grid-column:1/3;
           display: flex;
+          justify-content: center;
           z-index: 3;
         }
           .form{
@@ -65,10 +66,17 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
               }
       </style>
           <?php } else{ ?>
-      <span class="ligne2">
-      <h1><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire_cinema_2.php">Cinéma2: espace gestionnaire</a></h1>
+      <span class="return">
+      <h1><form><button class="return" name="return" type="submit" onclick='window.location.reload(false)'>retour</button></form><a target="_blank" href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire_cinema_2.php">Cinéma2: espace gestionnaire</a></h1>
       </span>
       <style>
+        .return{
+          grid-row:3/3;
+          grid-column:1/3;
+          display: flex;
+          justify-content: center;
+          z-index: 3;
+        }
           .form{
               display:none;
           }
