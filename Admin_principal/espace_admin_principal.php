@@ -18,7 +18,12 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   };
 ?>
 
-<span class="blockTri1">
+  <!--Function Tri-->
+  <h2 class="ligne1">Tri de l'affichage</h2>
+
+
+  <!--Tri dans cinema-->
+  <span class="ligne2">
   <form method="POST" action="">
   <div class="type_of_tri"> Choisissez votre cinéma</div></br>
     <select name="FilmNameTest">
@@ -26,27 +31,37 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
     <?php 
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
- <option><?php echo $adresse['adresse'].'<br>'; ?></option> 
+ <option value="a"><a href='test.php'>test.php</a></option> 
  <?php 
      $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
-  <option><?php echo $adresse['adresse'].'<br>'; ?></option>
+  <option value="b"><?php echo $adresse['adresse'].'<br>'; ?></option>
   </select>
   <input type="SUBMIT" value="Tri !" name="triFilmName">
   </form>
   </span>
 
+  <a class="a" href='test.php'>test.php</a>
 
-
-  <!--Function Tri-->
-  <h2 class="ligne1">Tri de l'affichage</h2>
-
-  <!--Tri dans cinema-->
-  <span class="ligne2">
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris\Tri_par_jour_de_seance.php' ;?>
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris/Tri_par_salle.php'; ?>
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris/Tri_par_jour_de_seance.php'; ?>
-  </span>
+  <?php
+  if (isset($_POST['triFilmName'])){
+?>
+ <span class="ligne2">
+<h1><a href="../gestionnaire\espace_gestionnaire\index_gestionnaire\espace_gestionnaire.php">Accèder à mon espace</a></h1>
+</span>
+<style>
+    form{
+        display:none;
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-color: rgb(39,39,39);
+        margin-bottom: 800px;    
+        }
+</style>
+    <?php }; ?>
 
 <?php
 if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] == $dataCompte['password'])) {
@@ -77,7 +92,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         font-family: Calibri, serif;
         display: grid;
         grid-template-columns: 10% 90%;
-        grid-template-rows:50px 100px 1fr;
+        grid-template-rows:100px 100px;
         background-color: black;
         color: white;
     }
@@ -133,11 +148,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         align-items: center;
         margin-left:300px;
         margin-right:300px;
-    }
-    /*tableau1*/
-    .ligne4{
-      grid-row: 5/5;
-      grid-column: 1/3;
+        margin-bottom: 400px;
     }
     .type_of_tri{
       display: flex;
@@ -145,7 +156,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
       align-items: center;
       flex-direction: row;
     }
-    .display_none{
+    .display_none, .a{
       display: none;
     }
     </style>
