@@ -14,16 +14,15 @@ $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
   foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "3"', PDO::FETCH_ASSOC) as $dataConnexion2) { 
   $username= $dataConnexion2['username'];
   $password= $dataConnexion2['password'];
-};
+  };
 session_start();
 ?>
 
 <?php
 $pdo_kinepolise_administrateur = new PDO('mysql:host=localhost;dbname=kinepolise_administrateur', 'root', '');
   foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $adminConnexion) {};
-session_start();
 
-if ((($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password']) || ($_SESSION['username'] == $adminConnexion['username']  && $_SESSION['password'] == $adminConnexion['password']) )) {
+if ((($_SESSION['username'] == $dataConnexion2['username']  && $_SESSION['password'] == $dataConnexion2['password']) || ($_SESSION['username'] == $adminConnexion['username']  && $_SESSION['password'] == $adminConnexion['password']) )) {
   echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
@@ -199,6 +198,7 @@ if ((($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['passwor
     </tr>
     <td></td>
     <?php
+    $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
     foreach ($pdo_kinepolise->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
             ?>
         <tr class=<?php echo $info_film['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "></td></tr>   

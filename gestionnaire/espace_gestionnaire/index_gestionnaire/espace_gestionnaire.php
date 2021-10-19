@@ -204,6 +204,7 @@ if ((($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['passwor
     </tr>
     <td></td>
     <?php
+            $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
     foreach ($pdo_kinepolise->query('SELECT * FROM info_film', PDO::FETCH_ASSOC) as $info_film) { 
             ?>
         <tr class=<?php echo $info_film['FilmName']?>><td><input type="checkbox" name="Id[]" id="Id" value=" <?php echo $info_film['Id']; ?> "></td></tr>   

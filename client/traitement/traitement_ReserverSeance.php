@@ -37,6 +37,8 @@ if(isset($place_dispo)){
 } else {
   echo "Il n'y a plus de place !";
 };
+
+//partie cinema2
 } elseif($_SESSION['cinemaAdresse']== 'cinema2') {
   //stockage dans cinéma2
     $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
@@ -50,7 +52,7 @@ if(isset($place_dispo)){
     
     
       //On stocke nombre de réservation pour une séance dans seance_cinema1
-      $pdo_kinepolise_cinema2 = new PDO('mysql:dbname=kinepolise_cinema1;host=localhost', 'root', '');
+      $pdo_kinepolise_cinema2 = new PDO('mysql:dbname=kinepolise_cinema2;host=localhost', 'root', '');
       $pdo_kinepolise_cinema2->exec("SET CHARACTER SET utf8");
       if(isset($reservation1)){
               $sql3 = 'UPDATE seance_cinema1 SET Nombre_de_reservation= "'.$reservation1.'" WHERE SalleName= "'.$SalleName.'" AND DateSeanceBegin= "'.$DateSeanceBegin.'" ';
@@ -60,7 +62,7 @@ if(isset($place_dispo)){
             };
     
       //On actualise le nombre de place_dispo
-      $pdo_kinepolise_cinema2 = new PDO('mysql:dbname=kinepolise_cinema1;host=localhost', 'root', '');
+      $pdo_kinepolise_cinema2 = new PDO('mysql:dbname=kinepolise_cinema2;host=localhost', 'root', '');
       $pdo_kinepolise_cinema2->exec("SET CHARACTER SET utf8");
     if(isset($place_dispo)){
       $sql2  = 'UPDATE seance_cinema1 SET place_disponible= "'.$place_dispo.'" WHERE SalleName= "'.$SalleName.'" AND DateSeanceBegin= "'.$DateSeanceBegin.'" ';

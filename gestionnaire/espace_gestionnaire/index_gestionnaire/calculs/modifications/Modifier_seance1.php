@@ -6,6 +6,6 @@
                                  $kinepolise_cinema1 = new PDO('mysql:dbname=kinepolise;host=localhost', 'root', '');
                                  $kinepolise_cinema1->exec("SET CHARACTER SET utf8");
                                          $sql = "UPDATE `seance_cinema1` SET `FilmName` = '".$_POST['FilmName']."', `DateSeanceBegin` = '".$fusionDateBegin_AjouterSeance."', `SalleName` = '".$_POST['SalleName']."' WHERE `seance_cinema1`.`Id` = '".$Id_modif."' ";
-                                         $count = $kinepolise_cinema1->exec($sql);
+                                         $count = $pdo_kinepolise_cinema1->exec($sql);
                                  
                                          $conn = null;
