@@ -18,13 +18,6 @@ foreach ($pdo_kinepolise_administrateur->query('SELECT * FROM `password` WHERE u
   };
 ?>
 
-  <!--Function Tri-->
-  <h1 class="ligne1">Explorer vos cinéma</h1>
-
-  <?php
-  require_once "exploration_gestionnaire.php";
-  ?>
-
 
 <?php
 if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] == $dataCompte['password'])) {
@@ -143,6 +136,13 @@ if(isset($_POST['deconnexion'])){
 };
 ?>
 
+  <!--Function Tri-->
+  <h1 class="ligne1">Explorer vos cinéma</h1>
+
+  <?php
+  require_once "exploration_gestionnaire.php";
+  ?>
+  <a target="_blank" href="exploration_reservation_client.php">espace client</a>
 
 
 <?php } else { echo $_SESSION['username'].'</br>'.$_SESSION['password'];?>
