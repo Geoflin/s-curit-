@@ -1,4 +1,4 @@
-<!--Tri espace gestionnaire-->
+<!--Formulaire choix cinéma-->
 <h2 class="ligne2_1"> Explorer la gestion de vos cinéma</h2></br>
   <span class="ligne3_1">
   <form class="form" method="POST" action="">
@@ -19,6 +19,7 @@
 
   <div class="ligne4"></div>
 
+  <!--Traitement choix cinéma-->
   <?php
   if (isset($_POST['triFilmName'])){ ?>
     <?php if($_POST['FilmNameTest']== 'a'){ ?>
@@ -55,7 +56,7 @@
       </style>
    <?php };
    }; ?>
-
+   <!--Traitement choix cinéma-->
 
 
   <?php if (isset($_POST['return'])){ ?>

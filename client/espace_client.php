@@ -24,53 +24,17 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
 ?>
     <!--Actualiser la page-->
     <h2 class="ligne1">Liste des séance</h2>
-    <!--Tableaux-->
-    <!-- Thead-->
-    <?php $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
 
-        <table class="ligne4">
-        <tr class="thead">
-            <!-- Form  triNomFilm-->
-        <td>Réserver la séance</td>
-        <td>Nom du film</td>
-        <td>Jour de séance</td>
-        <td>Heure de début</td>
-        <td>Heure de fin</td>
-        <td>Salle</td>
-        <td>Place disponible</td>
-</tr>
-    </form>
-    <h2 class="title1">Séance disponibles</h2>
-    <section class="title1">
-    <form class="title1" method="post">
-    <input class="title1" type="button" onclick='window.location.reload(false)' value="Actualiser la page"/></form>
-        <button class="title1" type="reset">Réinitialiser la séléction</button>
-    </section>
-        <!-- Boucle Corps du tableau-->
-        </tr>
-        <?php $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-        foreach ($pdo_kinepolise_cinema1->query('SELECT SalleName FROM infos_cinema1', PDO::FETCH_ASSOC) as $Salle) { ?>
-  <?php } ?>
-        <?php
-    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1', PDO::FETCH_ASSOC) as $seance) { 
-      $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-      $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
-            ?>
-        <!-- Form  ReserverSeance-->
-        <form class="ReserverSeance" method="post" action="">
-        <tr class=<?php echo $seance['FilmName']?>>
-        <td><input type="checkbox" name="Id" id="Id" required="required" value="<?php echo $seance['Id'];?>"><button type="submit" name="ReserverSeance">Réserver la séance</button></td>
-        <td><?php echo $seance['FilmName'];?></td> 
-        <td><?php echo $dateSeanceBegin->format('Y-m-d');?></td>
-        <td><?php echo $dateSeanceBegin->format('H:i');?></td>
-        <td><?php echo $DateSeanceEnd->format('H:i');?></td>
-        <td><?php echo $seance['SalleName'];?></td>
-        <td><?php echo $seance['place_disponible'];?></td>
-        </tr>
-        </form>
-        <?php } ?>
-    </table>
-        
+    <?php
+    if(isset($_SESSION['cinemaAdresse'])){
+      if($_SESSION['cinemaAdresse']== 'cinema1'){
+        require_once 'liste_seance_cinema1.php';
+      } elseif($_SESSION['cinemaAdresse']== 'cinema2') {
+        require_once 'liste_seance_cinema2.php';
+      }
+    }
+    ?>
+   
         <!-- traitement  ReserverSeance-->
         <?php
         if(isset($_POST['ReserverSeance'])){
