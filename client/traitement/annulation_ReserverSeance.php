@@ -1,6 +1,9 @@
 <?php
 
+if($_SESSION['cinemaAdresse']== 'cinema1'){
+
 //On récupère données séance réservée
+$pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
 foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1 ', PDO::FETCH_ASSOC) as $reservationSeance) { 
     $Id= $reservationSeance['Id'];
     $FilmName= $reservationSeance['FilmName'];
@@ -71,4 +74,5 @@ if(isset($place_dispo)){
     $count4 = $pdo_kinepolise_cinema1->exec($sql2);
 
     $pdo_kinepolise_cinema1 = null;
-  };?>
+  };
+} elseif()?>
