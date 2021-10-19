@@ -52,7 +52,9 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     </section>
 
     <table class="ligne6">
-    <?php foreach ($pdo_kinepolise_client->query('SELECT * FROM reservation_client WHERE username= "'.$_SESSION['username'].'" AND password= "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $seanceReservee) { 
+    <?php 
+    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM reservation_client WHERE username= "'.$_SESSION['username'].'" AND password= "'.$_SESSION['password'].'" ', PDO::FETCH_ASSOC) as $seanceReservee) { 
       $dateSeanceBegin = new DateTime($seanceReservee['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seanceReservee['DateSeanceEnd']);
             ?>

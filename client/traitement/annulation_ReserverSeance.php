@@ -10,8 +10,8 @@ foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM seance_cinema1 ', PDO::FE
     };
 
 //On récupère le nombre de réservation pour une séance
-$pdo_kinepolise_client = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
-foreach ($pdo_kinepolise_client->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_reservations) {
+$pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
+foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `reservation_client` WHERE SalleName= "'.$_POST['SalleName'].'" AND DateSeanceBegin= "'.$_POST['DateSeanceBegin'].'" ', PDO::FETCH_ASSOC) as $Nombre_de_reservations) {
   $reservation[]= $Nombre_de_reservations['FilmName']; 
   $reservation1= count($reservation);
  }; 
@@ -45,7 +45,7 @@ $place_dispo= $Nombre_de_place1 - $reservation1;
                                        a sélectionné dans notre formulaire */
                                    for( $i=0; $i<$total; $i++ )
                                    {
-                                     $statement = $pdo_kinepolise_client->prepare('DELETE FROM reservation_client WHERE Id = :Id');
+                                     $statement = $pdo_kinepolise_cinema1->prepare('DELETE FROM reservation_client WHERE Id = :Id');
                                      $statement->bindValue(':Id', $nombre[$i], PDO::PARAM_INT);        
                                          if ($statement->execute()) {
 
