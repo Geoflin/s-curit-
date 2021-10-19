@@ -91,10 +91,9 @@
       justify-content: space-between;
     }
     </style>
-
+<?php require_once 'tri_reservation.php'; ?>
       <!--Function Tri-->
   <h2 class="ligne2">Tri de l'affichage</h2>
-  <?php require_once 'tri_reservation.php'; ?>
 
 <nav>
 <button name="accueil"><a href="../../../index.php">retour à l'accueil</a></button>

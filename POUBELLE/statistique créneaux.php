@@ -84,6 +84,7 @@
       justify-content: space-between;
     }
     </style>
+    <?php require_once 'tri_par_creneaux.php' ?>
 <?php $n= 0; ?>
 
 <form method="POST" action="">
@@ -120,13 +121,12 @@ if(isset($_POST['creneaux'])){
   echo $dateDepart.'</br>';
   echo $dateFin;
 
-        $pdo_kinepolise_client= new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
+  $pdo_kinepolise_client= new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');
         foreach ($pdo_kinepolise_client->query('SELECT * FROM `reservation_client` WHERE `DateSeanceBegin` >= "'.$dateDepart.'" AND `DateSeanceBegin` <= "'.$dateFin.'" ', PDO::FETCH_ASSOC) as $seance) { 
           $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
       $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']);
 
       ?>
-
         <tr class=<?php echo $seance['FilmName']?>>
 
         <td><?php echo $seance['username'];?></td>
