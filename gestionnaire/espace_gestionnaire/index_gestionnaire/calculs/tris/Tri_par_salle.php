@@ -1,6 +1,7 @@
        <!-- Tri Par Salle-->
        <span class="blockTri2">
 
+        <!--On invoque le formulaire de tri d'affichage par nom de film-->
   <form method="POST" action="">
   <div class="type_of_tri">Tri par nom de Salle</div></br>
   <select name="SalleNameTest">
@@ -14,6 +15,7 @@
   </form>
   </span>
 
+  <!--On affiche uniquement les séances correxpondant au nom de film sélectionné-->
   <?php if(isset($_POST['triSalleName'])){?>
     <?php
   $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');

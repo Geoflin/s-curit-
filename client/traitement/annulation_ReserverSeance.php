@@ -1,5 +1,5 @@
 <?php
-
+//Si on a choisi le cinéma1, on annule les séances réservée dans le cinéma1
 if($_SESSION['cinemaAdresse']== 'cinema1'){
 
 //On récupère données séance réservée
@@ -77,7 +77,9 @@ if(isset($place_dispo)){
   };
 
 
-  //partie cinema2
+
+
+//Si on a choisi le cinéma1, on annule les séances réservée dans le cinéma1
 } elseif($_SESSION['cinemaAdresse']== 'cinema2'){
   //On récupère données séance réservée
 $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');

@@ -1,6 +1,7 @@
        <!-- Tri_par_jour_de_seance-->
        <span class="blockTri2">
 
+  <!--On invoque le formulaire de tri d'affichage par jours-->
   <form method="POST" action="">
   <div class="type_of_tri">Tri par jour de seance</div></br>
   <select name="dateSeanceBeginTest">
@@ -15,6 +16,7 @@
   </form>
   </span>
 
+    <!--On affiche uniquement les séances correxpondant au jour sélectionné-->
   <?php if(isset($_POST['triSeanceBegin'])){?>
     <?php
   $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');

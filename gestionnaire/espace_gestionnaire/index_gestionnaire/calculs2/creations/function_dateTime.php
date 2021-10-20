@@ -1,6 +1,7 @@
 <?php
 function unix_timestamp($datetime)
 {
+//On convertit le dateTime en Timestamp (trouvé sur internet: url perdue)
 	$datetime = str_replace(array(' ', ':'), '-', $datetime);
 	$c    = explode('-', $datetime);
 	$c    = array_pad($c, 6, 0);

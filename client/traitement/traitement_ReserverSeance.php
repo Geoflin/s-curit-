@@ -1,5 +1,5 @@
 <?php
-
+//on vérifie qu'il n'y a pas de doublon grâce à notre anti_doublons
 require_once 'anti_doublons.php';
 
 //On stocke sous condition séance réservée dans table réservation client du cinéma1 ou cinéma2

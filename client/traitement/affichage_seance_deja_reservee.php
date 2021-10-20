@@ -6,6 +6,8 @@
         <button class="title2" type="reset">Réinitialiser la séléction</button>
     </section>
 
+
+    <!--Si on a choisi le cinéma1 on affiche les séances réservée dans le cinéma1-->
     <?php if($_SESSION['cinemaAdresse']== 'cinema1'){ ?>
 
     <table class="ligne6">
@@ -28,7 +30,9 @@
         </form>
         <?php } ?>
 
-   <?php }elseif($_SESSION['cinemaAdresse']== 'cinema2'){ ?>
+
+    <!--Si on a choisi le cinéma2 on affiche les séances réservée dans le cinéma2-->
+    <?php }elseif($_SESSION['cinemaAdresse']== 'cinema2'){ ?>
            <table class="ligne6">
            <?php 
            $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');

@@ -1,9 +1,14 @@
 <!--Formulaire choix cinéma-->
 <h2 class="ligne2_1"> Infos gestionnaire</h2></br>
+
   <span class="ligne3_1">
+
   <form class="form" method="POST" action="">
+
   <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
+
   <input type="SUBMIT" value="Aller à" name="triFilmName">
+
     <select name="FilmNameTest">
     <?php 
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
@@ -14,6 +19,7 @@
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
   <option value="b"><?php echo $adresse['adresse'].'<br>'; ?></option>
   </select>
+  
   </form>
   </span>
 

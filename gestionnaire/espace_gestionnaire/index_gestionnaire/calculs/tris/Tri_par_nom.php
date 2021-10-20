@@ -1,4 +1,6 @@
   <!-- Tri Par Nom-->
+
+  <!--On invoque le formulaire de tri d'affichage par nom de film-->
   <span class="blockTri1">
   <form method="POST" action="">
   <div class="type_of_tri"> Tri par nom de film</div></br>
@@ -14,6 +16,7 @@
   </form>
   </span>
     
+  <!--On affiche uniquement les séances correxpondant au nom de film sélectionné-->
     <?php if(isset($_POST['triFilmName'])){?>
       <style>
         tr:not(.<?php echo $_POST['FilmNameTest']?>, .thead){

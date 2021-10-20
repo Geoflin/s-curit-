@@ -9,6 +9,7 @@
 </nav>
 <h3 class="center">Connexion à l'espace gestionnaire</h3>
 
+<!--On invoque le formulaire de connexion-->
 <form method="post" action="">
     <label for="username">utilisateur</label>
     <input type="text" required="required" name="username" id="username" placeholder="Saisissez votre nom utilisateur">
@@ -17,7 +18,9 @@
     <button name="connexion" type="submit">connexion</button>
     </form>
 
+
     <?php
+    //on active la session
     if (isset($_POST['connexion'])){
         session_start();
 $_SESSION['username'] = $_POST['username'];
@@ -25,6 +28,7 @@ $_SESSION['password']= $_POST['password'];
 ?>
 
 <?php
+//on vérifie l'identité
 $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');
 foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "1"', PDO::FETCH_ASSOC) as $dataConnexion) {};
 foreach ($pdo_kinepolise->query('SELECT * FROM password WHERE Id= "3"', PDO::FETCH_ASSOC) as $dataConnexion2) {};

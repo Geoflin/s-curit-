@@ -1,5 +1,5 @@
 <?php
-//partie cinema1
+//Si on a choisi le cinéma1, on vérifie qu'il n'y a pas de doublons dans le cinéma1
 if($_SESSION['cinemaAdresse']== 'cinema1'){
 
 //On récupère données séance réservée
@@ -41,7 +41,7 @@ $place_dispo= $Nombre_de_place1 - $reservation1;
 };
 
 
-//partie cinema2
+//Si on a choisi le cinéma2, on vérifie qu'il n'y a pas de doublons dans le cinéma2
 } elseif($_SESSION['cinemaAdresse']== 'cinema2'){
     //On récupère données séance réservée
 $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
