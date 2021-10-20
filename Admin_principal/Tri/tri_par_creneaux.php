@@ -1,5 +1,5 @@
 <head> 
-<link href="style.css" rel="stylesheet">
+<link href="CSS/tri_par_creneaux.css" rel="stylesheet">
 </head>
 <?php 
 require_once 'debug/debug.php'
@@ -9,6 +9,7 @@ require_once 'debug/debug.php'
 
 <!--On invoque un formulaire-->
 <form method="POST" action="">
+<fieldset>
 
 <h2>Choisissez la période des réservations</h2>
 <!--On permet a l'admin de choisir son créneau de réservation-->
@@ -33,13 +34,14 @@ require_once 'debug/debug.php'
      $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
   <input  type="checkbox" value="cinema2"  name="cinemaAdresse2"><?php echo $adresse['adresse'].'<br>'; ?>
-  <input type="submit" name="creneaux" value="générer les stats">
   </div>
+  <input class="center button" type="submit" name="creneaux" value="générer les stats">
 
+</fieldset>
   </form>
 
   <!--On insère la tête du tableau-->
-<?php require_once 'tete_du_tableau.php'; ?>
+<?php require_once 'tableau/tete_du_tableau.php'; ?>
     </form>
 
 
@@ -171,5 +173,5 @@ $pdo_kinepolise_cinema2= new PDO('mysql:host=localhost;dbname=kinepolise_cinema2
 
 
 <?php 
-require_once 'pied_du_tableau.php';
+require_once 'tableau/pied_du_tableau.php';
        ?>

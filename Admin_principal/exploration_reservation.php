@@ -10,7 +10,7 @@
 <h2 class="ligne2_1"> Infos clients</h2></br>
   <span class="ligne3_1">
   <form class="form" method="POST" action="">
-  <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
+  <h2 class="type_of_tri background">Veuillez compléter le formulaire</h2></br>
 
 
 <?php
@@ -26,9 +26,8 @@ session_start();
 
 <?php
 if ((($_SESSION['username'] == $dataConnexion['username']  && $_SESSION['password'] == $dataConnexion['password']) || ($_SESSION['username'] == $adminConnexion['username']  && $_SESSION['password'] == $adminConnexion['password']) )) {
-  echo sprintf("<nav class=center><h3>Vous êtes connecté, bonjour %s <h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
 
-<?php require_once 'tri_par_creneaux.php'; ?>
+<?php require_once 'Tri/tri_par_creneaux.php'; ?>
 
 <?php } ?>

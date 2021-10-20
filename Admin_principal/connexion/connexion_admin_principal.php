@@ -1,6 +1,7 @@
 <html lang="fr">
 <head>
 <TITLE>Kinepolise/connexion_gestionnaire</TITLE>
+<link rel="stylesheet" href="connexion_admin_principal.css" />
 </head>
 <body>
 
@@ -18,77 +19,6 @@
     <input type="text" required="required" name="password" id="password" placeholder="Saisissez votre mot de passe">
     <button name="connexion_admin_principal" type="submit">connexion</button>
     </form>
-
-    <style>
-    a, h2{
-      color:rgb(155, 89, 182);
-    }
-    body {
-        font-family: Calibri, serif;
-        background-color: black;
-        color: white;
-        margin: auto;
-    }
-    nav{
-        grid-row: 1/1;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    nav button{
-      background-color: white;
-      z-index: 2;
-      height: 25px;
-      margin-left: 10px;
-    }
-    .center{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(39, 39, 39);
-      z-index: 1;
-      height: 50px;
-      margin-left: 10%;
-      margin-right: 10%;
-      margin-bottom: 100px;
-    }
-    form {
-        max-width: 50%;
-        margin-left: 500px;
-    }
-    form label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    label.inline-label {
-        display: inline-block;
-    }
-    fieldset {
-        border: 1px solid lightgray;
-        background-color: rgba(225, 233, 255, 0.25);
-    }
-    legend {
-        font-style: italic;
-        font-size: 1.1em;
-        padding: 5px;
-    }
-    form input, form select, form textarea {
-        display: inline-block;
-        margin-bottom: 10px;
-        padding: 10px;
-        width: 80%;
-    }
-    form input[type="radio"],
-    form input[type="checkbox"],
-    form input[type="submit"] {
-        width: auto;
-    }
-    button[type=submit], button[type=reset] {
-        padding: 10px;
-        margin-top: 15px;
-    }
-</style> 
 
     <!--On traite la connexion au compte-->
     <?php
