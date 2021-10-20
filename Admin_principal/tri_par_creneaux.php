@@ -19,16 +19,14 @@
 
     <!--On permet à l'admin de choisir son cinéma-->
     <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
-    <select name="cinemaAdresse" required="required">
     <?php 
     $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
   foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
- <option value="cinema1"><?php echo $adresse['adresse'].'<br>'; ?></option> 
+ <input required="required" type="checkbox" value="cinema1" name="cinemaAdresse"><?php echo $adresse['adresse'].'<br>'; ?></option> 
  <?php 
      $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
   foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
-  <option value="cinema2"><?php echo $adresse['adresse'].'<br>'; ?></option>
-  </select>
+  <input required="required" type="checkbox" value="cinema2"  name="cinemaAdresse2"><?php echo $adresse['adresse'].'<br>'; ?>
 
   <input type="submit" name="creneaux" value="générer les stats">
   </form>
@@ -87,8 +85,8 @@ if(isset($_POST['creneaux'])){
 
 <?php
     //traitement_choix_du_creneau
-    if(isset($_POST['cinemaAdresse'])){
-  if($_POST['cinemaAdresse']== 'cinema2'){
+    if(isset($_POST['cinemaAdresse2'])){
+  if($_POST['cinemaAdresse2']== 'cinema2'){
 ?>
 <tr>
       <td colspan="6">Cinéma2</td>
