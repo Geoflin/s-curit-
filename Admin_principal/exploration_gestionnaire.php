@@ -1,5 +1,5 @@
 <!--Formulaire choix cinéma-->
-<h2 class="ligne2_1"> Explorer la gestion de vos cinéma</h2></br>
+<h2 class="ligne2_1"> Infos gestionnaire</h2></br>
   <span class="ligne3_1">
   <form class="form" method="POST" action="">
   <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>

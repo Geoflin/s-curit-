@@ -82,3 +82,6 @@
     .border{
         border: solid 2px rgb(155, 89, 182);
     }
+    .column{
+        flex-direction: column;
+    }

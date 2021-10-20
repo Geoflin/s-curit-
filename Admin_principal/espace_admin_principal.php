@@ -142,7 +142,12 @@ if(isset($_POST['deconnexion'])){
   <?php
   require_once "exploration_gestionnaire.php";
   ?>
-  <a target="_blank" href="exploration_reservation.php">espace client</a>
+
+  <h2 class="ligne2"> Infos clients</h2></br>
+  <span class="ligne3">
+  <form class="form" method="POST" action="">
+  <h3 class="type_of_tri"> Choisissez l'adresse de votre cinéma</h3></br>
+  <h3 class="ligne2"><a target="_blank" href="exploration_reservation.php">espace client</a></h3>
 
 
 <?php } else { echo $_SESSION['username'].'</br>'.$_SESSION['password'];?>

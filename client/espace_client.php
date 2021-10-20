@@ -23,7 +23,6 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
   echo sprintf("<nav class=center><h3>Bonjour %s, voici nos séance disponibles:<h3/></nav>", $_SESSION['username']) . PHP_EOL; 
 ?>
     <!--Actualiser la page-->
-    <h2 class="ligne1">Liste des séance</h2>
 
     <?php
     if(isset($_SESSION['cinemaAdresse'])){
@@ -56,7 +55,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     </table>
 
     <style>
-        a, h2{
+        a, h2, h1{
       color:rgb(155, 89, 182);
       text-align: center;
       text-decoration: underline;
@@ -78,7 +77,7 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     body {
         font-family: Calibri, serif;
         display: grid;
-        grid-template-columns: 10% 90%;
+        grid-template-columns: 15% 85%;
         grid-template-rows:50px 100px 100px 70px 1fr;
         background-color: black;
         color: white;
@@ -125,7 +124,8 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
         grid-column: 1/3;
         grid-row: 2/2;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     .ligne2{
         grid-column: 1/3;
@@ -150,13 +150,17 @@ if (($_SESSION['username'] == $dataCompte['username']  && $_SESSION['password'] 
     .display_none{
       display: none;
     }
+    .espace_tarif{
+      grid-column: 1/1;
+      grid-row:2/4;
+      background-color: rgb(155, 89, 182);
+    }
     </style>
 
   <!--Function Tri-->
   <h3 class="ligne1"><br/></br>Tri de l'affichage</h3>
   <span class="ligne2">
   <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs\tris\Tri_par_nom.php'; ?>
-  <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_salle.php'; ?>
   <?php require_once '../gestionnaire\espace_gestionnaire\index_gestionnaire\calculs/tris/Tri_par_jour_de_seance.php'; ?>
   </span>
 

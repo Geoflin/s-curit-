@@ -1,3 +1,6 @@
+<div class="ligne1">
+<h1>Cinéma1</h1>
+</div>
 <!--Tableaux-->
     <!-- Thead-->
     <?php $pdo_kinepolise = new PDO('mysql:host=localhost;dbname=kinepolise', 'root', '');?>
@@ -44,3 +47,12 @@
         </form>
         <?php } ?>
     </table>
+
+<!-- espace_tarif-->
+<div class="espace_tarif">Nos tarifs:
+    <ul>
+        <li>Plein tarif: 9€20</li>
+        <li>Etudiant: 7€60</li>
+        <li>Moins de 14 ans: 5€90</li>
+</ul>
+</div>
