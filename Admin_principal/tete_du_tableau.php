@@ -6,10 +6,11 @@
         <tr class="thead">
             <!-- Form  triNomFilm-->
 
-            <td>Nom d'utilisateur</td>
+        <td>Nom d'utilisateur</td>
         <td>Nom du film</td>
         <td>date de la séance</td>
         <td>Heure de début</td>
         <td>Heure de fin</td>
         <td>Salle</td>
 </tr>
+
