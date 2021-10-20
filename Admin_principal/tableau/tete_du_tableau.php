@@ -1,3 +1,5 @@
+    <!--ce fichier affiche tete_du_tableau-->
+    
     <!-- Thead-->
     <?php
         $pdo_kinepolise_client = new PDO('mysql:host=localhost;dbname=kinepolise_client', 'root', '');?>

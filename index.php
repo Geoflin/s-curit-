@@ -13,6 +13,6 @@
   <button name="connexion_admin"><a href="Admin_principal\connexion\connexion_admin_principal.php">connexion administrateur</a></button>
   <button name="connexion"><a href="gestionnaire\espace_gestionnaire\connexion\connexion_gestionnaire.php">espace gestionnaire</a></button>
 </span>
-<img src="accueil/meduse.jpg"/>
+<img src="meduse.jpg"/>
     </BODY>
 </HTML>

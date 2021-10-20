@@ -1,177 +1,40 @@
+<!--Tri_par_creneaux-->
+<!--Ce fichier va permettre le Tri_par_creneaux des réservations clients-->
+
 <head> 
 <link href="CSS/tri_par_creneaux.css" rel="stylesheet">
 </head>
 <?php 
+//On invoque un fichier pour stopper l'affichage des erreurs php
 require_once 'debug/debug.php'
-//statistique créneaux ?>
-    <!--Tri_par_creneaux-->
+?>
+
+<!--On initialise une variable qui va compter le nombre de boucles-->
 <?php $n= 0; ?>
 
-<!--On invoque un formulaire-->
-<form method="POST" action="">
-<fieldset>
-
-<h2>Choisissez la période des réservations</h2>
-<!--On permet a l'admin de choisir son créneau de réservation-->
-
-<div class="center">
-<div class="border"><input type="checkbox" value="tout" name="toutCreneau" required="required">Tout les creneaux</div>
-<div><label for="dateDepart">Date de début: <?php if(isset($_POST['dateDepart'])){echo $_POST['dateDepart'];};?></label></div>
-    <input type="date" name="dateDepart"></br>
-<label for="dateFin">Date de fin: <?php if(isset($_POST['dateFin'])){echo $_POST['dateFin'];};?></label></br>
-    <input type="date" name="dateFin"></br></br>
-</div>
-
-<h2 class="center"> Choisissez l'adresse de votre cinéma</h2>
-    <!--On permet à l'admin de choisir son cinéma-->
-    <div class="center">
-    <div class="border"><input type="checkbox" value="tout" name="tout">Tout</br></div>
-    <?php 
-    $pdo_kinepolise_cinema1 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-  foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {};?>
- <input type="checkbox" value="cinema1" name="cinemaAdresse"><?php echo $adresse['adresse'].'<br>'; ?>
- <?php 
-     $pdo_kinepolise_cinema2 = new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
-  foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM adresse', PDO::FETCH_ASSOC) as $adresse) {}; ?>
-  <input  type="checkbox" value="cinema2"  name="cinemaAdresse2"><?php echo $adresse['adresse'].'<br>'; ?>
-  </div>
-  <input class="center button" type="submit" name="creneaux" value="générer les stats">
-
-</fieldset>
-  </form>
+<!--On invoque le formulaire: "choix_creneaux_réservations"-->
+<?php require_once 'Formulaire/formulaire_choix_creneaux_reservations.php' ?>
 
   <!--On insère la tête du tableau-->
 <?php require_once 'tableau/tete_du_tableau.php'; ?>
     </form>
 
-
-
-    
-<!--traitement_choix_du_creneau-->
+<!--On ajoute des 00 afin de convertir les dates saisies en dateTime-->
 <?php
 if(isset($_POST['creneaux'])){
   $dateDepart= $_POST['dateDepart'].' 00:00:00';
   $dateFin= $_POST['dateFin'].' 00:00:00';
 }
-
-    //traitement_choix_du_creneau
-    if(isset($_POST['cinemaAdresse']) || isset($_POST['tout'])){
-  if($_POST['cinemaAdresse']== 'cinema1' || $_POST['tout']== 'tout'){
-?>
-          <!-- Boucle Corps du tableau-->
-  <tr>
-      <td colspan="6">Cinéma1</td>
-  </tr>
-
-  <?php
-
-    
-    //traitement_choix_du_creneau
-    if(($_POST['toutCreneau']== 'tout')){
-        $pdo_kinepolise_cinema1= new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-        foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `reservation_client` ', PDO::FETCH_ASSOC) as $seance) { 
-              $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-  $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']); 
-  ?>
-
-  <tr class=thead <?php echo $seance['FilmName']?>>
-
-  <td><?php echo $seance['username'];?></td>
-  <td><?php echo $seance['FilmName'];?></td> 
-  <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/></td>
-  <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/></td>
-  <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?></td>
-  <td id="Colonne6"><?php echo $seance['SalleName'];?></br></td>
-  </tr>
-
-  <?php 
-  $n+= 1; 
-
-}; 
-  } else {
-    $pdo_kinepolise_cinema1= new PDO('mysql:host=localhost;dbname=kinepolise_cinema1', 'root', '');
-    foreach ($pdo_kinepolise_cinema1->query('SELECT * FROM `reservation_client` WHERE `DateSeanceBegin` >= "'.$dateDepart.'" AND `DateSeanceBegin` <= "'.$dateFin.'" ', PDO::FETCH_ASSOC) as $seance) {
-        //traitement_choix_du_creneau 
-      $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-  $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']); ?>
-
-  <tr class=thead <?php echo $seance['FilmName']?>>
-
-  <td><?php echo $seance['username'];?></td>
-  <td><?php echo $seance['FilmName'];?></td> 
-  <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/></td>
-  <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/></td>
-  <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?></td>
-  <td id="Colonne6"><?php echo $seance['SalleName'];?></br></td>
-  </tr>
-
-  <?php 
-  $n+= 1; 
-}; 
-};
-}
-}
 ?>
 
+  <!-- traitement_choix_du_creneau_cinema1 si on a sélectionné tout les créneaux et tout les cinémas-->
+  <?php require_once 'Traitement_formulaire/traitement_choix_du_creneau.cinema1.php'; ?>
 
-<?php
-    if(isset($_POST['cinemaAdresse2']) || isset($_POST['tout'])){
-        if($_POST['cinemaAdresse2']== 'cinema2' || $_POST['tout']== 'tout'){
-?>
-
-<?php
-//traitement_choix_du_creneau
-    if($_POST['toutCreneau']== 'tout'){
-        $pdo_kinepolise_cinema2= new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
-        foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM `reservation_client` ', PDO::FETCH_ASSOC) as $seance) {
-            $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-            $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']); 
-            ?>
-
-            <tr>
-      <td colspan="6">Cinéma2</td>
-  </tr>
-
-            <tr class= thead <?php echo $seance['FilmName']?>>
-
-            <td><?php echo $seance['username'];?></td>
-            <td><?php echo $seance['FilmName'];?></td> 
-            <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/></td>
-            <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/></td>
-            <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?></td>
-            <td id="Colonne6"><?php echo $seance['SalleName'];?></br></td>
-            </tr>
-      
-            <?php 
-            $n+= 1; 
-        } 
-    }else {
-            
-$pdo_kinepolise_cinema2= new PDO('mysql:host=localhost;dbname=kinepolise_cinema2', 'root', '');
-        foreach ($pdo_kinepolise_cinema2->query('SELECT * FROM `reservation_client` WHERE `DateSeanceBegin` >= "'.$dateDepart.'" AND `DateSeanceBegin` <= "'.$dateFin.'" ', PDO::FETCH_ASSOC) as $seance) { 
-          $dateSeanceBegin = new DateTime($seance['DateSeanceBegin']);
-      $DateSeanceEnd = new DateTime($seance['DateSeanceEnd']); 
-      ?>
-
-      <tr class= thead <?php echo $seance['FilmName']?>>
-
-      <td><?php echo $seance['username'];?></td>
-      <td><?php echo $seance['FilmName'];?></td> 
-      <td id="Colonne3"><?php echo $dateSeanceBegin->format('Y-m-d');?><br/></td>
-      <td id="Colonne4"><?php echo $dateSeanceBegin->format('H:i');?><br/></td>
-      <td id="Colonne5"><?php echo $DateSeanceEnd->format('H:i');?></td>
-      <td id="Colonne6"><?php echo $seance['SalleName'];?></br></td>
-      </tr>
-
-      <?php 
-      $n+= 1; 
-}; 
-};
-};
-};
-?>
+    <!--traitement_choix_du_creneau si on a choisi le cinéma2 ou tout les cinémas, on lit la boucle suivante-->
+    <?php require_once 'Traitement_formulaire/traitement_choix_du_creneau.cinema2.php'; ?>
 
 
 <?php 
+//On affiche le pied du tableau
 require_once 'tableau/pied_du_tableau.php';
        ?>
