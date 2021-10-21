@@ -1,4 +1,3 @@
-
 --
 -- Base de données : `stream_cinema1_2`
 DROP SCHEMA IF EXISTS stream_cinema1_2;
