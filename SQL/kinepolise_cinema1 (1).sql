@@ -1,33 +1,14 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1
--- Généré le : jeu. 21 oct. 2021 à 09:35
--- Version du serveur : 10.4.21-MariaDB
--- Version de PHP : 8.0.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `kinepolise_cinema1`
---
-
+-- Base de données : `stream_cinema1_2`
+DROP SCHEMA IF EXISTS stream_cinema1_2;
+CREATE SCHEMA stream_cinema1_2;
 -- --------------------------------------------------------
-
 --
 -- Structure de la table `adresse`
 --
 
-CREATE TABLE `adresse` (
+CREATE TABLE stream_cinema1_2.adresse (
   `adresse` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -35,16 +16,16 @@ CREATE TABLE `adresse` (
 -- Déchargement des données de la table `adresse`
 --
 
-INSERT INTO `adresse` (`adresse`) VALUES
-('50 RTE d\'Arlon, 57100 Thionville ');
+INSERT INTO stream_cinema1_2.adresse (`adresse`) VALUES
+("50 RTE d\'Arlon, 57100 Thionville");
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `infos_cinema1`
+-- Structure de la table stream_cinema1_2.infos_cinema1
 --
 
-CREATE TABLE `infos_cinema1` (
+CREATE TABLE stream_cinema1_2.infos_cinema1 (
   `Id` int(11) NOT NULL,
   `SalleName` varchar(250) DEFAULT NULL,
   `Nombre_de_place` int(100) NOT NULL
@@ -54,7 +35,7 @@ CREATE TABLE `infos_cinema1` (
 -- Déchargement des données de la table `infos_cinema1`
 --
 
-INSERT INTO `infos_cinema1` (`Id`, `SalleName`, `Nombre_de_place`) VALUES
+INSERT INTO stream_cinema1_2.infos_cinema1 (`Id`, `SalleName`, `Nombre_de_place`) VALUES
 (2, 'Salle2', 50),
 (3, 'Salle3', 1),
 (10, 'Salle1', 25);
@@ -65,7 +46,7 @@ INSERT INTO `infos_cinema1` (`Id`, `SalleName`, `Nombre_de_place`) VALUES
 -- Structure de la table `reservation_client`
 --
 
-CREATE TABLE `reservation_client` (
+CREATE TABLE stream_cinema1_2.reservation_client (
   `Id` int(11) NOT NULL,
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
@@ -79,7 +60,7 @@ CREATE TABLE `reservation_client` (
 -- Déchargement des données de la table `reservation_client`
 --
 
-INSERT INTO `reservation_client` (`Id`, `username`, `password`, `FilmName`, `DateSeanceBegin`, `DateSeanceEnd`, `SalleName`) VALUES
+INSERT INTO stream_cinema1_2.reservation_client (`Id`, `username`, `password`, `FilmName`, `DateSeanceBegin`, `DateSeanceEnd`, `SalleName`) VALUES
 (713, 'Mike', '05104chess', 'Tron', '2021-10-17 18:26:00', '2021-10-17 19:25:00', 'Salle1');
 
 -- --------------------------------------------------------
@@ -88,7 +69,7 @@ INSERT INTO `reservation_client` (`Id`, `username`, `password`, `FilmName`, `Dat
 -- Structure de la table `seance_cinema1`
 --
 
-CREATE TABLE `seance_cinema1` (
+CREATE TABLE stream_cinema1_2.seance_cinema1 (
   `Id` int(11) NOT NULL,
   `FilmName` varchar(250) NOT NULL,
   `DateSeanceBegin` datetime DEFAULT NULL,
@@ -102,7 +83,7 @@ CREATE TABLE `seance_cinema1` (
 -- Déchargement des données de la table `seance_cinema1`
 --
 
-INSERT INTO `seance_cinema1` (`Id`, `FilmName`, `DateSeanceBegin`, `DateSeanceEnd`, `SalleName`, `Nombre_de_reservation`, `place_disponible`) VALUES
+INSERT INTO stream_cinema1_2.seance_cinema1 (`Id`, `FilmName`, `DateSeanceBegin`, `DateSeanceEnd`, `SalleName`, `Nombre_de_reservation`, `place_disponible`) VALUES
 (709, 'Oblivion', '2021-10-20 17:37:00', '2021-10-20 19:37:00', 'Salle2', 0, 50),
 (713, 'Tron', '2021-10-17 18:26:00', '2021-10-17 19:25:00', 'Salle1', 1, 24),
 (714, 'Grand_Torino', '2021-09-03 14:36:00', '2021-10-17 20:33:00', 'Salle2', 0, 50);
@@ -114,19 +95,19 @@ INSERT INTO `seance_cinema1` (`Id`, `FilmName`, `DateSeanceBegin`, `DateSeanceEn
 --
 -- Index pour la table `infos_cinema1`
 --
-ALTER TABLE `infos_cinema1`
+ALTER TABLE stream_cinema1_2.infos_cinema1
   ADD PRIMARY KEY (`Id`);
 
 --
 -- Index pour la table `reservation_client`
 --
-ALTER TABLE `reservation_client`
+ALTER TABLE stream_cinema1_2.reservation_client
   ADD PRIMARY KEY (`Id`);
 
 --
 -- Index pour la table `seance_cinema1`
 --
-ALTER TABLE `seance_cinema1`
+ALTER TABLE stream_cinema1_2.seance_cinema1
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -136,22 +117,18 @@ ALTER TABLE `seance_cinema1`
 --
 -- AUTO_INCREMENT pour la table `infos_cinema1`
 --
-ALTER TABLE `infos_cinema1`
+ALTER TABLE stream_cinema1_2.infos_cinema1
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `reservation_client`
 --
-ALTER TABLE `reservation_client`
+ALTER TABLE stream_cinema1_2.reservation_client
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=715;
 
 --
 -- AUTO_INCREMENT pour la table `seance_cinema1`
 --
-ALTER TABLE `seance_cinema1`
+ALTER TABLE stream_cinema1_2.seance_cinema1
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=715;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
