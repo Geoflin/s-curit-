@@ -1,6 +1,6 @@
 <html lang="fr">
 <head>
-<TITLE>Kinepolise/connexion_gestionnaire</TITLE>
+<TITLE>espace_gestionnaire_cinema_1</TITLE>
 </head>
 <body>
 <nav>

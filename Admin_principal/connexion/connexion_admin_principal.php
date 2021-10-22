@@ -1,6 +1,6 @@
 <html lang="fr">
 <head>
-<TITLE>Kinepolise/connexion_gestionnaire</TITLE>
+<TITLE>connexion_admin_principal</TITLE>
 <link rel="stylesheet" href="connexion_admin_principal.css" />
 </head>
 <body>

@@ -1,6 +1,6 @@
 <html lang="fr">
 <head>
-<TITLE>Kinepolise/connexion_gestionnaire</TITLE>
+<TITLE>exploration_reservation</TITLE>
 </head>
 <body>
 
