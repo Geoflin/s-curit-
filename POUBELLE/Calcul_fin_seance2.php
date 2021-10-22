@@ -24,3 +24,4 @@ $sql = "UPDATE `seance_cinema1` SET `DateSeanceEnd` = '".$DateFinSeance."' WHERE
 $count = $conn->exec($sql);
 
 $conn = null;
+
