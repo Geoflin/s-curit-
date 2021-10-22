@@ -1,0 +1,8 @@
+{
+    "require": {
+        "doctrine/orm": "^2.10"
+    },
+    "compile": [
+        "php bin/console doctrine:migrations:migrate"
+    ]
+}
